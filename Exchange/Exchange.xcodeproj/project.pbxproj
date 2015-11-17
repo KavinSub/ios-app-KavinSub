@@ -16,6 +16,11 @@
 		AEEEAD231BFAC93200E7806F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD221BFAC93200E7806F /* SettingsViewController.swift */; };
 		AEEEAD251BFAC93F00E7806F /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD241BFAC93F00E7806F /* ConnectionsViewController.swift */; };
 		AEEEAD271BFAC94A00E7806F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD261BFAC94A00E7806F /* UserViewController.swift */; };
+		AEEEAD321BFACEBB00E7806F /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD2D1BFACEBB00E7806F /* ParseUI.framework */; };
+		AEEEAD331BFACEBB00E7806F /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD2E1BFACEBB00E7806F /* ParseFacebookUtilsV4.framework */; };
+		AEEEAD341BFACEBB00E7806F /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD2F1BFACEBB00E7806F /* ParseFacebookUtils.framework */; };
+		AEEEAD351BFACEBB00E7806F /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD301BFACEBB00E7806F /* ParseCrashReporting.framework */; };
+		AEEEAD361BFACEBB00E7806F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD311BFACEBB00E7806F /* Parse.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,12 @@
 		AEEEAD221BFAC93200E7806F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AEEEAD241BFAC93F00E7806F /* ConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
 		AEEEAD261BFAC94A00E7806F /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		AEEEAD2D1BFACEBB00E7806F /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		AEEEAD2E1BFACEBB00E7806F /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		AEEEAD2F1BFACEBB00E7806F /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
+		AEEEAD301BFACEBB00E7806F /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
+		AEEEAD311BFACEBB00E7806F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		AEEEAD371BFACFDB00E7806F /* Exchange-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Exchange-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +48,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEEEAD331BFACEBB00E7806F /* ParseFacebookUtilsV4.framework in Frameworks */,
+				AEEEAD321BFACEBB00E7806F /* ParseUI.framework in Frameworks */,
+				AEEEAD341BFACEBB00E7806F /* ParseFacebookUtils.framework in Frameworks */,
+				AEEEAD351BFACEBB00E7806F /* ParseCrashReporting.framework in Frameworks */,
+				AEEEAD361BFACEBB00E7806F /* Parse.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +78,14 @@
 		AEEEAD071BFAB9FA00E7806F /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
+				AEEEAD2A1BFACE4200E7806F /* Frameworks */,
 				AEEEAD1A1BFABADC00E7806F /* ViewControllers */,
 				AEEEAD081BFAB9FA00E7806F /* AppDelegate.swift */,
 				AEEEAD0C1BFAB9FA00E7806F /* Main.storyboard */,
 				AEEEAD0F1BFAB9FA00E7806F /* Assets.xcassets */,
 				AEEEAD111BFAB9FA00E7806F /* LaunchScreen.storyboard */,
 				AEEEAD141BFAB9FA00E7806F /* Info.plist */,
+				AEEEAD371BFACFDB00E7806F /* Exchange-Bridging-Header.h */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
@@ -82,6 +100,18 @@
 				AEEEAD261BFAC94A00E7806F /* UserViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AEEEAD2A1BFACE4200E7806F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEEEAD2D1BFACEBB00E7806F /* ParseUI.framework */,
+				AEEEAD2E1BFACEBB00E7806F /* ParseFacebookUtilsV4.framework */,
+				AEEEAD2F1BFACEBB00E7806F /* ParseFacebookUtils.framework */,
+				AEEEAD301BFACEBB00E7806F /* ParseCrashReporting.framework */,
+				AEEEAD311BFACEBB00E7806F /* Parse.framework */,
+			);
+			path = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,10 +302,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Exchange/Frameworks",
+				);
 				INFOPLIST_FILE = Exchange/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.Exchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Exchange/Exchange-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -283,10 +320,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Exchange/Frameworks",
+				);
 				INFOPLIST_FILE = Exchange/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.example.Exchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Exchange/Exchange-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class ExchangeViewController: UIViewController {
     @IBAction func unwindToSegue(segue: UIStoryboardSegue){
