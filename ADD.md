@@ -2,7 +2,7 @@
 
 
 ##Objective
-[Undecided Name] is an app that lets users exchange contact information and resumes by
+[Undecided Name] (Temporarily called Exchange) is an app that lets users exchange contact information and resumes by
 putting their phones next to each other.
 
 ##Audience
