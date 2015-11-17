@@ -24,6 +24,7 @@ it easier for users to keep track of people they really struck a connection with
 
 ####External Services
 Parse Framework
+Facebook SDK
 Bluetooth
 
 
@@ -51,7 +52,9 @@ Profile:
 Week 1:
     Complete Layout + Transitions
     Implement Parse Functionality
+    Integrate Facebook Login
     Finalize Data Models
+    Complete Login View 
 
 Week 2:
     Complete Exchange View

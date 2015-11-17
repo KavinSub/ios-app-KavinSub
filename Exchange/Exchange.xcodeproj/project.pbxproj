@@ -21,6 +21,11 @@
 		AEEEAD341BFACEBB00E7806F /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD2F1BFACEBB00E7806F /* ParseFacebookUtils.framework */; };
 		AEEEAD351BFACEBB00E7806F /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD301BFACEBB00E7806F /* ParseCrashReporting.framework */; };
 		AEEEAD361BFACEBB00E7806F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD311BFACEBB00E7806F /* Parse.framework */; };
+		AEEEAD3D1BFAD30F00E7806F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD3A1BFAD30F00E7806F /* FBSDKCoreKit.framework */; };
+		AEEEAD3E1BFAD30F00E7806F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD3B1BFAD30F00E7806F /* FBSDKLoginKit.framework */; };
+		AEEEAD3F1BFAD30F00E7806F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD3C1BFAD30F00E7806F /* FBSDKShareKit.framework */; };
+		AEEEAD431BFAD81C00E7806F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD421BFAD81C00E7806F /* LoginViewController.swift */; };
+		AEEEAD451BFAE29D00E7806F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD441BFAE29D00E7806F /* Bolts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +46,11 @@
 		AEEEAD301BFACEBB00E7806F /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
 		AEEEAD311BFACEBB00E7806F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		AEEEAD371BFACFDB00E7806F /* Exchange-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Exchange-Bridging-Header.h"; sourceTree = "<group>"; };
+		AEEEAD3A1BFAD30F00E7806F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		AEEEAD3B1BFAD30F00E7806F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		AEEEAD3C1BFAD30F00E7806F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		AEEEAD421BFAD81C00E7806F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AEEEAD441BFAE29D00E7806F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,9 +58,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEEEAD3F1BFAD30F00E7806F /* FBSDKShareKit.framework in Frameworks */,
 				AEEEAD331BFACEBB00E7806F /* ParseFacebookUtilsV4.framework in Frameworks */,
+				AEEEAD3D1BFAD30F00E7806F /* FBSDKCoreKit.framework in Frameworks */,
 				AEEEAD321BFACEBB00E7806F /* ParseUI.framework in Frameworks */,
 				AEEEAD341BFACEBB00E7806F /* ParseFacebookUtils.framework in Frameworks */,
+				AEEEAD3E1BFAD30F00E7806F /* FBSDKLoginKit.framework in Frameworks */,
+				AEEEAD451BFAE29D00E7806F /* Bolts.framework in Frameworks */,
 				AEEEAD351BFACEBB00E7806F /* ParseCrashReporting.framework in Frameworks */,
 				AEEEAD361BFACEBB00E7806F /* Parse.framework in Frameworks */,
 			);
@@ -98,6 +112,7 @@
 				AEEEAD221BFAC93200E7806F /* SettingsViewController.swift */,
 				AEEEAD241BFAC93F00E7806F /* ConnectionsViewController.swift */,
 				AEEEAD261BFAC94A00E7806F /* UserViewController.swift */,
+				AEEEAD421BFAD81C00E7806F /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -105,6 +120,10 @@
 		AEEEAD2A1BFACE4200E7806F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AEEEAD441BFAE29D00E7806F /* Bolts.framework */,
+				AEEEAD3A1BFAD30F00E7806F /* FBSDKCoreKit.framework */,
+				AEEEAD3B1BFAD30F00E7806F /* FBSDKLoginKit.framework */,
+				AEEEAD3C1BFAD30F00E7806F /* FBSDKShareKit.framework */,
 				AEEEAD2D1BFACEBB00E7806F /* ParseUI.framework */,
 				AEEEAD2E1BFACEBB00E7806F /* ParseFacebookUtilsV4.framework */,
 				AEEEAD2F1BFACEBB00E7806F /* ParseFacebookUtils.framework */,
@@ -186,6 +205,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEEEAD431BFAD81C00E7806F /* LoginViewController.swift in Sources */,
 				AEEEAD211BFAC90900E7806F /* ProfileViewController.swift in Sources */,
 				AEEEAD271BFAC94A00E7806F /* UserViewController.swift in Sources */,
 				AEEEAD091BFAB9FA00E7806F /* AppDelegate.swift in Sources */,
@@ -309,7 +329,7 @@
 				);
 				INFOPLIST_FILE = Exchange/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Exchange;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Kavin.Exchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Exchange/Exchange-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -327,7 +347,7 @@
 				);
 				INFOPLIST_FILE = Exchange/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.Exchange;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Kavin.Exchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Exchange/Exchange-Bridging-Header.h";
 			};
