@@ -110,8 +110,22 @@
                     <view key="view" contentMode="scaleToFill" id="76p-f8-f75">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSE-pW-A8U">
+                                <rect key="frame" x="277" y="510" width="46" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="GYh-IW-czd"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DDk-1M-AEd" firstAttribute="top" secondItem="RSE-pW-A8U" secondAttribute="bottom" constant="60" id="bXy-kw-cRo"/>
+                            <constraint firstItem="RSE-pW-A8U" firstAttribute="centerX" secondItem="76p-f8-f75" secondAttribute="centerX" id="qUg-cZ-hG6"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oKO-Yx-LPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
