@@ -41,12 +41,17 @@ Views/View Controllers - Profile View, Exchange View, Settings View, View Users 
 User:
     username (default)
     password (default)
-    Profile (pointer)
+    user_id (default)
+    user_profile (pointer)
 
 Profile:
     Picture (file)
     Resume (file)
     Business Card (file)
+
+Connection:
+    User_A (pointer)
+    User_B (pointer)
 
 ##MVP Milestones
 Week 1:
@@ -54,7 +59,7 @@ Week 1:
     Implement Parse Functionality
     Integrate Facebook Login
     Finalize Data Models
-    Complete Login View 
+    Complete Login View
 
 Week 2:
     Complete Exchange View
