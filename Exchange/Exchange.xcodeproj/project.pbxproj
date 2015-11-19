@@ -7,190 +7,123 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AEEEAD091BFAB9FA00E7806F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD081BFAB9FA00E7806F /* AppDelegate.swift */; };
-		AEEEAD0E1BFAB9FA00E7806F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEEEAD0C1BFAB9FA00E7806F /* Main.storyboard */; };
-		AEEEAD101BFAB9FA00E7806F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AEEEAD0F1BFAB9FA00E7806F /* Assets.xcassets */; };
-		AEEEAD131BFAB9FA00E7806F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AEEEAD111BFAB9FA00E7806F /* LaunchScreen.storyboard */; };
-		AEEEAD1C1BFABAF500E7806F /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD1B1BFABAF500E7806F /* ExchangeViewController.swift */; };
-		AEEEAD211BFAC90900E7806F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD201BFAC90800E7806F /* ProfileViewController.swift */; };
-		AEEEAD231BFAC93200E7806F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD221BFAC93200E7806F /* SettingsViewController.swift */; };
-		AEEEAD251BFAC93F00E7806F /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD241BFAC93F00E7806F /* ConnectionsViewController.swift */; };
-		AEEEAD271BFAC94A00E7806F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD261BFAC94A00E7806F /* UserViewController.swift */; };
-		AEEEAD321BFACEBB00E7806F /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD2D1BFACEBB00E7806F /* ParseUI.framework */; };
-		AEEEAD331BFACEBB00E7806F /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD2E1BFACEBB00E7806F /* ParseFacebookUtilsV4.framework */; };
-		AEEEAD341BFACEBB00E7806F /* ParseFacebookUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD2F1BFACEBB00E7806F /* ParseFacebookUtils.framework */; };
-		AEEEAD351BFACEBB00E7806F /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD301BFACEBB00E7806F /* ParseCrashReporting.framework */; };
-		AEEEAD361BFACEBB00E7806F /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD311BFACEBB00E7806F /* Parse.framework */; };
-		AEEEAD3D1BFAD30F00E7806F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD3A1BFAD30F00E7806F /* FBSDKCoreKit.framework */; };
-		AEEEAD3E1BFAD30F00E7806F /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD3B1BFAD30F00E7806F /* FBSDKLoginKit.framework */; };
-		AEEEAD3F1BFAD30F00E7806F /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD3C1BFAD30F00E7806F /* FBSDKShareKit.framework */; };
-		AEEEAD431BFAD81C00E7806F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEEAD421BFAD81C00E7806F /* LoginViewController.swift */; };
-		AEEEAD451BFAE29D00E7806F /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD441BFAE29D00E7806F /* Bolts.framework */; };
-		AEEEAD4B1BFBC7A700E7806F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD4A1BFBC7A700E7806F /* AudioToolbox.framework */; };
-		AEEEAD4D1BFBC7AE00E7806F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD4C1BFBC7AE00E7806F /* CFNetwork.framework */; };
-		AEEEAD4F1BFBC7B700E7806F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD4E1BFBC7B700E7806F /* CoreGraphics.framework */; };
-		AEEEAD511BFBC7C000E7806F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD501BFBC7C000E7806F /* CoreLocation.framework */; };
-		AEEEAD531BFBC7DD00E7806F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD521BFBC7DD00E7806F /* QuartzCore.framework */; };
-		AEEEAD551BFBC7E800E7806F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD541BFBC7E800E7806F /* Security.framework */; };
-		AEEEAD571BFBC7F000E7806F /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD561BFBC7F000E7806F /* StoreKit.framework */; };
-		AEEEAD591BFBC80200E7806F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD581BFBC80200E7806F /* SystemConfiguration.framework */; };
-		AEEEAD5B1BFBC80900E7806F /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD5A1BFBC80900E7806F /* libz.tbd */; };
-		AEEEAD5C1BFBC81500E7806F /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD481BFBC74E00E7806F /* libsqlite3.tbd */; };
-		AEEEAD5E1BFBC82300E7806F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD5D1BFBC82300E7806F /* Accounts.framework */; };
-		AEEEAD601BFBC82900E7806F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEEAD5F1BFBC82900E7806F /* Social.framework */; };
+		4C6BE4F532A5CE0DB4BE20C8 /* Pods_Exchange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */; };
+		AE2794331BFD4BA000254F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2794321BFD4BA000254F50 /* AppDelegate.swift */; };
+		AE2794381BFD4BA000254F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE2794361BFD4BA000254F50 /* Main.storyboard */; };
+		AE27943A1BFD4BA000254F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE2794391BFD4BA000254F50 /* Assets.xcassets */; };
+		AE27943D1BFD4BA000254F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE27943B1BFD4BA000254F50 /* LaunchScreen.storyboard */; };
+		AEE33B401BFD65DF00067838 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */; };
+		AEEE828D1BFD4E88008891A7 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */; };
+		AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AEEEAD051BFAB9F900E7806F /* Exchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AEEEAD081BFAB9FA00E7806F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AEEEAD0D1BFAB9FA00E7806F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		AEEEAD0F1BFAB9FA00E7806F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AEEEAD121BFAB9FA00E7806F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		AEEEAD141BFAB9FA00E7806F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AEEEAD1B1BFABAF500E7806F /* ExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
-		AEEEAD201BFAC90800E7806F /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		AEEEAD221BFAC93200E7806F /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		AEEEAD241BFAC93F00E7806F /* ConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
-		AEEEAD261BFAC94A00E7806F /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
-		AEEEAD2D1BFACEBB00E7806F /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
-		AEEEAD2E1BFACEBB00E7806F /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
-		AEEEAD2F1BFACEBB00E7806F /* ParseFacebookUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtils.framework; sourceTree = "<group>"; };
-		AEEEAD301BFACEBB00E7806F /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseCrashReporting.framework; sourceTree = "<group>"; };
-		AEEEAD311BFACEBB00E7806F /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
-		AEEEAD371BFACFDB00E7806F /* Exchange-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Exchange-Bridging-Header.h"; sourceTree = "<group>"; };
-		AEEEAD3A1BFAD30F00E7806F /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		AEEEAD3B1BFAD30F00E7806F /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		AEEEAD3C1BFAD30F00E7806F /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
-		AEEEAD421BFAD81C00E7806F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		AEEEAD441BFAE29D00E7806F /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		AEEEAD481BFBC74E00E7806F /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
-		AEEEAD4A1BFBC7A700E7806F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		AEEEAD4C1BFBC7AE00E7806F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		AEEEAD4E1BFBC7B700E7806F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		AEEEAD501BFBC7C000E7806F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		AEEEAD521BFBC7DD00E7806F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		AEEEAD541BFBC7E800E7806F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		AEEEAD561BFBC7F000E7806F /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		AEEEAD581BFBC80200E7806F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		AEEEAD5A1BFBC80900E7806F /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		AEEEAD5D1BFBC82300E7806F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
-		AEEEAD5F1BFBC82900E7806F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		1CF490F54F1675FEC2D93C32 /* Pods-Exchange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exchange.release.xcconfig"; path = "Pods/Target Support Files/Pods-Exchange/Pods-Exchange.release.xcconfig"; sourceTree = "<group>"; };
+		20F2CBE93C54B27FF3D2F8D3 /* Pods-Exchange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exchange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Exchange/Pods-Exchange.debug.xcconfig"; sourceTree = "<group>"; };
+		A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exchange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE27942F1BFD4BA000254F50 /* Exchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2794321BFD4BA000254F50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AE2794371BFD4BA000254F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AE2794391BFD4BA000254F50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AE27943C1BFD4BA000254F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AE27943E1BFD4BA000254F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
+		AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		AEEEAD021BFAB9F900E7806F /* Frameworks */ = {
+		AE27942C1BFD4BA000254F50 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEEEAD601BFBC82900E7806F /* Social.framework in Frameworks */,
-				AEEEAD5E1BFBC82300E7806F /* Accounts.framework in Frameworks */,
-				AEEEAD5C1BFBC81500E7806F /* libsqlite3.tbd in Frameworks */,
-				AEEEAD5B1BFBC80900E7806F /* libz.tbd in Frameworks */,
-				AEEEAD591BFBC80200E7806F /* SystemConfiguration.framework in Frameworks */,
-				AEEEAD571BFBC7F000E7806F /* StoreKit.framework in Frameworks */,
-				AEEEAD551BFBC7E800E7806F /* Security.framework in Frameworks */,
-				AEEEAD531BFBC7DD00E7806F /* QuartzCore.framework in Frameworks */,
-				AEEEAD511BFBC7C000E7806F /* CoreLocation.framework in Frameworks */,
-				AEEEAD4F1BFBC7B700E7806F /* CoreGraphics.framework in Frameworks */,
-				AEEEAD4D1BFBC7AE00E7806F /* CFNetwork.framework in Frameworks */,
-				AEEEAD4B1BFBC7A700E7806F /* AudioToolbox.framework in Frameworks */,
-				AEEEAD3F1BFAD30F00E7806F /* FBSDKShareKit.framework in Frameworks */,
-				AEEEAD331BFACEBB00E7806F /* ParseFacebookUtilsV4.framework in Frameworks */,
-				AEEEAD3D1BFAD30F00E7806F /* FBSDKCoreKit.framework in Frameworks */,
-				AEEEAD321BFACEBB00E7806F /* ParseUI.framework in Frameworks */,
-				AEEEAD341BFACEBB00E7806F /* ParseFacebookUtils.framework in Frameworks */,
-				AEEEAD3E1BFAD30F00E7806F /* FBSDKLoginKit.framework in Frameworks */,
-				AEEEAD451BFAE29D00E7806F /* Bolts.framework in Frameworks */,
-				AEEEAD351BFACEBB00E7806F /* ParseCrashReporting.framework in Frameworks */,
-				AEEEAD361BFACEBB00E7806F /* Parse.framework in Frameworks */,
+				AEEE828D1BFD4E88008891A7 /* linkedin-sdk.framework in Frameworks */,
+				4C6BE4F532A5CE0DB4BE20C8 /* Pods_Exchange.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AEEEACFC1BFAB9F900E7806F = {
+		19763F8E9350FCBEB51DD9F3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				AEEEAD071BFAB9FA00E7806F /* Exchange */,
-				AEEEAD061BFAB9F900E7806F /* Products */,
+				20F2CBE93C54B27FF3D2F8D3 /* Pods-Exchange.debug.xcconfig */,
+				1CF490F54F1675FEC2D93C32 /* Pods-Exchange.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		2B41D03AE2D87B508372D712 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE2794261BFD4B9F00254F50 = {
+			isa = PBXGroup;
+			children = (
+				AE2794311BFD4BA000254F50 /* Exchange */,
+				AE2794301BFD4BA000254F50 /* Products */,
+				19763F8E9350FCBEB51DD9F3 /* Pods */,
+				2B41D03AE2D87B508372D712 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		AEEEAD061BFAB9F900E7806F /* Products */ = {
+		AE2794301BFD4BA000254F50 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AEEEAD051BFAB9F900E7806F /* Exchange.app */,
+				AE27942F1BFD4BA000254F50 /* Exchange.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		AEEEAD071BFAB9FA00E7806F /* Exchange */ = {
+		AE2794311BFD4BA000254F50 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
-				AEEEAD2A1BFACE4200E7806F /* Frameworks */,
-				AEEEAD1A1BFABADC00E7806F /* ViewControllers */,
-				AEEEAD081BFAB9FA00E7806F /* AppDelegate.swift */,
-				AEEEAD0C1BFAB9FA00E7806F /* Main.storyboard */,
-				AEEEAD0F1BFAB9FA00E7806F /* Assets.xcassets */,
-				AEEEAD111BFAB9FA00E7806F /* LaunchScreen.storyboard */,
-				AEEEAD141BFAB9FA00E7806F /* Info.plist */,
-				AEEEAD371BFACFDB00E7806F /* Exchange-Bridging-Header.h */,
+				AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */,
+				AEEE828E1BFD4ED3008891A7 /* ViewControllers */,
+				AEEE828B1BFD4E87008891A7 /* More_Frameworks */,
+				AE2794321BFD4BA000254F50 /* AppDelegate.swift */,
+				AE2794361BFD4BA000254F50 /* Main.storyboard */,
+				AE2794391BFD4BA000254F50 /* Assets.xcassets */,
+				AE27943B1BFD4BA000254F50 /* LaunchScreen.storyboard */,
+				AE27943E1BFD4BA000254F50 /* Info.plist */,
 			);
 			path = Exchange;
 			sourceTree = "<group>";
 		};
-		AEEEAD1A1BFABADC00E7806F /* ViewControllers */ = {
+		AEEE828B1BFD4E87008891A7 /* More_Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AEEEAD1B1BFABAF500E7806F /* ExchangeViewController.swift */,
-				AEEEAD201BFAC90800E7806F /* ProfileViewController.swift */,
-				AEEEAD221BFAC93200E7806F /* SettingsViewController.swift */,
-				AEEEAD241BFAC93F00E7806F /* ConnectionsViewController.swift */,
-				AEEEAD261BFAC94A00E7806F /* UserViewController.swift */,
-				AEEEAD421BFAD81C00E7806F /* LoginViewController.swift */,
+				AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */,
+			);
+			path = More_Frameworks;
+			sourceTree = SOURCE_ROOT;
+		};
+		AEEE828E1BFD4ED3008891A7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		AEEEAD2A1BFACE4200E7806F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				AEEEAD5F1BFBC82900E7806F /* Social.framework */,
-				AEEEAD5D1BFBC82300E7806F /* Accounts.framework */,
-				AEEEAD5A1BFBC80900E7806F /* libz.tbd */,
-				AEEEAD581BFBC80200E7806F /* SystemConfiguration.framework */,
-				AEEEAD561BFBC7F000E7806F /* StoreKit.framework */,
-				AEEEAD541BFBC7E800E7806F /* Security.framework */,
-				AEEEAD521BFBC7DD00E7806F /* QuartzCore.framework */,
-				AEEEAD501BFBC7C000E7806F /* CoreLocation.framework */,
-				AEEEAD4E1BFBC7B700E7806F /* CoreGraphics.framework */,
-				AEEEAD4C1BFBC7AE00E7806F /* CFNetwork.framework */,
-				AEEEAD4A1BFBC7A700E7806F /* AudioToolbox.framework */,
-				AEEEAD481BFBC74E00E7806F /* libsqlite3.tbd */,
-				AEEEAD441BFAE29D00E7806F /* Bolts.framework */,
-				AEEEAD3A1BFAD30F00E7806F /* FBSDKCoreKit.framework */,
-				AEEEAD3B1BFAD30F00E7806F /* FBSDKLoginKit.framework */,
-				AEEEAD3C1BFAD30F00E7806F /* FBSDKShareKit.framework */,
-				AEEEAD2D1BFACEBB00E7806F /* ParseUI.framework */,
-				AEEEAD2E1BFACEBB00E7806F /* ParseFacebookUtilsV4.framework */,
-				AEEEAD2F1BFACEBB00E7806F /* ParseFacebookUtils.framework */,
-				AEEEAD301BFACEBB00E7806F /* ParseCrashReporting.framework */,
-				AEEEAD311BFACEBB00E7806F /* Parse.framework */,
-			);
-			path = Frameworks;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AEEEAD041BFAB9F900E7806F /* Exchange */ = {
+		AE27942E1BFD4BA000254F50 /* Exchange */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AEEEAD171BFAB9FA00E7806F /* Build configuration list for PBXNativeTarget "Exchange" */;
+			buildConfigurationList = AE2794411BFD4BA000254F50 /* Build configuration list for PBXNativeTarget "Exchange" */;
 			buildPhases = (
-				AEEEAD011BFAB9F900E7806F /* Sources */,
-				AEEEAD021BFAB9F900E7806F /* Frameworks */,
-				AEEEAD031BFAB9F900E7806F /* Resources */,
+				67090CDD16C2C272DC7D2C7D /* Check Pods Manifest.lock */,
+				AE27942B1BFD4BA000254F50 /* Sources */,
+				AE27942C1BFD4BA000254F50 /* Frameworks */,
+				AE27942D1BFD4BA000254F50 /* Resources */,
+				CDC9180432D545E77AB38FD4 /* Embed Pods Frameworks */,
+				B881CA7B9B4E379553191488 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -198,26 +131,26 @@
 			);
 			name = Exchange;
 			productName = Exchange;
-			productReference = AEEEAD051BFAB9F900E7806F /* Exchange.app */;
+			productReference = AE27942F1BFD4BA000254F50 /* Exchange.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		AEEEACFD1BFAB9F900E7806F /* Project object */ = {
+		AE2794271BFD4B9F00254F50 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Kavin Subramanyam";
 				TargetAttributes = {
-					AEEEAD041BFAB9F900E7806F = {
+					AE27942E1BFD4BA000254F50 = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = 7UXPYSFB9J;
 					};
 				};
 			};
-			buildConfigurationList = AEEEAD001BFAB9F900E7806F /* Build configuration list for PBXProject "Exchange" */;
+			buildConfigurationList = AE27942A1BFD4B9F00254F50 /* Build configuration list for PBXProject "Exchange" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -225,59 +158,103 @@
 				en,
 				Base,
 			);
-			mainGroup = AEEEACFC1BFAB9F900E7806F;
-			productRefGroup = AEEEAD061BFAB9F900E7806F /* Products */;
+			mainGroup = AE2794261BFD4B9F00254F50;
+			productRefGroup = AE2794301BFD4BA000254F50 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AEEEAD041BFAB9F900E7806F /* Exchange */,
+				AE27942E1BFD4BA000254F50 /* Exchange */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		AEEEAD031BFAB9F900E7806F /* Resources */ = {
+		AE27942D1BFD4BA000254F50 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEEEAD131BFAB9FA00E7806F /* LaunchScreen.storyboard in Resources */,
-				AEEEAD101BFAB9FA00E7806F /* Assets.xcassets in Resources */,
-				AEEEAD0E1BFAB9FA00E7806F /* Main.storyboard in Resources */,
+				AE27943D1BFD4BA000254F50 /* LaunchScreen.storyboard in Resources */,
+				AEE33B401BFD65DF00067838 /* GoogleService-Info.plist in Resources */,
+				AE27943A1BFD4BA000254F50 /* Assets.xcassets in Resources */,
+				AE2794381BFD4BA000254F50 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		67090CDD16C2C272DC7D2C7D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B881CA7B9B4E379553191488 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Exchange/Pods-Exchange-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDC9180432D545E77AB38FD4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Exchange/Pods-Exchange-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		AEEEAD011BFAB9F900E7806F /* Sources */ = {
+		AE27942B1BFD4BA000254F50 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEEEAD431BFAD81C00E7806F /* LoginViewController.swift in Sources */,
-				AEEEAD211BFAC90900E7806F /* ProfileViewController.swift in Sources */,
-				AEEEAD271BFAC94A00E7806F /* UserViewController.swift in Sources */,
-				AEEEAD091BFAB9FA00E7806F /* AppDelegate.swift in Sources */,
-				AEEEAD1C1BFABAF500E7806F /* ExchangeViewController.swift in Sources */,
-				AEEEAD251BFAC93F00E7806F /* ConnectionsViewController.swift in Sources */,
-				AEEEAD231BFAC93200E7806F /* SettingsViewController.swift in Sources */,
+				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,
+				AE2794331BFD4BA000254F50 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AEEEAD0C1BFAB9FA00E7806F /* Main.storyboard */ = {
+		AE2794361BFD4BA000254F50 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AEEEAD0D1BFAB9FA00E7806F /* Base */,
+				AE2794371BFD4BA000254F50 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		AEEEAD111BFAB9FA00E7806F /* LaunchScreen.storyboard */ = {
+		AE27943B1BFD4BA000254F50 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				AEEEAD121BFAB9FA00E7806F /* Base */,
+				AE27943C1BFD4BA000254F50 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -285,8 +262,9 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		AEEEAD151BFAB9FA00E7806F /* Debug */ = {
+		AE27943F1BFD4BA000254F50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20F2CBE93C54B27FF3D2F8D3 /* Pods-Exchange.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -329,8 +307,9 @@
 			};
 			name = Debug;
 		};
-		AEEEAD161BFAB9FA00E7806F /* Release */ = {
+		AE2794401BFD4BA000254F50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CF490F54F1675FEC2D93C32 /* Pods-Exchange.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -366,63 +345,60 @@
 			};
 			name = Release;
 		};
-		AEEEAD181BFAB9FA00E7806F /* Debug */ = {
+		AE2794421BFD4BA000254F50 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20F2CBE93C54B27FF3D2F8D3 /* Pods-Exchange.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Exchange/Frameworks",
+					"$(PROJECT_DIR)/More_Frameworks",
 				);
 				INFOPLIST_FILE = Exchange/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kavin.Exchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Exchange/Exchange-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		AEEEAD191BFAB9FA00E7806F /* Release */ = {
+		AE2794431BFD4BA000254F50 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1CF490F54F1675FEC2D93C32 /* Pods-Exchange.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Exchange/Frameworks",
+					"$(PROJECT_DIR)/More_Frameworks",
 				);
 				INFOPLIST_FILE = Exchange/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kavin.Exchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Exchange/Exchange-Bridging-Header.h";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AEEEAD001BFAB9F900E7806F /* Build configuration list for PBXProject "Exchange" */ = {
+		AE27942A1BFD4B9F00254F50 /* Build configuration list for PBXProject "Exchange" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AEEEAD151BFAB9FA00E7806F /* Debug */,
-				AEEEAD161BFAB9FA00E7806F /* Release */,
+				AE27943F1BFD4BA000254F50 /* Debug */,
+				AE2794401BFD4BA000254F50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AEEEAD171BFAB9FA00E7806F /* Build configuration list for PBXNativeTarget "Exchange" */ = {
+		AE2794411BFD4BA000254F50 /* Build configuration list for PBXNativeTarget "Exchange" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AEEEAD181BFAB9FA00E7806F /* Debug */,
-				AEEEAD191BFAB9FA00E7806F /* Release */,
+				AE2794421BFD4BA000254F50 /* Debug */,
+				AE2794431BFD4BA000254F50 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = AEEEACFD1BFAB9F900E7806F /* Project object */;
+	rootObject = AE2794271BFD4B9F00254F50 /* Project object */;
 }

@@ -24,8 +24,10 @@ it easier for users to keep track of people they really struck a connection with
 
 ####External Services
 Parse Framework
-Facebook SDK
 Bluetooth
+Facebook SDK
+Google SDK
+LinkedIn SDK
 
 
 ####Screens
