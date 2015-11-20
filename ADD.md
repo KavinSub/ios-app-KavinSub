@@ -44,16 +44,16 @@ User:
     username (default)
     password (default)
     user_id (default)
-    user_profile (pointer)
-
-Profile:
-    Picture (file)
-    Resume (file)
-    Business Card (file)
+    firstName
+    lastName
+    email
+    picture
+    resume
+    card
 
 Connection:
-    User_A (pointer)
-    User_B (pointer)
+    User_A (pointer to User)
+    User_B (pointer to User)
 
 ##MVP Milestones
 Week 1:

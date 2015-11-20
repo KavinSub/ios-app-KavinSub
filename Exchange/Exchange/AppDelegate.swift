@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import FBSDKCoreKit
 import FBSDKLoginKit
+import ParseFacebookUtilsV4
 import Google
 
 
@@ -30,7 +31,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         Parse.setApplicationId("A1CXwoBtfmKLnmYmcN3WR8QTEQNen5jkkXka9D3J", clientKey: "gVwXTox341ckfYk261hjQba9FxlEvJutJZwUs6rh")
         
         // Facebook setup
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        /*FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)*/
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         // Google setup
         var configureError: NSError?
@@ -44,14 +46,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        if let login = login{
-            if login == .Facebook{
+        /*if let login = login{
+            if login == .Facebook{*/
                 return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-            }else if login == .Google{
+           /* }else if login == .Google{
                 return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
             }
         }
-        return false
+        return false*/
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -78,6 +80,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    // ***********GOOGLE********** 
     // Functions for GIDSignInDelegate
     func signIn(signIn: GIDSignIn!, didSignInForUser user: GIDGoogleUser!, withError error: NSError!) {
         if(error == nil){
