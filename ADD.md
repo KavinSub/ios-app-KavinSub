@@ -57,15 +57,15 @@ Connection:
 
 ##MVP Milestones
 Week 1:
-    Complete Layout + Transitions
-    Implement Parse Functionality
-    Integrate Facebook Login
-    Finalize Data Models
-    Complete Login View
+    Implement Parse Functionality (DONE)
+    Integrate Facebook Login (DONE)
+    Finalize Data Models (DONE)
+    Complete Login View (DONE)
 
 Week 2:
     Complete Exchange View
     Complete Settings View
+    Complete Layout + Transitions
 
 Week 3:
     Complete Profile View

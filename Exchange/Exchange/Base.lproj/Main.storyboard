@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -54,22 +55,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login Bypassed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3M4-qj-13w">
-                                <rect key="frame" x="223" y="289" width="154" height="21"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ur-v4-Ch9">
+                                <rect key="frame" x="20" y="20" width="30" height="30"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="154" id="Gq7-G7-sLL"/>
+                                    <constraint firstAttribute="width" constant="30" id="w0t-8K-OAE"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIB-Jn-Pvp">
+                                <rect key="frame" x="550" y="28" width="30" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="kuv-jR-l0Y"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PwQ-tw-rcL">
+                                <rect key="frame" x="20" y="550" width="30" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJv-Gq-tAM">
+                                <rect key="frame" x="225" y="285" width="150" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="gai-jh-1R0"/>
+                                </constraints>
+                                <state key="normal" title="Get orientation"/>
+                                <connections>
+                                    <action selector="getOrientation:" destination="7VT-M7-Nys" eventType="touchUpInside" id="D3S-Qv-saX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.14509803921568629" green="0.61176470588235299" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="3M4-qj-13w" firstAttribute="centerX" secondItem="LsB-pd-Xdl" secondAttribute="centerX" id="M3i-DE-QGN"/>
-                            <constraint firstItem="3M4-qj-13w" firstAttribute="centerY" secondItem="LsB-pd-Xdl" secondAttribute="centerY" id="TkZ-zd-Aqg"/>
+                            <constraint firstItem="sJv-Gq-tAM" firstAttribute="centerX" secondItem="LsB-pd-Xdl" secondAttribute="centerX" id="5H9-oa-A9l"/>
+                            <constraint firstItem="PwQ-tw-rcL" firstAttribute="trailing" secondItem="4Ur-v4-Ch9" secondAttribute="trailing" id="8yX-y4-gvp"/>
+                            <constraint firstItem="sJv-Gq-tAM" firstAttribute="centerY" secondItem="LsB-pd-Xdl" secondAttribute="centerY" id="E8n-Ie-lGb"/>
+                            <constraint firstAttribute="bottom" secondItem="PwQ-tw-rcL" secondAttribute="bottom" constant="20" symbolic="YES" id="Iih-oV-FNb"/>
+                            <constraint firstItem="dIB-Jn-Pvp" firstAttribute="top" secondItem="rFh-6E-6BE" secondAttribute="bottom" constant="8" symbolic="YES" id="OY0-kY-pgc"/>
+                            <constraint firstItem="4Ur-v4-Ch9" firstAttribute="top" secondItem="rFh-6E-6BE" secondAttribute="bottom" id="QSg-wY-xHc"/>
+                            <constraint firstItem="dIB-Jn-Pvp" firstAttribute="trailing" secondItem="LsB-pd-Xdl" secondAttribute="trailingMargin" id="Yo4-ct-2qJ"/>
+                            <constraint firstItem="PwQ-tw-rcL" firstAttribute="leading" secondItem="4Ur-v4-Ch9" secondAttribute="leading" id="rtM-sl-kaM"/>
+                            <constraint firstItem="PwQ-tw-rcL" firstAttribute="leading" secondItem="LsB-pd-Xdl" secondAttribute="leadingMargin" id="xEr-25-W9P"/>
                         </constraints>
                     </view>
                 </viewController>
