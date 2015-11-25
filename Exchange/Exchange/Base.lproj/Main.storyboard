@@ -82,9 +82,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="gai-jh-1R0"/>
                                 </constraints>
-                                <state key="normal" title="Get orientation"/>
+                                <state key="normal" title="Become Central"/>
                                 <connections>
-                                    <action selector="getOrientation:" destination="7VT-M7-Nys" eventType="touchUpInside" id="D3S-Qv-saX"/>
+                                    <action selector="becomeCentral:" destination="7VT-M7-Nys" eventType="touchUpInside" id="hza-kD-4R1"/>
                                 </connections>
                             </button>
                         </subviews>

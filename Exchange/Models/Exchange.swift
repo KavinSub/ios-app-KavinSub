@@ -23,4 +23,8 @@ class Exchange{
     static func addCharacteristics(){
         exchangeService.characteristics = [exchangeCharacteristic]
     }
+    
+    init() {
+        
+    }
 }
