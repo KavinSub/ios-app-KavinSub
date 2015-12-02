@@ -8,23 +8,28 @@
 
 import UIKit
 import CoreBluetooth
+import Parse
 
 class ExchangeViewController: UIViewController {
     
     var centralManager: CBCentralManager?
     var peripheralManager: CBPeripheralManager?
+    let bluetoothEventQueue = /*dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)*/dispatch_queue_create("bluetoothEventQueue", nil)
+    var discoveredPeripheral: CBPeripheral?
+    
+    let exchange = Exchange()
     
     @IBAction func becomeCentral(sender: AnyObject) {
-        setupAsCentral()
+        //setupAsCentral()
         print("Switch made to central")
     }
 
     
     override func viewDidLoad(){
         // Set up Exchange Model
-        Exchange.addCharacteristics()
         setupAsPeripheral()
-        
+        setupAsCentral()
+        print("Setup completed")
     }
     
     // By default, device is peripheral manager
@@ -32,25 +37,30 @@ class ExchangeViewController: UIViewController {
         super.viewDidAppear(animated)
     }
     
-    override func viewDidDisappear(animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-    }
-    
     // When called, device becomes a central
     func setupAsCentral(){
-        // Deinitalize peripheral manager, initialize central manager
-        peripheralManager = nil
-        centralManager = CBCentralManager(delegate: self, queue: nil, options: nil)
+        //initialize central manager
+        centralManager = CBCentralManager(delegate: self, queue: bluetoothEventQueue, options: nil)
+        print("Setup as central")
     }
     
     
     // By default, device is to be treated as a peripheral
     func setupAsPeripheral(){
         // Initialize peripheral manager
-        peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
-        
+        peripheralManager = CBPeripheralManager(delegate: self, queue: bluetoothEventQueue, options: nil)
         print("Setup as peripheral")
+    }
+    
+    // If bluetooth isn't on, this alert controller will be presented
+    func presentBluetoothNotOn(){
+        let alertController = UIAlertController(title: nil, message: "Turn on Bluetooth, you scrub.", preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        
+        alertController.addAction(okAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     
@@ -92,6 +102,45 @@ class ExchangeViewController: UIViewController {
         }
     }
     
+    func createConnection(otherUser: String?){
+        if let otherUser = otherUser{
+            // Query User class for instance of otherUser
+            var userQuery = PFQuery(className: "User")
+            userQuery.whereKey("username", equalTo: otherUser)
+            
+            do{
+                // Find user
+                let userObjects = try userQuery.findObjects()
+                let user = userObjects.first
+                
+                if let user = user{
+                    // Check if connection object already exists
+                    let connectionQuery = PFQuery(className: "Connection")
+                    connectionQuery.whereKey("this_user", equalTo: user)
+                    
+                    do{
+                        let connectionObjects = try connectionQuery.findObjects()
+                        // If no connection exists
+                        if connectionObjects.count == 0{
+                            // Create new connection object
+                            let connectionObject = PFObject(className: "Connection")
+                            connectionObject.setValue(user, forKey: "other_user")
+                            connectionObject.setValue(PFUser.currentUser(), forKey: "this_user")
+                        }else{
+                            print("Connection already exists")
+                        }
+                    }catch{
+                        print("Unable to perform connection query")
+                    }
+                }else{
+                    print("Unable to find other user")
+                }
+            }catch{
+                print("Unable to perform user query")
+            }
+        }
+    }
+    
 }
 
 extension ExchangeViewController: CBCentralManagerDelegate, CBPeripheralManagerDelegate, CBPeripheralDelegate{
@@ -119,14 +168,14 @@ extension ExchangeViewController: CBCentralManagerDelegate, CBPeripheralManagerD
     func peripheralManager(peripheral: CBPeripheralManager, didReceiveReadRequest request: CBATTRequest) {
         print("Request received")
         // If requested UUID is equal to our exchange characteristic UUID
-        if(request.characteristic.UUID.isEqual(Exchange.exchangeCharacteristic.UUID)){
+        if(request.characteristic.UUID.isEqual(exchange.exchangeCharacteristic.UUID)){
             let offset = request.offset
-            let valLength = Exchange.exchangeCharacteristic.value!.length
+            let valLength = exchange.exchangeCharacteristic.value!.length
             if(offset > valLength){
                 peripheralManager!.respondToRequest(request, withResult: CBATTError.InvalidOffset)
                 return
             }else{
-                request.value = Exchange.exchangeCharacteristic.value?.subdataWithRange(NSMakeRange(offset, valLength - offset))
+                request.value = exchange.exchangeCharacteristic.value?.subdataWithRange(NSMakeRange(offset, valLength - offset))
                 peripheralManager?.respondToRequest(request, withResult: CBATTError.Success)
                 return
             }
@@ -137,11 +186,12 @@ extension ExchangeViewController: CBCentralManagerDelegate, CBPeripheralManagerD
         // Do nothing
         if (peripheral.state ==  .PoweredOn) {
             // Add exchange service from exchange model to peripheral device
-            peripheralManager!.addService(Exchange.exchangeService)
+            peripheralManager!.addService(exchange.exchangeService)
             // Begin advertising services
-            peripheralManager!.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [Exchange.exchangeService.UUID]])
+            peripheralManager!.startAdvertising([CBAdvertisementDataServiceUUIDsKey : [exchange.exchangeService.UUID]])
         }else{
             print("Bluetooth not on")
+            presentBluetoothNotOn()
         }
     }
     
@@ -154,7 +204,8 @@ extension ExchangeViewController: CBCentralManagerDelegate, CBPeripheralManagerD
         centralManager!.stopScan()
         print("Scanning stopped")
         // Connect to discovered peripheral
-        centralManager!.connectPeripheral(peripheral, options: nil)
+        self.discoveredPeripheral = peripheral
+        centralManager!.connectPeripheral(self.discoveredPeripheral!, options: nil)
     }
     
     // Called when connection to peripheral was made
@@ -162,44 +213,64 @@ extension ExchangeViewController: CBCentralManagerDelegate, CBPeripheralManagerD
         print("Connection to peripheral established")
         peripheral.delegate = self
         // Discover services
-        peripheral.discoverServices([Exchange.exchangeService.UUID])
-        
+        peripheral.discoverServices([exchange.exchangeService.UUID])
     }
     
     func centralManagerDidUpdateState(central: CBCentralManager) {
         if(central.state == CBCentralManagerState.PoweredOn){
             // Begin scanning peripherals with services
-            centralManager?.scanForPeripheralsWithServices([Exchange.exchangeService.UUID], options: nil)
+            centralManager?.scanForPeripheralsWithServices([exchange.exchangeService.UUID], options: nil)
             print("Now scanning for devices")
         }else{
             print("Bluetooth not on")
+            presentBluetoothNotOn()
         }
+    }
+    
+    // Called when the Central failed to establish connection with peripheral
+    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        print("Failed to connect to peripheral")
     }
     
     //*******************************Peripheral********************************
     // Called when services of peripheral are discovered by central
     func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
-        for service in peripheral.services!{
-            print("Discovered service \(service)")
+        if peripheral.state == CBPeripheralState.Connected{
+            for service in peripheral.services!{
+                print("Discovered service \(service)")
+            }
+            // Discover characteristics
+            peripheral.discoverCharacteristics([exchange.exchangeCharacteristic.UUID], forService: peripheral.services!.first!)
+        }else{
+            print("Unable to discover characteristics")
         }
-        // Discover characteristics
-        peripheral.discoverCharacteristics([Exchange.exchangeCharacteristic.UUID], forService: Exchange.exchangeService)
     }
     
     // Called when characteristics of service are discovered
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
-        for characteristic in service.characteristics!{
-            print("Discovered characteristics \(characteristic)")
+        if peripheral.state == CBPeripheralState.Connected{
+            for characteristic in service.characteristics!{
+                print("Discovered characteristics \(characteristic)")
+            }
+            peripheral.readValueForCharacteristic(service.characteristics!.first!)
+        }else{
+            print("Unable to read characteristic")
         }
-        peripheral.readValueForCharacteristic(Exchange.exchangeCharacteristic)
     }
     
     
     // Called when attempt is made to read characteristic of service
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        let data: NSData = characteristic.value!
-        // We may now parse the data
-        let userString = NSString(data: data, encoding: NSUTF8StringEncoding)
-        print(userString)
+        if peripheral.state == CBPeripheralState.Connected{
+            let data: NSData = characteristic.value!
+            // We may now parse the data
+            let userString = NSString(data: data, encoding: NSUTF8StringEncoding)
+            print(userString)
+            // TODO : Actually add connection object
+        }else{
+            print("Unable to read data")
+        }
     }
+    
+    
 }
