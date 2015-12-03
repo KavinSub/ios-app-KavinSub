@@ -19,11 +19,10 @@ class ExchangeViewController: UIViewController {
     
     let exchange = Exchange()
     
-    @IBAction func becomeCentral(sender: AnyObject) {
-        //setupAsCentral()
-        print("Switch made to central")
+    @IBAction func unwindToSegue(segue: UIStoryboardSegue){
+        
     }
-
+    
     
     override func viewDidLoad(){
         // Set up Exchange Model
@@ -126,6 +125,9 @@ class ExchangeViewController: UIViewController {
                             let connectionObject = PFObject(className: "Connection")
                             connectionObject.setValue(user, forKey: "other_user")
                             connectionObject.setValue(PFUser.currentUser(), forKey: "this_user")
+                            connectionObject.saveInBackgroundWithBlock{ (result: Bool, error: NSError?) -> Void in
+                               
+                            }
                         }else{
                             print("Connection already exists")
                         }
@@ -139,6 +141,7 @@ class ExchangeViewController: UIViewController {
                 print("Unable to perform user query")
             }
         }
+        
     }
     
 }
@@ -267,6 +270,8 @@ extension ExchangeViewController: CBCentralManagerDelegate, CBPeripheralManagerD
             let userString = NSString(data: data, encoding: NSUTF8StringEncoding)
             print(userString)
             // TODO : Actually add connection object
+            createConnection(String(userString))
+                
         }else{
             print("Unable to read data")
         }

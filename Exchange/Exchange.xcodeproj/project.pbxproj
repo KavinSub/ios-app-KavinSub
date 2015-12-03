@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4C6BE4F532A5CE0DB4BE20C8 /* Pods_Exchange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */; };
+		AE2240BA1C0FA4AF004CBFCA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240B91C0FA4AF004CBFCA /* ProfileViewController.swift */; };
+		AE2240BF1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */; };
+		AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */; };
 		AE2794331BFD4BA000254F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2794321BFD4BA000254F50 /* AppDelegate.swift */; };
 		AE2794381BFD4BA000254F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE2794361BFD4BA000254F50 /* Main.storyboard */; };
 		AE27943A1BFD4BA000254F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE2794391BFD4BA000254F50 /* Assets.xcassets */; };
@@ -23,6 +26,9 @@
 		1CF490F54F1675FEC2D93C32 /* Pods-Exchange.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exchange.release.xcconfig"; path = "Pods/Target Support Files/Pods-Exchange/Pods-Exchange.release.xcconfig"; sourceTree = "<group>"; };
 		20F2CBE93C54B27FF3D2F8D3 /* Pods-Exchange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exchange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Exchange/Pods-Exchange.debug.xcconfig"; sourceTree = "<group>"; };
 		A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exchange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE2240B91C0FA4AF004CBFCA /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHelper.swift; sourceTree = "<group>"; };
+		AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDeleteHelper.swift; sourceTree = "<group>"; };
 		AE27942F1BFD4BA000254F50 /* Exchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE2794321BFD4BA000254F50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE2794371BFD4BA000254F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -119,8 +125,11 @@
 		AEEE828E1BFD4ED3008891A7 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */,
 				AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */,
 				AEE33B411BFE797100067838 /* ExchangeViewController.swift */,
+				AE2240B91C0FA4AF004CBFCA /* ProfileViewController.swift */,
+				AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = SOURCE_ROOT;
@@ -249,10 +258,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
 				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,
+				AE2240BA1C0FA4AF004CBFCA /* ProfileViewController.swift in Sources */,
 				AEE33B421BFE797200067838 /* ExchangeViewController.swift in Sources */,
 				AE2794331BFD4BA000254F50 /* AppDelegate.swift in Sources */,
+				AE2240BF1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

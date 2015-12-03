@@ -43,6 +43,81 @@
             </objects>
             <point key="canvasLocation" x="1090" y="269"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="gup-IX-t6z">
+            <objects>
+                <viewController id="Jx2-HD-PIq" customClass="ProfileViewController" customModule="Exchange" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cac-Ep-mdJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hz4-KP-R7w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6tv-qf-29D">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fname lname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ugi-i9-bUn">
+                                <rect key="frame" x="199" y="28" width="202" height="21"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="202" id="mwv-kN-dCD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8R2-nP-Gmb">
+                                <rect key="frame" x="550" y="24" width="30" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="me9-qZ-Blo"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="rMn-IY-PnI" kind="unwind" unwindAction="unwindToSegue:" id="2sa-e1-UwI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vf-g6-woK">
+                                <rect key="frame" x="180" y="372" width="240" height="120"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="EFa-vI-pPX"/>
+                                </constraints>
+                                <state key="normal" title="Set Your Business Card Here!"/>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pnL-wp-29h">
+                                <rect key="frame" x="180" y="57" width="240" height="240"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="gBp-4S-JCe"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="pnL-wp-29h" firstAttribute="top" secondItem="ugi-i9-bUn" secondAttribute="bottom" constant="8" symbolic="YES" id="1sb-ig-I3S"/>
+                            <constraint firstItem="pnL-wp-29h" firstAttribute="leading" secondItem="6vf-g6-woK" secondAttribute="leading" id="8Vp-7L-wbB"/>
+                            <constraint firstItem="ugi-i9-bUn" firstAttribute="centerX" secondItem="pnL-wp-29h" secondAttribute="centerX" id="CqT-yS-QT5"/>
+                            <constraint firstItem="8R2-nP-Gmb" firstAttribute="baseline" secondItem="ugi-i9-bUn" secondAttribute="baseline" id="Md7-lT-6dN"/>
+                            <constraint firstItem="pnL-wp-29h" firstAttribute="trailing" secondItem="6vf-g6-woK" secondAttribute="trailing" id="aY2-eq-PET"/>
+                            <constraint firstItem="ugi-i9-bUn" firstAttribute="top" secondItem="cac-Ep-mdJ" secondAttribute="bottom" constant="8" symbolic="YES" id="d3T-dN-ntx"/>
+                            <constraint firstItem="pnL-wp-29h" firstAttribute="centerX" secondItem="6tv-qf-29D" secondAttribute="centerX" id="mER-JH-eW3"/>
+                            <constraint firstItem="Hz4-KP-R7w" firstAttribute="top" secondItem="6vf-g6-woK" secondAttribute="bottom" constant="108" id="opD-gX-fZV"/>
+                            <constraint firstItem="8R2-nP-Gmb" firstAttribute="trailing" secondItem="6tv-qf-29D" secondAttribute="trailingMargin" id="qvp-6U-B7s"/>
+                            <constraint firstItem="6vf-g6-woK" firstAttribute="top" secondItem="pnL-wp-29h" secondAttribute="bottom" constant="75" id="y5o-2M-Mdh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cardImageButton" destination="6vf-g6-woK" id="wz5-xc-06Y"/>
+                        <outlet property="nameLabel" destination="ugi-i9-bUn" id="QI3-zi-XHH"/>
+                        <outlet property="profileImageView" destination="pnL-wp-29h" id="dCr-1U-5me"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vBQ-6v-Mnu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="rMn-IY-PnI" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="312" y="1031"/>
+        </scene>
         <!--Exchange View Controller-->
         <scene sceneID="4dF-yD-vfk">
             <objects>
@@ -62,6 +137,9 @@
                                     <constraint firstAttribute="width" constant="30" id="w0t-8K-OAE"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="Jx2-HD-PIq" kind="show" id="qIP-6h-eEy"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIB-Jn-Pvp">
                                 <rect key="frame" x="550" y="28" width="30" height="30"/>
@@ -83,9 +161,6 @@
                                     <constraint firstAttribute="width" constant="150" id="gai-jh-1R0"/>
                                 </constraints>
                                 <state key="normal" title="Become Central"/>
-                                <connections>
-                                    <action selector="becomeCentral:" destination="7VT-M7-Nys" eventType="touchUpInside" id="hza-kD-4R1"/>
-                                </connections>
                             </button>
                         </subviews>
                         <animations/>
