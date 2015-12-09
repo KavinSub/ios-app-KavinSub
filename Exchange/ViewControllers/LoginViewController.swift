@@ -98,7 +98,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             }
         }
         
-        bypassLogin()
+        //bypassLogin()
     }
     
     override func viewDidLoad(){
@@ -116,7 +116,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        bypassLogin()
+        //bypassLogin()
     }
     
     func bypassLogin(){

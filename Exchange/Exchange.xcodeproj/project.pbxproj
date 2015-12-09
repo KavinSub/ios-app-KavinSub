@@ -15,6 +15,7 @@
 		AE2794381BFD4BA000254F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE2794361BFD4BA000254F50 /* Main.storyboard */; };
 		AE27943A1BFD4BA000254F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE2794391BFD4BA000254F50 /* Assets.xcassets */; };
 		AE27943D1BFD4BA000254F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE27943B1BFD4BA000254F50 /* LaunchScreen.storyboard */; };
+		AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */; };
 		AEE33B401BFD65DF00067838 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */; };
 		AEE33B421BFE797200067838 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B411BFE797100067838 /* ExchangeViewController.swift */; };
 		AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B491C03D8DD00067838 /* Exchange.swift */; };
@@ -35,6 +36,7 @@
 		AE2794391BFD4BA000254F50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE27943C1BFD4BA000254F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE27943E1BFD4BA000254F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
 		AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AEE33B411BFE797100067838 /* ExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		AEE33B491C03D8DD00067838 /* Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				AEE33B491C03D8DD00067838 /* Exchange.swift */,
+				AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */,
 			);
 			path = Models;
 			sourceTree = SOURCE_ROOT;
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
 				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,
@@ -384,6 +388,7 @@
 					"$(PROJECT_DIR)/More_Frameworks",
 				);
 				INFOPLIST_FILE = Exchange/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kavin.Exchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -401,6 +406,7 @@
 					"$(PROJECT_DIR)/More_Frameworks",
 				);
 				INFOPLIST_FILE = Exchange/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Kavin.Exchange;
 				PRODUCT_NAME = "$(TARGET_NAME)";

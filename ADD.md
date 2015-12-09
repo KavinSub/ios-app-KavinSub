@@ -48,7 +48,6 @@ User:
     lastName
     email
     picture
-    resume
     card
 
 Connection:
@@ -63,19 +62,16 @@ Week 1:
     Complete Login View (DONE)
 
 Week 2:
-    Complete Exchange View
-    Complete Settings View
-    Complete Layout + Transitions
+    Complete Exchange View (DONE)
 
 Week 3:
-    Complete Profile View
+    Complete Profile View (DONE)
+
+Week 4:
+    Re-do Bluetooth Communication
     Complete View Users View
     Complete User Profile View
 
-Week 4:
+Weeks 5 - 8:
     Polish
     Ship
-
-Weeks 5 - 8:
-    Debug if necessary
-    Begin new app
