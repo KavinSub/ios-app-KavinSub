@@ -42,6 +42,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         GIDSignIn.sharedInstance().delegate = self
         
         
+        // Choose correct view controller
+        let hasLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        if !hasLoggedIn{
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
+        }else{
+            self.window?.rootViewController = storyboard.instantiateViewControllerWithIdentifier("ExchangeViewController") as! ExchangeViewController
+        }
+        
+        /*let navigationController = UINavigationController(rootViewController: (self.window?.rootViewController)!)
+        
+        window?.makeKeyAndVisible()
+        window?.addSubview(navigationController.view)*/
         
         // Override point for customization after application launch.
         return true

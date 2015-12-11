@@ -97,8 +97,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 }
             }
         }
-        
-        //bypassLogin()
     }
     
     override func viewDidLoad(){
@@ -110,16 +108,16 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         googleLoginButton.center = CGPoint(x: 200, y: 200)
         self.view.addSubview(googleLoginButton)*/
         
-        bypassLogin()
+        //bypassLogin()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        //bypassLogin()
     }
     
     func bypassLogin(){
+        print("Bypass called")
         // If the user has been authenticated, bypass the login screen
         let isAuthenticated = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn")
         

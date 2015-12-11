@@ -23,4 +23,8 @@ class ProfileCell: UITableViewCell {
     func setDate(date: String){
         dateLabel.text = date
     }
+    
+    func setProfileImage(image: UIImage){
+        profileImageView.image = image
+    }
 }

@@ -20,7 +20,10 @@ class ProfileTableViewController: UIViewController {
         }
     }
     
-    var datesUsersMet: [NSDate]?
+    // The selected user cell
+    var selectedUser: PFUser?
+    
+    //var datesUsersMet: [String] = []
     
     override func viewDidLoad(){
         getUsers()
@@ -41,10 +44,11 @@ class ProfileTableViewController: UIViewController {
                 print("Grabbed connections")
                 
                 // Collect the dates users met
-                for object in objects{
+                /*for object in objects{
                     let dateObject = object.valueForKey("createdAt")
-                    print("")
-                }
+                    let dateString = "\(dateObject)"
+                    self.datesUsersMet.append(dateString)
+                }*/
                 
                 // get object ids of objects
                 var objectIds: [String] = []
@@ -70,6 +74,17 @@ class ProfileTableViewController: UIViewController {
     
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowUser"{
+            let viewController = segue.destinationViewController as! UserProfileViewController
+            viewController.user = selectedUser
+        }
+    }
+    
+    @IBAction func unwindToProfileTableSegue(segue: UIStoryboardSegue){
+        
+    }
+    
 }
 
 extension ProfileTableViewController: UITableViewDelegate, UITableViewDataSource{
@@ -80,22 +95,44 @@ extension ProfileTableViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCell") as! ProfileCell
         
-        var name: String
+        var name: String?
+        var profileImage: UIImage?
         
         if connectedUsers?.count > 0{
+            // Get name of user
             let thisUser = connectedUsers![indexPath.row]
             let firstName = thisUser.valueForKey("firstName")!
             let lastName = thisUser.valueForKey("lastName")!
             name = "\(firstName) \(lastName)"
-        }else{
-            name = "test"
+            
+            // Now get image of user
+            if let imageFile = thisUser.valueForKey("profilePicture") as! PFFile?{
+                do{
+                    let imageData = try imageFile.getData()
+                    profileImage = UIImage(data: imageData)
+                }catch{
+                    print("Unable to get data of image")
+                }
+            }
+            
         }
         
-        cell.setName(name)
+        if let name = name{
+            cell.setName(name)
+        }
+        if let profileImage = profileImage{
+            cell.setProfileImage(profileImage)
+        }
+        
         return cell
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedUser = connectedUsers![indexPath.row]
+        self.performSegueWithIdentifier("ShowUser", sender: self)
     }
 }

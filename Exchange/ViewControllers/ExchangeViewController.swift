@@ -21,6 +21,7 @@ class ExchangeViewController: UIViewController {
     
     
     override func viewDidLoad(){
+        
         bluetoothHandler = Bluetooth(viewController: self)
         
         bluetoothHandler?.setupAsCentral()
