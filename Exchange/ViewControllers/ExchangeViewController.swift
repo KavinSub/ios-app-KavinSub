@@ -27,10 +27,17 @@ class ExchangeViewController: UIViewController {
         bluetoothHandler?.setupAsPeripheral()
     }
     
-    // By default, device is peripheral manager
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        bluetoothHandler?.stopScan()
+        bluetoothHandler?.stopAdvertisting()
+        
+        super.viewDidDisappear(animated)
+    }
     
 }

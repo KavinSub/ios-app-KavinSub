@@ -41,18 +41,21 @@ class ProfileViewController: UIViewController {
         nameLabel.text = firstName + " " + lastName
         
         // Load profile image
-        let imageFile = user?.valueForKey("profilePicture") as! PFFile
-        imageFile.getDataInBackgroundWithBlock { (data: NSData?, error: NSError?) -> Void in
-            let image = UIImage(data: data!)
-            self.profileImageView.image = image
+        if let imageFile = user?.valueForKey("profilePicture") as! PFFile?{
+            imageFile.getDataInBackgroundWithBlock { (data: NSData?, error: NSError?) -> Void in
+                let image = UIImage(data: data!)
+                self.profileImageView.image = image
+            }
         }
         
-        let cardImageFile = user?.valueForKey("cardFile") as! PFFile
-        cardImageFile.getDataInBackgroundWithBlock { (data: NSData?, error: NSError?) -> Void in
-            let image = UIImage(data: data!)
-            self.cardImageButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-            self.cardImageButton.setBackgroundImage(image, forState: UIControlState.Normal)
-            print("card image set")
+        //let cardImageFile = user?.valueForKey("cardFile") as! PFFile
+        if let cardImageFile = user?.valueForKey("cardFile") as! PFFile?{
+            cardImageFile.getDataInBackgroundWithBlock { (data: NSData?, error: NSError?) -> Void in
+                let image = UIImage(data: data!)
+                self.cardImageButton.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+                self.cardImageButton.setBackgroundImage(image, forState: UIControlState.Normal)
+                print("card image set")
+            }
         }
     }
     

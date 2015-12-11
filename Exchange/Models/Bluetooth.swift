@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreBluetooth
+import Parse
 
 class Bluetooth: NSObject{
     // Instance of Exchange
@@ -20,7 +21,13 @@ class Bluetooth: NSObject{
     
     var peripheralManager: CBPeripheralManager?
     
-    var exchangedData: NSData?
+    var exchangedData: NSData?{
+        didSet{
+            if let data = exchangedData{
+                createConnection(data)
+            }
+        }
+    }
     
     // An array of peripherals we have interacted with so far
     var peripheralsInteracted: [CBPeripheral] = []
@@ -61,6 +68,67 @@ class Bluetooth: NSObject{
         viewController.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    // Creates a connection object in parse backend
+    func createConnection(otherUserData: NSData){
+        // String of the other users object ID
+        let otherUserObjectId = NSString(data: otherUserData, encoding: NSUTF8StringEncoding)!
+        // Get instance of current user
+        let currentUser = PFUser.currentUser()
+        if currentUser == nil{
+            print("Unable to get instance of current user")
+            return
+        }
+        
+        // Find instance of other user
+        let otherUserQuery = PFUser.query()
+        var otherUser: PFUser?
+        do{
+           otherUser = try otherUserQuery?.getObjectWithId(String(otherUserObjectId)) as! PFUser
+        }catch{
+            print("Unable to perform query of other user")
+            return
+        }
+        
+        if otherUser == nil{
+            print("Unable to find instance of other user")
+            return
+        }
+        
+        // Then check if the connection between users already exists
+        let connectionQuery = PFQuery(className: "Connection")
+        var connectionObject: PFObject?
+        
+        connectionQuery.whereKey("this_user", equalTo: currentUser!)
+        connectionQuery.whereKey("other_user", equalTo: otherUser!)
+        do{
+            connectionObject = try connectionQuery.getFirstObject()
+        }catch{
+            print("Error occured while perform connection query")
+        }
+        
+        if(connectionObject != nil){
+            print("Connection already exists.")
+            return
+        }
+        
+        // At this point the connection object does not exist. We create one
+        let newConnection = PFObject(className: "Connection")
+        newConnection.setValue(currentUser!, forKey: "this_user")
+        newConnection.setValue(otherUser!, forKey: "other_user")
+        
+        // We save the connection object in the backend
+        newConnection.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if error != nil{
+                print("\(error?.localizedDescription)")
+            }else{
+                if success{
+                    print("Connection object saved succesfully.")
+                }else{
+                    print("Conection object not saved.")
+                }
+            }
+        }
+    }
 }
 
 // Extension responsible for handling Central Manager tasks
@@ -69,6 +137,12 @@ extension Bluetooth: CBCentralManagerDelegate{
     func scan(){
         self.centralManager!.scanForPeripheralsWithServices([exchange.exchangeService.UUID], options: nil)
         print("Central has begun scanning for devices")
+    }
+    
+    // Wrapper function stops central manager
+    func stopScan(){
+        self.centralManager!.stopScan()
+        print("Central Manager has stopped scanning")
     }
     
     // Called when central manager changes state
@@ -140,6 +214,12 @@ extension Bluetooth: CBCentralManagerDelegate{
 
 // Extension responsible for handling Peripheral Manager tasks
 extension Bluetooth: CBPeripheralManagerDelegate{
+    
+    // Wrapper function called to stop advertising services of Bluetooth
+    func stopAdvertisting(){
+        peripheralManager?.stopAdvertising()
+    }
+    
     // Called when peripheral manager changes state
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
         if(peripheral.state != CBPeripheralManagerState.PoweredOn){
@@ -149,13 +229,56 @@ extension Bluetooth: CBPeripheralManagerDelegate{
             print("Peripheral Manager is on")
             peripheralManager!.addService(exchange.exchangeService)
             peripheralManager!.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [exchange.exchangeService.UUID]])
+        }
+    }
+    
+    // Called when peripheral begins to advertise data
+    func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager, error: NSError?) {
+        if error != nil{
+            print("\(error?.localizedDescription))")
+        }else{
             print("Peripheral has begun advertising services")
         }
     }
     
-    
 }
 
 extension Bluetooth: CBPeripheralDelegate{
+    // Called when peripheral services are discovered
+    func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
+        if error != nil{
+            print("\(error?.localizedDescription)")
+        }else{
+            for service in peripheral.services!{
+                print(service)
+            }
+            peripheral.discoverCharacteristics([exchange.exchangeCharacteristicUUID], forService: peripheral.services!.first!)
+        }
+    }
     
+    // Called when characteristics of a service are discovered
+    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+        if error != nil{
+            print("\(error?.localizedDescription)")
+        }else{
+            for characteristic in service.characteristics!{
+                print("\(characteristic)")
+            }
+            peripheral.readValueForCharacteristic(service.characteristics!.first!)
+        }
+    }
+    
+    // Called when we attempt to read the value of a characteristic
+    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        if error != nil{
+            print("\(error?.localizedDescription)")
+        }else{
+            if let value = characteristic.value{
+                let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
+                print("\(objectID)")
+                exchangedData = value
+            }
+            self.centralManager?.cancelPeripheralConnection(peripheral)
+        }
+    }
 }

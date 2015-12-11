@@ -22,8 +22,11 @@ class Exchange{
     
     init() {
         let userData = PFUser.currentUser()?.objectId!.dataUsingEncoding(NSUTF8StringEncoding)
+        
         exchangeCharacteristic = CBMutableCharacteristic(type: exchangeCharacteristicUUID, properties: CBCharacteristicProperties.Read, value: userData, permissions: CBAttributePermissions.Readable)
+        
         exchangeService = CBMutableService(type: exchangeServiceUUID, primary: true)
+        
         exchangeService.characteristics = [exchangeCharacteristic]
     }
     

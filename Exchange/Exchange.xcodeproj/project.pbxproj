@@ -15,7 +15,9 @@
 		AE2794381BFD4BA000254F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE2794361BFD4BA000254F50 /* Main.storyboard */; };
 		AE27943A1BFD4BA000254F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE2794391BFD4BA000254F50 /* Assets.xcassets */; };
 		AE27943D1BFD4BA000254F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE27943B1BFD4BA000254F50 /* LaunchScreen.storyboard */; };
+		AEAA5F581C1A60F300EFF10E /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA5F571C1A60F300EFF10E /* ProfileTableViewController.swift */; };
 		AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */; };
+		AED984141C1A6ADF00002B9B /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED984131C1A6ADF00002B9B /* ProfileCell.swift */; };
 		AEE33B401BFD65DF00067838 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */; };
 		AEE33B421BFE797200067838 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B411BFE797100067838 /* ExchangeViewController.swift */; };
 		AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B491C03D8DD00067838 /* Exchange.swift */; };
@@ -36,7 +38,9 @@
 		AE2794391BFD4BA000254F50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE27943C1BFD4BA000254F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE27943E1BFD4BA000254F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AEAA5F571C1A60F300EFF10E /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
+		AED984131C1A6ADF00002B9B /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AEE33B411BFE797100067838 /* ExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		AEE33B491C03D8DD00067838 /* Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		AE2794311BFD4BA000254F50 /* Exchange */ = {
 			isa = PBXGroup;
 			children = (
+				AEAA5F591C1A687500EFF10E /* Views */,
 				AEE33B481C03D8AF00067838 /* Models */,
 				AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */,
 				AEEE828E1BFD4ED3008891A7 /* ViewControllers */,
@@ -107,6 +112,14 @@
 			);
 			path = Exchange;
 			sourceTree = "<group>";
+		};
+		AEAA5F591C1A687500EFF10E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AED984131C1A6ADF00002B9B /* ProfileCell.swift */,
+			);
+			path = Views;
+			sourceTree = SOURCE_ROOT;
 		};
 		AEE33B481C03D8AF00067838 /* Models */ = {
 			isa = PBXGroup;
@@ -133,6 +146,7 @@
 				AEE33B411BFE797100067838 /* ExchangeViewController.swift */,
 				AE2240B91C0FA4AF004CBFCA /* ProfileViewController.swift */,
 				AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */,
+				AEAA5F571C1A60F300EFF10E /* ProfileTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = SOURCE_ROOT;
@@ -261,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEAA5F581C1A60F300EFF10E /* ProfileTableViewController.swift in Sources */,
 				AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
@@ -269,6 +284,7 @@
 				AEE33B421BFE797200067838 /* ExchangeViewController.swift in Sources */,
 				AE2794331BFD4BA000254F50 /* AppDelegate.swift in Sources */,
 				AE2240BF1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift in Sources */,
+				AED984141C1A6ADF00002B9B /* ProfileCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
