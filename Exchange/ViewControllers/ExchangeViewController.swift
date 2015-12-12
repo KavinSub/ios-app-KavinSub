@@ -15,12 +15,15 @@ class ExchangeViewController: UIViewController {
     let exchange = Exchange()
     var bluetoothHandler: Bluetooth?
     
+    @IBOutlet weak var statusView: UIView!
+    
     @IBAction func unwindToSegue(segue: UIStoryboardSegue){
         
     }
     
-    
     override func viewDidLoad(){
+        
+        statusView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 255)
         
         bluetoothHandler = Bluetooth(viewController: self)
         
@@ -28,8 +31,15 @@ class ExchangeViewController: UIViewController {
         bluetoothHandler?.setupAsPeripheral()
     }
     
+
+    
     
     override func viewDidAppear(animated: Bool) {
+        statusView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 255)
+        
+        bluetoothHandler?.setupAsCentral()
+        bluetoothHandler?.setupAsPeripheral()
+        
         super.viewDidAppear(animated)
         
     }

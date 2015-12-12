@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreBluetooth
 import Parse
+import AudioToolbox
 
 class Bluetooth: NSObject{
     // Instance of Exchange
@@ -36,10 +37,10 @@ class Bluetooth: NSObject{
     let bluetoothEventQueue = dispatch_queue_create("bluetoothEventQueue", DISPATCH_QUEUE_CONCURRENT)
     
     // Reference to the enclosing view controller
-    var viewController: UIViewController
+    var viewController: ExchangeViewController
     
     
-    init(viewController: UIViewController){
+    init(viewController: ExchangeViewController){
         self.viewController = viewController
         
         super.init()
@@ -59,7 +60,7 @@ class Bluetooth: NSObject{
     
     // Displays an alert telling user to turn on bluetooth
     func presentBluetoothNotOn(){
-        let alertController = UIAlertController(title: nil, message: "Turn on Bluetooth, you scrub.", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: nil, message: "Please turn on Bluetooth.", preferredStyle: .Alert)
         
         let okAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
         
@@ -123,6 +124,9 @@ class Bluetooth: NSObject{
             }else{
                 if success{
                     print("Connection object saved succesfully.")
+                    // Provide user feedback
+                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+                    self.viewController.statusView.backgroundColor = UIColor(red: 0, green: 255, blue: 0, alpha: 255)
                 }else{
                     print("Conection object not saved.")
                 }
