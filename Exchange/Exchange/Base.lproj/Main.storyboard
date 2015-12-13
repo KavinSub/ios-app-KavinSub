@@ -53,16 +53,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFd-Bi-J9s">
-                                <rect key="frame" x="180" y="180" width="240" height="240"/>
+                                <rect key="frame" x="240" y="240" width="120" height="120"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="ray-eC-N8W"/>
+                                    <constraint firstAttribute="width" constant="120" id="vwp-qQ-5Vx"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZFd-Bi-J9s" firstAttribute="top" secondItem="AsN-Zi-fd7" secondAttribute="bottom" constant="116" id="Dvj-DA-Oi7"/>
-                            <constraint firstItem="ZFd-Bi-J9s" firstAttribute="leading" secondItem="1qz-sj-lXm" secondAttribute="leading" constant="180" id="T2v-tw-YzN"/>
-                            <constraint firstItem="ZFd-Bi-J9s" firstAttribute="centerX" secondItem="1qz-sj-lXm" secondAttribute="centerX" id="gym-Re-X1t"/>
-                            <constraint firstItem="ZFd-Bi-J9s" firstAttribute="centerY" secondItem="1qz-sj-lXm" secondAttribute="centerY" id="jlV-Mj-3DL"/>
+                            <constraint firstItem="ZFd-Bi-J9s" firstAttribute="centerY" secondItem="1qz-sj-lXm" secondAttribute="centerY" id="MQ0-v2-LdJ"/>
+                            <constraint firstItem="ZFd-Bi-J9s" firstAttribute="centerX" secondItem="1qz-sj-lXm" secondAttribute="centerX" id="vVQ-l4-3oJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Connect" id="hbn-Wh-wPU">
