@@ -49,13 +49,13 @@ class Bluetooth: NSObject{
     // Sets up device as a central manager
     func setupAsCentral(){
         centralManager = CBCentralManager(delegate: self, queue: nil, options: nil)
-        print("Setup as central")
+        print("Setup as central.")
     }
     
     // Sets up the device as a peripheral manager
     func setupAsPeripheral(){
         peripheralManager = CBPeripheralManager(delegate: self, queue: nil, options: nil)
-        print("Setup as peripheral")
+        print("Setup as peripheral.")
     }
     
     // Displays an alert telling user to turn on bluetooth
@@ -76,7 +76,7 @@ class Bluetooth: NSObject{
         // Get instance of current user
         let currentUser = PFUser.currentUser()
         if currentUser == nil{
-            print("Unable to get instance of current user")
+            print("Unable to get instance of current user.")
             return
         }
         
@@ -86,12 +86,12 @@ class Bluetooth: NSObject{
         do{
            otherUser = try otherUserQuery?.getObjectWithId(String(otherUserObjectId)) as! PFUser
         }catch{
-            print("Unable to perform query of other user")
+            print("Unable to perform query of other user.")
             return
         }
         
         if otherUser == nil{
-            print("Unable to find instance of other user")
+            print("Unable to find instance of other user.")
             return
         }
         
@@ -104,7 +104,7 @@ class Bluetooth: NSObject{
         do{
             connectionObject = try connectionQuery.getFirstObject()
         }catch{
-            print("Error occured while perform connection query")
+            print("Error occured while perform connection query.")
         }
         
         if(connectionObject != nil){
@@ -140,23 +140,23 @@ extension Bluetooth: CBCentralManagerDelegate{
     // Starts scanning
     func scan(){
         self.centralManager!.scanForPeripheralsWithServices([exchange.exchangeService.UUID], options: nil)
-        print("Central has begun scanning for devices")
+        print("Central has begun scanning for devices.")
     }
     
     // Wrapper function stops central manager
     func stopScan(){
         self.centralManager!.stopScan()
-        print("Central Manager has stopped scanning")
+        print("Central Manager has stopped scanning.")
     }
     
     // Called when central manager changes state
     func centralManagerDidUpdateState(central: CBCentralManager) {
         if(central.state != CBCentralManagerState.PoweredOn){
-            print("Central Manager not on")
+            print("Central Manager not on.")
             presentBluetoothNotOn()
             return
         }else{
-            print("Central Manager is on")
+            print("Central Manager is on.")
             self.scan()
         }
     }
@@ -207,7 +207,7 @@ extension Bluetooth: CBCentralManagerDelegate{
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         // Clean up the peripheral we are interacting with
-        print("Disconnected from peripheral")
+        print("Disconnected from peripheral.")
         discoveredPeripheral = nil
         
         // Begin scanning again
@@ -222,15 +222,16 @@ extension Bluetooth: CBPeripheralManagerDelegate{
     // Wrapper function called to stop advertising services of Bluetooth
     func stopAdvertisting(){
         peripheralManager?.stopAdvertising()
+        print("Peripheral has stopped advertising.")
     }
     
     // Called when peripheral manager changes state
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
         if(peripheral.state != CBPeripheralManagerState.PoweredOn){
-            print("Peripheral Manager not on")
+            print("Peripheral Manager not on.")
             return
         }else{
-            print("Peripheral Manager is on")
+            print("Peripheral Manager is on.")
             peripheralManager!.addService(exchange.exchangeService)
             peripheralManager!.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [exchange.exchangeService.UUID]])
         }
@@ -241,7 +242,7 @@ extension Bluetooth: CBPeripheralManagerDelegate{
         if error != nil{
             print("\(error?.localizedDescription))")
         }else{
-            print("Peripheral has begun advertising services")
+            print("Peripheral has begun advertising services.")
         }
     }
     

@@ -15,6 +15,26 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profileImageView: UIImageView!
     
+    // Text Field outlets
+    
+    @IBOutlet weak var phoneNumberTextField: UITextField!
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    @IBOutlet weak var companyTextField: UITextField!
+    
+    @IBOutlet weak var jobPositionTextField: UITextField!
+    
+    @IBOutlet weak var linkedInTextField: UITextField!
+    
+    // Allows user to test their profile appearance
+    
+    @IBAction func testUserProfile(sender: AnyObject) {
+        performSegueWithIdentifier("TestProfile", sender: self)
+    }
+    
+    // Array of text fields, and their respective key
+    var textFields: [(UITextField, String)] = []
     
     var photoSelectorHelper: PhotoSelectorHelper?
     
@@ -23,6 +43,7 @@ class ProfileViewController: UIViewController {
         
         profileImageView.userInteractionEnabled = true
         
+        setTextFieldProperties()
         setupProfile()
         setupGestures()
         
@@ -60,15 +81,40 @@ class ProfileViewController: UIViewController {
     }
     
     func setupGestures(){
-        /*let longPressCard = UILongPressGestureRecognizer(target: self, action: Selector("deleteCardImage"))
-        let tapCard = UITapGestureRecognizer(target: self, action: Selector("setCardImage"))
-        
-        cardImageButton.addGestureRecognizer(longPressCard)
-        cardImageButton.addGestureRecognizer(tapCard)*/
         
         let tapProfileImage = UITapGestureRecognizer(target: self, action: Selector("changeProfileImage"))
+        let tapScreen = UITapGestureRecognizer(target: self, action: Selector("closeTextField"))
         
         profileImageView.addGestureRecognizer(tapProfileImage)
+        self.view.addGestureRecognizer(tapScreen)
+        
+    }
+    
+    // Sets the properties of all the text fields
+    func setTextFieldProperties(){
+        
+        textFields = [(phoneNumberTextField, "phoneNumber"),
+            (emailTextField, "email"),
+            (companyTextField, "companyName"),
+            (jobPositionTextField, "jobPosition"),
+            (linkedInTextField, "linkedIn")]
+        
+        // Iterates through the array of text fields
+        for (index, value) in textFields.enumerate(){
+            // First set delegate and tag
+            let textField = value.0
+            let key = value.1
+            
+            textField.delegate = self
+            textField.tag = index
+            
+            // Now if the current user has info previously filled in, add to field
+            let user = PFUser.currentUser()
+            
+            if let text = user?.valueForKey(key){
+                textField.text = text as! String
+            }
+        }
     }
     
     // Called when the user taps their profile image
@@ -99,6 +145,48 @@ class ProfileViewController: UIViewController {
         })
     }
     
+    // Closes any first responders
+    func closeTextField(){
+        self.view.endEditing(true)
+    }
     
+    // Saves the content of a text field
+    func saveContentOf(textFieldKey: String, value: String){
+        let user = PFUser.currentUser()
+        
+        user?.setValue(value, forKey: textFieldKey)
+        
+        user?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            if error != nil{
+                print("\(error?.localizedDescription)")
+            }
+            
+            if success{
+                print("\(value) saved for key \(textFieldKey) successfully.")
+            }else{
+                print("Unable to save value for \(textFieldKey).")
+            }
+        })
+    }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "TestProfile"{
+            let viewController = segue.destinationViewController as! UserProfileViewController
+            viewController.user = PFUser.currentUser()
+        }
+    }
+    
+}
+
+extension ProfileViewController: UITextFieldDelegate{
+    // Called when the text fields are no longer being edited
+    func textFieldDidEndEditing(textField: UITextField) {
+        let text = textField.text
+        let textFieldKey = textFields[textField.tag].1
+        
+        // If there is text in the text field
+        if let text = text{
+            saveContentOf(textFieldKey, value: text)
+        }
+    }
 }
