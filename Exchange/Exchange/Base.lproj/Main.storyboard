@@ -60,10 +60,23 @@
                                     <constraint firstAttribute="width" constant="120" id="vwp-qQ-5Vx"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehP-8a-Dql">
+                                <rect key="frame" x="259" y="550" width="83" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="f7Q-S6-Zad"/>
+                                    <constraint firstAttribute="width" constant="83" id="jzm-5X-FUf"/>
+                                </constraints>
+                                <state key="normal" title="Settings"/>
+                                <connections>
+                                    <segue destination="zrT-bu-c0P" kind="show" id="B5L-56-snF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ZFd-Bi-J9s" firstAttribute="centerY" secondItem="1qz-sj-lXm" secondAttribute="centerY" id="MQ0-v2-LdJ"/>
+                            <constraint firstItem="ehP-8a-Dql" firstAttribute="centerX" secondItem="1qz-sj-lXm" secondAttribute="centerX" id="NKf-Mz-Lbx"/>
+                            <constraint firstItem="8Fz-o1-VWa" firstAttribute="top" secondItem="ehP-8a-Dql" secondAttribute="bottom" constant="20" id="lVA-vS-stP"/>
                             <constraint firstItem="ZFd-Bi-J9s" firstAttribute="centerX" secondItem="1qz-sj-lXm" secondAttribute="centerX" id="vVQ-l4-3oJ"/>
                         </constraints>
                     </view>
@@ -411,6 +424,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W14-PI-Dx8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1011" y="1252"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="Gbm-hQ-PHW">
+            <objects>
+                <viewController id="zrT-bu-c0P" customClass="SettingsViewController" customModule="Exchange" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4sT-ox-7yS"/>
+                        <viewControllerLayoutGuide type="bottom" id="XOI-IK-VzS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jk0-tg-g4n">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Y3-v4-FlT">
+                                <rect key="frame" x="276" y="72" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="logoutUser:" destination="zrT-bu-c0P" eventType="touchUpInside" id="xaj-WF-TRM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9q-YW-oI1">
+                                <rect key="frame" x="248" y="110" width="105" height="30"/>
+                                <state key="normal" title="Delete Account">
+                                    <color key="titleColor" red="1" green="0.11008059161256623" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteUser:" destination="zrT-bu-c0P" eventType="touchUpInside" id="IxV-WM-ivh"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Settings" id="tuM-JI-VPg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g6b-xq-FQt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2077" y="1252"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vRx-i3-vcu">

@@ -30,9 +30,6 @@ class Bluetooth: NSObject{
         }
     }
     
-    // An array of peripherals we have interacted with so far
-    var peripheralsInteracted: [CBPeripheral] = []
-    
     // Event queue for all Bluetooth events
     let bluetoothEventQueue = dispatch_queue_create("bluetoothEventQueue", DISPATCH_QUEUE_CONCURRENT)
     
@@ -164,17 +161,12 @@ extension Bluetooth: CBCentralManagerDelegate{
     // Called when the central manager discovers a peripheral
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
         
-        // If we have not interacted with this peripheral yet
-        if(!peripheralsInteracted.contains(peripheral)){
-            peripheralsInteracted.append(peripheral)
-            
             // Save local copy
             self.discoveredPeripheral = peripheral
             
             // Connect
             print("Connecting to \(peripheral.name)")
             self.centralManager?.connectPeripheral(peripheral, options: nil)
-        }
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
@@ -197,12 +189,6 @@ extension Bluetooth: CBCentralManagerDelegate{
     // Called when the central fails to connect to a peripheral
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         print("Failed to connect to \(peripheral). Error: \(error?.localizedDescription)")
-        
-        // Remove the peripheral from the list of interacted peripherals
-        let index = peripheralsInteracted.indexOf(peripheral)
-        if let index = index{
-            peripheralsInteracted.removeAtIndex(Int(index.value))
-        }
     }
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {

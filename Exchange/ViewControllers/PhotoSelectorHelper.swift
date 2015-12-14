@@ -60,7 +60,7 @@ class PhotoSelectorHelper: NSObject {
 extension PhotoSelectorHelper: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage, editingInfo: [String : AnyObject]?) {
         viewController.dismissViewControllerAnimated(false, completion: nil)
-        viewController.navigationController?.popViewControllerAnimated(true)
+        //viewController.navigationController?.popViewControllerAnimated(true)
         print("Image has been picked")
         callback(image)
     }
