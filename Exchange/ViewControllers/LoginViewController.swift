@@ -16,6 +16,7 @@ import Google
 // NOTE: userLoggedIn stored in NSUserDefaults. Is true if user has been authenticated
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
+    
     @IBAction func facebookLoginButtonPressed(sender: AnyObject) {
         // Credit to http://swiftdeveloperblog.com/parse-login-with-facebook-account-example-in-swift/
         
@@ -35,13 +36,12 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             }
             
             print(user)
-            //print("Current user token = \(FBSDKAccessToken.currentAccessToken().tokenString)")
-            //print("Current user ID = \(FBSDKAccessToken.currentAccessToken().userID)")
             
             if(FBSDKAccessToken.currentAccessToken() != nil){
                 
             }
         }
+        print("Has logged in")
         // Get appropriate read permissions
         let requestParameters = ["fields": "id, email, first_name, last_name"]
         let userDetails = FBSDKGraphRequest(graphPath: "me", parameters: requestParameters)
@@ -58,23 +58,18 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                 let userLastName: String? = result["last_name"] as? String
                 let userEmail: String? = result["email"] as? String
                 
-                //print("\(userEmail)")
-                
                 let myUser: PFUser = PFUser.currentUser()!
                 
                 if(userFirstName != nil){
                     myUser.setObject(userFirstName!, forKey: "firstName")
-                    //print("\(userFirstName)")
                 }
                 
                 if(userLastName != nil){
                     myUser.setObject(userLastName!, forKey: "lastName")
-                    //print("\(userLastName)")
                 }
                 
                 if(userEmail != nil){
                     myUser.setObject(userEmail!, forKey: "email")
-                    //print("\(userEmail)")
                 }
                 
                 // Get user profile data, save new user
@@ -101,7 +96,11 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad(){
         super.viewDidLoad()
-
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationItem.hidesBackButton = true
+        
+        
         // Set this controller to be the Google UI Delegate
         /*GIDSignIn.sharedInstance().uiDelegate = self
         let googleLoginButton = GIDSignInButton()
@@ -114,6 +113,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        print("View has appeared")
     }
     
     func bypassLogin(){
@@ -127,9 +127,15 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
-    
-    
-    
-    
-    
+    // Function will switch to main app after signup
+    func switchToMainApp(){
+        
+        print("Switching to main app.")
+        
+        let appDelegate = UIApplication.sharedApplication().delegate
+        
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        
+        storyBoard.instantiateViewControllerWithIdentifier("MainNav")
+    }
 }

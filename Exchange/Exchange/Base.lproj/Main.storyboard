@@ -437,14 +437,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Y3-v4-FlT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Y3-v4-FlT">
                                 <rect key="frame" x="276" y="72" width="48" height="30"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logoutUser:" destination="zrT-bu-c0P" eventType="touchUpInside" id="xaj-WF-TRM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9q-YW-oI1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9q-YW-oI1">
                                 <rect key="frame" x="248" y="110" width="105" height="30"/>
                                 <state key="normal" title="Delete Account">
                                     <color key="titleColor" red="1" green="0.11008059161256623" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -455,8 +455,17 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0Y3-v4-FlT" firstAttribute="centerX" secondItem="jk0-tg-g4n" secondAttribute="centerX" id="Pd4-xq-PDx"/>
+                            <constraint firstItem="I9q-YW-oI1" firstAttribute="centerX" secondItem="0Y3-v4-FlT" secondAttribute="centerX" id="gus-Ij-2GN"/>
+                            <constraint firstItem="I9q-YW-oI1" firstAttribute="top" secondItem="0Y3-v4-FlT" secondAttribute="bottom" constant="8" symbolic="YES" id="tzP-Jm-ybq"/>
+                            <constraint firstItem="0Y3-v4-FlT" firstAttribute="top" secondItem="4sT-ox-7yS" secondAttribute="bottom" constant="8" symbolic="YES" id="u4m-aO-faf"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="tuM-JI-VPg"/>
+                    <connections>
+                        <segue destination="Css-3S-clV" kind="show" identifier="LogoutUser" id="v1d-sr-OVr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6b-xq-FQt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -483,7 +492,7 @@
         <!--Navigation Controller-->
         <scene sceneID="mcb-tB-WcG">
             <objects>
-                <navigationController storyboardIdentifier="MainNav" automaticallyAdjustsScrollViewInsets="NO" id="qGR-NT-3Be" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qGR-NT-3Be" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="byb-E8-SjR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -503,6 +512,7 @@
         <image name="FacebookLogin" width="280" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tq2-02-KqR"/>
+        <segue reference="khk-5d-BQe"/>
+        <segue reference="v1d-sr-OVr"/>
     </inferredMetricsTieBreakers>
 </document>

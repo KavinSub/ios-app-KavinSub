@@ -46,6 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         let hasLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
+        print("\(hasLoggedIn)")
+        
         let navigationController: UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
         var rootViewController: UIViewController
         
