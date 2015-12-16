@@ -62,6 +62,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                         
                         print("User succesfully saved.")
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userLoggedIn")
+                        
+                        //self.switchToMain()
                     }
                 })
             }
@@ -71,8 +73,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.navigationItem.hidesBackButton = true
+        //self.navigationController?.setNavigationBarHidden(true, animated: true)
+        //self.navigationItem.hidesBackButton = true
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -81,28 +83,22 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         print("View has appeared")
     }
     
-    func bypassLogin(){
-        print("Bypass called")
-        // If the user has been authenticated, bypass the login screen
-        let isAuthenticated = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn")
+    func switchToMain(){
+        print("Switching to app.")
         
-        if isAuthenticated{
-            let toController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("ExchangeViewController")
-            self.presentViewController(toController, animated: true, completion: nil)
-        }
-    }
-    
-    // Function will switch to main app after signup
-    func switchToMainApp(){
-        
-        print("Switching to main app.")
-        
-        let appDelegate = UIApplication.sharedApplication().delegate
+        let appDelegate = UIApplication.sharedApplication().delegate!
         
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
-        storyBoard.instantiateViewControllerWithIdentifier("MainNav")
+        let loginNavController = storyBoard.instantiateViewControllerWithIdentifier("LoginNav")
+        
+        let mainNavController = storyBoard.instantiateViewControllerWithIdentifier("MainNav")
+        
+        // Now switch controllers
+        loginNavController.view.removeFromSuperview()
+        appDelegate.window!!.addSubview(mainNavController.view)
     }
+    
     
     // Given a result object from FB graph request, saves info into user object
     func saveResult(result: AnyObject){
