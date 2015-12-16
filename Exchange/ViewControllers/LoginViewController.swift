@@ -20,76 +20,50 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     @IBAction func facebookLoginButtonPressed(sender: AnyObject) {
         // Credit to http://swiftdeveloperblog.com/parse-login-with-facebook-account-example-in-swift/
         
-        // Attempt to login asking for permissions
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"]){
-            (user: PFUser?, error: NSError?) in
-            
-            // Present an error if error is present
+        
+        // Login asking for permissions
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"]) { (user: PFUser?, error: NSError?) -> Void in
+            // Print an error if present
             if(error != nil){
-                var myAlert = UIAlertController(title: "Alert", message: error?.localizedDescription, preferredStyle: .Alert)
-                
-                let okAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
-                
-                myAlert.addAction(okAction)
-                
-                self.presentViewController(myAlert, animated: true, completion: nil)
+                print("\(error?.localizedDescription)")
+                return
             }
             
             print(user)
             
+            // Now get user info
             if(FBSDKAccessToken.currentAccessToken() != nil){
+                print("User logged in.")
                 
-            }
-        }
-        print("Has logged in")
-        // Get appropriate read permissions
-        let requestParameters = ["fields": "id, email, first_name, last_name"]
-        let userDetails = FBSDKGraphRequest(graphPath: "me", parameters: requestParameters)
-        
-        userDetails.startWithCompletionHandler { (connection, result, error: NSError?) -> Void in
-            if(error != nil){
-                print(error?.localizedDescription)
-                return
-            }
-            
-            if(result != nil){
-                let userId:String = result["id"] as! String
-                let userFirstName: String? = result["first_name"] as? String
-                let userLastName: String? = result["last_name"] as? String
-                let userEmail: String? = result["email"] as? String
+                let requestParameters = ["fields": "id, email, first_name, last_name"]
+                let userDetails = FBSDKGraphRequest(graphPath: "me", parameters: requestParameters)
                 
-                let myUser: PFUser = PFUser.currentUser()!
-                
-                if(userFirstName != nil){
-                    myUser.setObject(userFirstName!, forKey: "firstName")
-                }
-                
-                if(userLastName != nil){
-                    myUser.setObject(userLastName!, forKey: "lastName")
-                }
-                
-                if(userEmail != nil){
-                    myUser.setObject(userEmail!, forKey: "email")
-                }
-                
-                // Get user profile data, save new user
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)){
-                    let userProfile = "https://graph.facebook.com/" + userId + "/picture?type=large"
-                    let profilePictureURL = NSURL(string: userProfile)
-                    let profilePictureData = NSData(contentsOfURL: profilePictureURL!)
-                    
-                    if profilePictureData != nil{
-                        let profileFileObject = PFFile(data: profilePictureData!)
-                        myUser.setObject(profileFileObject!, forKey: "profilePicture")
+                userDetails.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error:NSError!) -> Void in
+                    if error != nil{
+                        print(error.localizedDescription)
+                        return
                     }
                     
-                    myUser.saveInBackgroundWithBlock{ (success: Bool, error: NSError?) -> Void in
-                        if(success){
-                            print("User details are now updated")
-                            NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userLoggedIn")
+                    // We now have the info of the user object as result
+                    if let result = result{
+                        // Save the user info in user object fields
+                        self.saveResult(result)
+                        // Now get the profile picture
+                        self.saveProfilePicture(result["id"] as! String)
+                        
+                        let user = PFUser.currentUser()!
+                        
+                        do{
+                           try user.save()
+                        }catch{
+                            print("Unable to save user.")
+                            return
                         }
+                        
+                        print("User succesfully saved.")
+                        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userLoggedIn")
                     }
-                }
+                })
             }
         }
     }
@@ -99,15 +73,6 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationItem.hidesBackButton = true
-        
-        
-        // Set this controller to be the Google UI Delegate
-        /*GIDSignIn.sharedInstance().uiDelegate = self
-        let googleLoginButton = GIDSignInButton()
-        googleLoginButton.center = CGPoint(x: 200, y: 200)
-        self.view.addSubview(googleLoginButton)*/
-        
-        //bypassLogin()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -137,5 +102,38 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
         storyBoard.instantiateViewControllerWithIdentifier("MainNav")
+    }
+    
+    // Given a result object from FB graph request, saves info into user object
+    func saveResult(result: AnyObject){
+        let userFirstName: String? = result["first_name"] as? String
+        let userLastName: String? = result["last_name"] as? String
+        let userEmail: String? = result["email"] as? String
+        
+        let myUser: PFUser = PFUser.currentUser()!
+        
+        if(userFirstName != nil){
+            myUser.setObject(userFirstName!, forKey: "firstName")
+        }
+        
+        if(userLastName != nil){
+            myUser.setObject(userLastName!, forKey: "lastName")
+        }
+        
+        if(userEmail != nil){
+            myUser.setObject(userEmail!, forKey: "email")
+        }
+    }
+    
+    // Downloads profile picture object
+    func saveProfilePicture(userId: String){
+        let userProfile = "https://graph.facebook.com/" + userId + "/picture?type=large"
+        let profilePictureURL = NSURL(string: userProfile)
+        let profilePictureData = NSData(contentsOfURL: profilePictureURL!)
+        
+        if profilePictureData != nil{
+            let profileFileObject = PFFile(data: profilePictureData!)
+            PFUser.currentUser()!.setObject(profileFileObject!, forKey: "profilePicture")
+        }
     }
 }

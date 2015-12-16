@@ -22,12 +22,11 @@ class SettingsViewController: UIViewController {
     @IBAction func deleteUser(sender: AnyObject) {
         // To delete user, we must delete user object and all associated connections
         let user = PFUser.currentUser()
-        let objectId = user?.objectId
         // Delete associated connections
         // (i) Find all connections
         let connectionQuery = PFQuery(className: "Connection")
-        connectionQuery.whereKey("other_user", equalTo: objectId!)
-        connectionQuery.whereKey("this_user", equalTo: objectId!)
+        connectionQuery.whereKey("other_user", equalTo: user!)
+        connectionQuery.whereKey("this_user", equalTo: user!)
         
         
         connectionQuery.findObjectsInBackgroundWithBlock { (result: [PFObject]?, error: NSError?) -> Void in
