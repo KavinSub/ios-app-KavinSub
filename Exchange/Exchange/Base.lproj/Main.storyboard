@@ -65,7 +65,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7ez-J8-gXC">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7ez-J8-gXC">
                                 <rect key="frame" x="200" y="148" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="CDG-HH-b7w"/>
@@ -74,7 +74,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMm-kY-Pfi">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FMm-kY-Pfi">
                                 <rect key="frame" x="200" y="186" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="1Ty-04-9qA"/>
@@ -83,16 +83,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c6M-Np-94Z">
-                                <rect key="frame" x="200" y="72" width="200" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="hmK-gP-4iV"/>
-                                    <constraint firstAttribute="height" constant="30" id="oqv-AI-UpS"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qYe-vT-Mlz">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qYe-vT-Mlz">
                                 <rect key="frame" x="200" y="110" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ytb-m1-R7L"/>
@@ -131,10 +122,8 @@
                             <constraint firstItem="FMm-kY-Pfi" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="6Ql-VW-BJs"/>
                             <constraint firstItem="fwx-L1-gVa" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="L2m-Nu-cuN"/>
                             <constraint firstItem="7ez-J8-gXC" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="OuD-nx-gh8"/>
-                            <constraint firstItem="c6M-Np-94Z" firstAttribute="top" secondItem="4WY-h5-a5z" secondAttribute="bottom" constant="8" id="bqt-7d-FvV"/>
-                            <constraint firstItem="qYe-vT-Mlz" firstAttribute="top" secondItem="c6M-Np-94Z" secondAttribute="bottom" constant="8" id="qk9-ye-b00"/>
+                            <constraint firstItem="qYe-vT-Mlz" firstAttribute="top" secondItem="4WY-h5-a5z" secondAttribute="bottom" constant="46" id="ZIR-na-0XF"/>
                             <constraint firstItem="nMN-lM-EQM" firstAttribute="top" secondItem="fwx-L1-gVa" secondAttribute="bottom" constant="1" id="qyo-gI-I2A"/>
-                            <constraint firstItem="c6M-Np-94Z" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="rlI-fP-eOM"/>
                             <constraint firstItem="nMN-lM-EQM" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="tGx-DV-sbO"/>
                             <constraint firstItem="7ez-J8-gXC" firstAttribute="top" secondItem="qYe-vT-Mlz" secondAttribute="bottom" constant="8" id="tMl-a3-qww"/>
                             <constraint firstItem="fwx-L1-gVa" firstAttribute="top" secondItem="FMm-kY-Pfi" secondAttribute="bottom" constant="8" id="u2M-ec-V2E"/>
@@ -142,10 +131,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="WaT-lh-S0Z"/>
                     <connections>
-                        <outlet property="emailField" destination="7ez-J8-gXC" id="sHM-8H-rTy"/>
-                        <outlet property="firstNameField" destination="c6M-Np-94Z" id="pUX-MC-4vS"/>
-                        <outlet property="lastNameField" destination="qYe-vT-Mlz" id="XTC-1a-50q"/>
-                        <outlet property="passwordField" destination="FMm-kY-Pfi" id="Xiw-dr-HtT"/>
+                        <outlet property="confirmPasswordField" destination="FMm-kY-Pfi" id="qRc-kt-XYl"/>
+                        <outlet property="passwordField" destination="7ez-J8-gXC" id="9xc-Hj-ZAA"/>
+                        <outlet property="usernameField" destination="qYe-vT-Mlz" id="MNb-DN-HYP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8uh-uK-L2I" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -155,7 +143,7 @@
         <!--Sign In-->
         <scene sceneID="91d-pR-wmx">
             <objects>
-                <viewController id="PAx-y3-mnN" sceneMemberID="viewController">
+                <viewController id="PAx-y3-mnN" customClass="UsernameLoginViewController" customModule="Exchange" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ygd-sl-6zy"/>
                         <viewControllerLayoutGuide type="bottom" id="rQc-kI-LTO"/>
@@ -164,7 +152,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2JC-o8-iFV">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2JC-o8-iFV">
                                 <rect key="frame" x="200" y="72" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="EeI-a9-w2u"/>
@@ -189,6 +177,9 @@
                                     <constraint firstAttribute="height" constant="30" id="vGw-hP-SVi"/>
                                 </constraints>
                                 <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <action selector="loginUser:" destination="PAx-y3-mnN" eventType="touchUpInside" id="ICC-vW-8fM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -202,6 +193,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign In" id="c7M-sM-nq7"/>
+                    <connections>
+                        <outlet property="passwordField" destination="FME-M9-ch4" id="uCQ-Kf-Rif"/>
+                        <outlet property="usernameField" destination="2JC-o8-iFV" id="wEw-bC-1ws"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXC-AL-X3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

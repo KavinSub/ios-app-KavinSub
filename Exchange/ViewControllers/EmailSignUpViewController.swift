@@ -11,16 +11,16 @@ import Parse
 
 class EmailSignUpViewController: UIViewController {
     
-    @IBOutlet weak var firstNameField: UITextField!
     
-    @IBOutlet weak var lastNameField: UITextField!
-    
-    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet weak var passwordField: UITextField!
     
-    // Array of text fields
-    var textFields: [(UITextField, String)] = []
+    @IBOutlet weak var confirmPasswordField: UITextField!
+    
+    let minFieldLength = 5
+    let maxFieldLength = 20
+    
     
     @IBAction func signUp(sender: AnyObject) {
         signUpUser()
@@ -30,13 +30,6 @@ class EmailSignUpViewController: UIViewController {
         // Gesture will close any first responders
         let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         self.view.addGestureRecognizer(tapGesture)
-        
-        // Initialize textfields array
-        textFields = [
-        (firstNameField, "firstName"),
-        (lastNameField, "lastName"),
-        (emailField, "email"),
-        (passwordField, "password")]
     }
     
     // Keyboard will dismissed upon call
@@ -46,41 +39,97 @@ class EmailSignUpViewController: UIViewController {
     
     
     func signUpUser(){
-        // First verify all fields have been filled out
         if !verifyFieldsFilledOut(){
             presentAlertViewController("Please fill out all fields.")
             return
         }
         
-        //let user = PFUser.currentUser()
-        let user = PFObject(className: "User")
+        if !verifyFieldsConditions(){
+            return
+        }
         
-        for field in textFields{
-            let text = field.0.text
-            let key = field.1
-            if key == "password"{
-                if !isAlphanumeric(text!){
-                    presentAlertViewController("Password should only contain letters and numbers.")
-                    return
-                }
+        let user = PFUser()
+        let username = usernameField.text!
+        let password = passwordField.text!
+        user.setValue(username, forKey: "username")
+        user.setValue(password, forKey: "password")
+        
+        user.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if error != nil{
+                print("\(error?.localizedDescription)")
             }
             
-            user.setValue(text, forKey: key)
-        }
-        
-        print("\(user)")
-    }
-    
-    func verifyFieldsFilledOut() -> Bool{
-        var count = 0
-        for field in textFields{
-            if let text = field.0.text{
-                if text != ""{
-                    count = count + 1
+            if success{
+                print("User has succesfully signed up.")
+                // Now login the user
+                do{
+                    try PFUser.logInWithUsername(username, password: password)
+                    NSUserDefaults.standardUserDefaults().setValue(true, forKey: "userLoggedIn")
+                    print("User has succesfully logged in.")
+                }catch{
+                    print("Unable to login user.")
                 }
             }
         }
-        return count == textFields.count
+    }
+    
+    // Makes sure the fields have been filled out
+    func verifyFieldsFilledOut() -> Bool{
+        // If all fields have been filled out
+        if usernameField.text != "" && passwordField.text !=  "" && confirmPasswordField.text != ""{
+            return true
+        }
+        
+        return false
+    }
+    
+    // Checks that the fields fulfill certain conditions
+    func verifyFieldsConditions() -> Bool{
+        // Check that the fields use alphanumeric characters or symbols
+        let username = usernameField.text
+        let password = passwordField.text
+        let confirmedPassword = confirmPasswordField.text
+        
+        let fieldTextError = "All fields must use letters, numbers or symbols"
+        let mismatchedPasswordsError = "Both passwords must be equal."
+        let lengthError = "All fields must be between \(minFieldLength) to \(maxFieldLength) characters"
+        
+        if !isValidRange(username!){
+            presentAlertViewController("\(lengthError). Please fix username.")
+            return false
+        }
+        
+        if !isValidRange(password!){
+            presentAlertViewController("\(lengthError). Please fix password.")
+            return false
+        }
+        
+        if !isValidRange(confirmedPassword!){
+            presentAlertViewController("\(lengthError). Please fix confirmed password.")
+            return false
+        }
+        
+        if !isValidFieldString(username!){
+            presentAlertViewController("\(fieldTextError). Please fix username.")
+            return false
+        }
+        
+        if !isValidFieldString(password!){
+            presentAlertViewController("\(fieldTextError). Please fix password.")
+            return false
+        }
+        
+        if !isValidFieldString(confirmedPassword!){
+            presentAlertViewController("\(fieldTextError). Please fix confirmed password.")
+            return false
+        }
+        
+        if password != confirmedPassword{
+            presentAlertViewController(mismatchedPasswordsError)
+            return false
+        }
+        
+        return true
     }
     
     func presentAlertViewController(message: String){
@@ -93,16 +142,25 @@ class EmailSignUpViewController: UIViewController {
     }
     
     // Returns true if a string's characters are alphanumeric
-    func isAlphanumeric(string: String) -> Bool{
+    func isValidFieldString(string: String) -> Bool{
         let letters = NSCharacterSet.letterCharacterSet()
         let digits = NSCharacterSet.decimalDigitCharacterSet()
+        let symbols = NSCharacterSet(charactersInString: "!@#$%^&*()")
         
         for char in string.unicodeScalars{
-            if !(letters.longCharacterIsMember(char.value) || digits.longCharacterIsMember(char.value)){
+            if !(letters.longCharacterIsMember(char.value) || digits.longCharacterIsMember(char.value) || symbols.longCharacterIsMember(char.value)){
                 return false
             }
         }
         return true
+    }
+    
+    func isValidRange(string: String) -> Bool{
+        if string.characters.count >= minFieldLength && string.characters.count <= maxFieldLength{
+            return true
+        }
+        
+        return false
     }
     
 }

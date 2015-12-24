@@ -58,11 +58,11 @@ class ProfileViewController: UIViewController {
         let user = PFUser.currentUser()
         
         // Load name of user
-        let firstName = user?.valueForKey("firstName")! as! String
-        let lastName = user?.valueForKey("lastName")! as! String
-        nameLabel.text = firstName + " " + lastName
+        if let firstName = user?.valueForKey("firstName") as! String?, lastName = user?.valueForKey("lastName") as! String?{
+            nameLabel.text = firstName + " " + lastName
+        }
         
-        if let imageFile = user?.valueForKey("profilePicture")! as! PFFile?{
+        if let imageFile = user?.valueForKey("profilePicture") as! PFFile?{
             imageFile.getDataInBackgroundWithBlock({(data: NSData?, error: NSError?) -> Void in
                 if error != nil{
                     print("\(error?.localizedDescription)")

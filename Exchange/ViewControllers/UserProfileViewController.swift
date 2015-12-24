@@ -38,19 +38,19 @@ class UserProfileViewController: UIViewController {
     
     func displayUser(user: PFUser){
         // Set name
-        let firstName = user.valueForKey("firstName") as! String
-        let lastName = user.valueForKey("lastName") as! String
-        
-        nameLabel.text = "\(firstName) \(lastName)"
+        if let firstName = user.valueForKey("firstName") as! String?, lastName = user.valueForKey("lastName") as! String?{
+            nameLabel.text = "\(firstName) \(lastName)"
+        }
         
         // Set image
-        let imageFile = user.valueForKey("profilePicture") as! PFFile
-        do{
-            let imageData = try imageFile.getData()
-            let image = UIImage(data: imageData)
-            profileImageView.image = image
-        }catch{
-            print("Unable to load image")
+        if let imageFile = user.valueForKey("profilePicture") as! PFFile?{
+            do{
+                let imageData = try imageFile.getData()
+                let image = UIImage(data: imageData)
+                profileImageView.image = image
+            }catch{
+                print("Unable to load image")
+            }
         }
         
         labels =
