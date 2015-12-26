@@ -27,6 +27,10 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var linkedInTextField: UITextField!
     
+    // The text field that is currently being edited
+    
+    var textFieldBeingEdited: UITextField?
+    
     // Allows user to test their profile appearance
     
     @IBAction func testUserProfile(sender: AnyObject) {
@@ -47,6 +51,10 @@ class ProfileViewController: UIViewController {
         setupProfile()
         setupGestures()
         
+        // Adds keyboard appearance to notification center
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -150,6 +158,28 @@ class ProfileViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    // Caled by selector when keyboard is about to appear
+    func keyboardWillShow(notification: NSNotification){
+        print("Keyboard will show.")
+        
+        if let userInfo = notification.userInfo{
+            if let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue(){
+                
+            }else{
+                print("No UIKeyboardFramUserInfoKey value in user info dictionary.")
+            }
+        }else{
+            print("No user dictionary info received.")
+        }
+        
+    }
+    
+    func keyboardWillHide(notifcation: NSNotification){
+        print("Keyboard will hide.")
+        
+        
+    }
+    
     // Saves the content of a text field
     func saveContentOf(textFieldKey: String, value: String){
         let user = PFUser.currentUser()
@@ -188,5 +218,11 @@ extension ProfileViewController: UITextFieldDelegate{
         if let text = text{
             saveContentOf(textFieldKey, value: text)
         }
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        print("\(textFields[textField.tag].1) text field is being edited.")
+        
+        textFieldBeingEdited = textField
     }
 }
