@@ -70,16 +70,16 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
+    // Unwind segue
+    @IBAction func unwindToMainLoginSegue(segue: UIStoryboardSegue){
+    }
+    
     override func viewDidLoad(){
         super.viewDidLoad()
-        
-        makeNavigationBarInvisible()
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        makeNavigationBarInvisible()
         
         print("View has appeared")
     }
@@ -132,11 +132,5 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
             let profileFileObject = PFFile(data: profilePictureData!)
             PFUser.currentUser()!.setObject(profileFileObject!, forKey: "profilePicture")
         }
-    }
-    
-    // Helper function hides navigation bar
-    func makeNavigationBarInvisible(){
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
-        self.navigationItem.hidesBackButton = true
     }
 }

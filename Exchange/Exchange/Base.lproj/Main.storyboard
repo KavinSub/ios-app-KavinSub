@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="G2h-a3-qYr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -54,13 +54,12 @@
                         <constraints>
                             <constraint firstItem="X3d-OR-OOz" firstAttribute="top" secondItem="kTU-Rg-VSE" secondAttribute="bottom" constant="78" id="5cE-m1-dpu"/>
                             <constraint firstItem="Uv2-xG-msE" firstAttribute="top" secondItem="X3d-OR-OOz" secondAttribute="bottom" constant="8" id="8tQ-P7-pDe"/>
+                            <constraint firstItem="kTU-Rg-VSE" firstAttribute="top" secondItem="cL8-Sy-H0i" secondAttribute="bottom" constant="116" id="Be7-k4-c9l"/>
                             <constraint firstItem="Uv2-xG-msE" firstAttribute="centerX" secondItem="FWB-R7-quZ" secondAttribute="centerX" id="IZm-tk-ZFE"/>
-                            <constraint firstItem="kTU-Rg-VSE" firstAttribute="top" secondItem="cL8-Sy-H0i" secondAttribute="bottom" constant="72" id="O7o-Fo-GOq"/>
                             <constraint firstItem="kTU-Rg-VSE" firstAttribute="centerX" secondItem="FWB-R7-quZ" secondAttribute="centerX" id="feb-uv-MC6"/>
                             <constraint firstItem="X3d-OR-OOz" firstAttribute="centerX" secondItem="FWB-R7-quZ" secondAttribute="centerX" id="lty-io-JgK"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Fld-2k-W15"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XLe-LT-0zp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,6 +135,20 @@
                                     <segue destination="PAx-y3-mnN" kind="show" id="iyH-iX-EWv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqg-pz-oAr">
+                                <rect key="frame" x="20" y="20" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CrI-pj-Tce"/>
+                                    <constraint firstAttribute="width" constant="46" id="REL-Gh-olr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="xIU-NU-5oY" kind="unwind" unwindAction="unwindToMainLoginSegue:" id="3xh-mU-eNE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -145,7 +158,9 @@
                             <constraint firstItem="nMN-lM-EQM" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="8Cs-iS-13e"/>
                             <constraint firstItem="fwx-L1-gVa" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="L2m-Nu-cuN"/>
                             <constraint firstItem="7ez-J8-gXC" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="OuD-nx-gh8"/>
-                            <constraint firstItem="qYe-vT-Mlz" firstAttribute="top" secondItem="4WY-h5-a5z" secondAttribute="bottom" constant="46" id="ZIR-na-0XF"/>
+                            <constraint firstItem="qYe-vT-Mlz" firstAttribute="top" secondItem="4WY-h5-a5z" secondAttribute="bottom" constant="90" id="PSy-sr-7uy"/>
+                            <constraint firstItem="qqg-pz-oAr" firstAttribute="leading" secondItem="EcA-VR-6fW" secondAttribute="leadingMargin" id="U1P-Mh-y3a"/>
+                            <constraint firstItem="qqg-pz-oAr" firstAttribute="top" secondItem="4WY-h5-a5z" secondAttribute="bottom" id="j6E-Ad-h8Y"/>
                             <constraint firstItem="nMN-lM-EQM" firstAttribute="top" secondItem="fwx-L1-gVa" secondAttribute="bottom" constant="8" id="kzT-K7-a2X"/>
                             <constraint firstItem="7ez-J8-gXC" firstAttribute="top" secondItem="qYe-vT-Mlz" secondAttribute="bottom" constant="8" id="tMl-a3-qww"/>
                             <constraint firstItem="fwx-L1-gVa" firstAttribute="top" secondItem="FMm-kY-Pfi" secondAttribute="bottom" constant="8" id="u2M-ec-V2E"/>
@@ -159,6 +174,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8uh-uK-L2I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xIU-NU-5oY" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1759" y="-331"/>
         </scene>
@@ -208,13 +224,29 @@
                                     <action selector="loginUser:" destination="PAx-y3-mnN" eventType="touchUpInside" id="ICC-vW-8fM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kkp-Q2-zjf">
+                                <rect key="frame" x="20" y="20" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="J2i-yn-ThT"/>
+                                    <constraint firstAttribute="height" constant="30" id="eUv-bO-OEv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="xgD-CH-GcS" kind="unwind" unwindAction="unwindToUserSignUpSegue:" id="p1v-Fg-8ar"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="2JC-o8-iFV" firstAttribute="top" secondItem="Ygd-sl-6zy" secondAttribute="bottom" constant="46" id="0Qd-Yp-fsN"/>
                             <constraint firstItem="FME-M9-ch4" firstAttribute="top" secondItem="2JC-o8-iFV" secondAttribute="bottom" constant="8" id="0nb-DL-R25"/>
+                            <constraint firstItem="kkp-Q2-zjf" firstAttribute="top" secondItem="Ygd-sl-6zy" secondAttribute="bottom" id="Oid-1j-tQa"/>
+                            <constraint firstItem="2JC-o8-iFV" firstAttribute="top" secondItem="Ygd-sl-6zy" secondAttribute="bottom" constant="90" id="WYm-Qq-TaH"/>
                             <constraint firstItem="FME-M9-ch4" firstAttribute="centerX" secondItem="BQv-M9-aWf" secondAttribute="centerX" id="d2f-in-8Ve"/>
                             <constraint firstItem="2JC-o8-iFV" firstAttribute="centerX" secondItem="BQv-M9-aWf" secondAttribute="centerX" id="deh-Tz-WeJ"/>
+                            <constraint firstItem="kkp-Q2-zjf" firstAttribute="leading" secondItem="BQv-M9-aWf" secondAttribute="leadingMargin" id="i4m-Ad-ZzE"/>
                             <constraint firstItem="QTo-e6-c9e" firstAttribute="centerX" secondItem="BQv-M9-aWf" secondAttribute="centerX" id="n1R-5c-bOV"/>
                             <constraint firstItem="QTo-e6-c9e" firstAttribute="top" secondItem="FME-M9-ch4" secondAttribute="bottom" constant="8" id="zjI-cr-ee1"/>
                         </constraints>
@@ -226,6 +258,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXC-AL-X3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xgD-CH-GcS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2549" y="-331"/>
         </scene>
@@ -618,14 +651,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Y3-v4-FlT">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Y3-v4-FlT">
                                 <rect key="frame" x="276" y="72" width="48" height="30"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="logoutUser:" destination="zrT-bu-c0P" eventType="touchUpInside" id="xaj-WF-TRM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9q-YW-oI1">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I9q-YW-oI1">
                                 <rect key="frame" x="248" y="110" width="105" height="30"/>
                                 <state key="normal" title="Delete Account">
                                     <color key="titleColor" red="1" green="0.11008059161256623" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -652,48 +685,11 @@
             </objects>
             <point key="canvasLocation" x="1011" y="1244"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="vRx-i3-vcu">
-            <objects>
-                <navigationController storyboardIdentifier="LoginNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="G2h-a3-qYr" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="YFS-y9-stb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Css-3S-clV" kind="relationship" relationship="rootViewController" id="vAX-PU-Ti8"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qNI-AF-r9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="199" y="-331"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="mcb-tB-WcG">
-            <objects>
-                <navigationController storyboardIdentifier="MainNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qGR-NT-3Be" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="byb-E8-SjR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="WGA-j9-JgN" kind="relationship" relationship="rootViewController" id="zTH-3g-JAQ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WBt-Ox-bXv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="199" y="458"/>
-        </scene>
     </scenes>
     <resources>
         <image name="FacebookLogin" width="280" height="41"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="khk-5d-BQe"/>
-        <segue reference="v1d-sr-OVr"/>
     </inferredMetricsTieBreakers>
 </document>

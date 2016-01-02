@@ -44,11 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         
         // Choose correct view controller
         let hasLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn")
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
         print("\(hasLoggedIn)")
         
-        let navigationController: UINavigationController = storyboard.instantiateInitialViewController() as! UINavigationController
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
         var rootViewController: UIViewController
         
         if !hasLoggedIn{
@@ -57,22 +57,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             rootViewController = storyboard.instantiateViewControllerWithIdentifier("ExchangeViewController") as! ExchangeViewController
         }
         
-        navigationController.viewControllers = [rootViewController]
-        self.window?.rootViewController = navigationController
+        self.window?.rootViewController = rootViewController
+        
+        self.window?.makeKeyAndVisible()
         
         // Override point for customization after application launch.
         return true
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        /*if let login = login{
-            if login == .Facebook{*/
-                return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-           /* }else if login == .Google{
-                return GIDSignIn.sharedInstance().handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
-            }
-        }
-        return false*/
+            return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
     func applicationWillResignActive(application: UIApplication) {
