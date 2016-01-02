@@ -9,6 +9,7 @@
 import UIKit
 import CoreBluetooth
 import Parse
+import AudioToolbox
 
 class ExchangeViewController: UIViewController {
     
@@ -23,7 +24,7 @@ class ExchangeViewController: UIViewController {
     
     override func viewDidLoad(){
         
-        statusView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 255)
+        statusView.backgroundColor = UIElementProperties.textColor
         
         bluetoothHandler = Bluetooth(viewController: self)
         
@@ -35,7 +36,7 @@ class ExchangeViewController: UIViewController {
     
     
     override func viewDidAppear(animated: Bool) {
-        statusView.backgroundColor = UIColor(red: 255, green: 0, blue: 0, alpha: 255)
+        statusView.backgroundColor = UIElementProperties.textColor
         
         bluetoothHandler?.setupAsCentral()
         bluetoothHandler?.setupAsPeripheral()
@@ -49,6 +50,11 @@ class ExchangeViewController: UIViewController {
         bluetoothHandler?.stopAdvertisting()
         
         super.viewDidDisappear(animated)
+    }
+    
+    func connectionCreated(){
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        statusView.backgroundColor = UIElementProperties.connectionStatus
     }
     
 }

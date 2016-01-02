@@ -53,7 +53,13 @@ class SettingsViewController: UIViewController {
                 print("\(error?.localizedDescription)")
             }
             if !success{
+                // Backend of user has likely already been deleted, but changes not reflected.
                 print("Unable to delete user")
+                
+                // Perform logout segue for user anyways
+                NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userLoggedIn")
+                self.performSegueWithIdentifier("LogoutUser", sender: self)
+                
                 return
             }else{
                 // Now ensure the user is treated as logged out

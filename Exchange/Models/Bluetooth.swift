@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import CoreBluetooth
 import Parse
-import AudioToolbox
 
 class Bluetooth: NSObject{
     // Instance of Exchange
@@ -121,9 +120,8 @@ class Bluetooth: NSObject{
             }else{
                 if success{
                     print("Connection object saved succesfully.")
-                    // Provide user feedback
-                    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-                    self.viewController.statusView.backgroundColor = UIColor(red: 0, green: 255, blue: 0, alpha: 255)
+                    // Call function that displays changes
+                    self.viewController.connectionCreated()
                 }else{
                     print("Conection object not saved.")
                 }

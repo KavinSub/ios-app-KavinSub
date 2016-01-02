@@ -30,6 +30,14 @@ class EmailSignUpViewController: UIViewController {
         // Gesture will close any first responders
         let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         self.view.addGestureRecognizer(tapGesture)
+        
+        makeNavigationBarVisible()
+    }
+    
+    override func viewWillAppear(animated: Bool){
+        super.viewWillAppear(animated)
+        
+        makeNavigationBarVisible()
     }
     
     // Keyboard will dismissed upon call
@@ -162,5 +170,12 @@ class EmailSignUpViewController: UIViewController {
         
         return false
     }
+    
+    // Helper function makes the navbar visible again
+    func makeNavigationBarVisible(){
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.navigationItem.hidesBackButton = false
+    }
+    
     
 }

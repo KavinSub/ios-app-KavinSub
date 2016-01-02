@@ -164,6 +164,8 @@ class ProfileViewController: UIViewController {
         
         if let userInfo = notification.userInfo{
             if let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue(){
+                let keyboardHeight = keyboardSize.height
+                
                 
             }else{
                 print("No UIKeyboardFramUserInfoKey value in user info dictionary.")

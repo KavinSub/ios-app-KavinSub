@@ -19,8 +19,24 @@ class UsernameLoginViewController: UIViewController {
         loginUser()
     }
     
+    
+    override func viewDidLoad(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard"))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    // Dismiss open keyboards
+    func dismissKeyboard(){
+        self.view.endEditing(true)
+    }
+    
     // Checks the user's username and password, logs them in
     func loginUser(){
+        
+        if !checkTextFields(){
+            return
+        }
+        
         if let username = usernameField.text, let password = passwordField.text{
             PFUser.logInWithUsernameInBackground(username, password: password, block: { (user: PFUser?, error: NSError?) -> Void in
                 if error != nil{
@@ -32,9 +48,29 @@ class UsernameLoginViewController: UIViewController {
                     print("User has succesfully logged in.")
                 }else{
                     print("Invalid user credentials.")
+                    self.presentAlertViewController("Please enter correct username and password.")
                 }
             })
         }
     }
     
+    // Checks that a user has filled out text fields
+    func checkTextFields() -> Bool{
+        if usernameField.text == "" || passwordField.text == ""{
+            presentAlertViewController("Please fill out all fields.")
+            
+            return false
+        }
+        
+        return true
+    }
+    
+    func presentAlertViewController(message: String){
+        let alertViewController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        let alertAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        
+        alertViewController.addAction(alertAction)
+        
+        self.presentViewController(alertViewController, animated: true, completion: nil)
+    }
 }
