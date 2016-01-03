@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C6BE4F532A5CE0DB4BE20C8 /* Pods_Exchange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */; };
 		AE0B4A991C375DD9008074EC /* UIElementProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B4A981C375DD9008074EC /* UIElementProperties.swift */; };
+		AE0B4A9B1C388155008074EC /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B4A9A1C388155008074EC /* UserViewController.swift */; };
 		AE2240BA1C0FA4AF004CBFCA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240B91C0FA4AF004CBFCA /* ProfileViewController.swift */; };
 		AE2240BF1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */; };
 		AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */; };
@@ -36,6 +37,7 @@
 		20F2CBE93C54B27FF3D2F8D3 /* Pods-Exchange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exchange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Exchange/Pods-Exchange.debug.xcconfig"; sourceTree = "<group>"; };
 		A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exchange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0B4A981C375DD9008074EC /* UIElementProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIElementProperties.swift; sourceTree = "<group>"; };
+		AE0B4A9A1C388155008074EC /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		AE2240B91C0FA4AF004CBFCA /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHelper.swift; sourceTree = "<group>"; };
 		AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDeleteHelper.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				AE945C7B1C1F4F8B00498424 /* SettingsViewController.swift */,
 				AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */,
 				AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */,
+				AE0B4A9A1C388155008074EC /* UserViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = SOURCE_ROOT;
@@ -295,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AEAA5F581C1A60F300EFF10E /* ProfileTableViewController.swift in Sources */,
+				AE0B4A9B1C388155008074EC /* UserViewController.swift in Sources */,
 				AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */,
 				AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,

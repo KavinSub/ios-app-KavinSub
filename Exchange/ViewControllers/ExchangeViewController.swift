@@ -19,7 +19,19 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var statusView: UIView!
     
     @IBAction func unwindToSegue(segue: UIStoryboardSegue){
-        
+    }
+    
+    
+    @IBAction func goToProfile(sender: AnyObject) {
+        self.performSegueWithIdentifier("DisplayCurrentUser", sender: self)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "DisplayCurrentUser"{
+            let viewController = segue.destinationViewController as! UserViewController
+            viewController.user = PFUser.currentUser()
+            viewController.allowsEditMode = true
+        }
     }
     
     override func viewDidLoad(){
@@ -56,5 +68,6 @@ class ExchangeViewController: UIViewController {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         statusView.backgroundColor = UIElementProperties.connectionStatus
     }
+    
     
 }
