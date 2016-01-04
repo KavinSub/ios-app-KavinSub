@@ -27,6 +27,18 @@ class UserViewController: UIViewController {
     
     @IBOutlet weak var editButton: UIButton!
     
+    // All views related to the editor view component
+    var editorView: UIView?
+    
+    var phoneNumberTextField: UITextField?
+    
+    var emailTextField: UITextField?
+    
+    var linkedInTextField: UITextField?
+    
+    // Text field tag: key dictionary
+    var keyField: [Int: String]?
+    
     // Constraints related to animations
     var backTrailingConstraint: NSLayoutConstraint?
     
@@ -70,6 +82,10 @@ class UserViewController: UIViewController {
         setupGestures()
         displayUser(user!)
         changeButtons()
+        
+        if allowsEditMode!{
+            addEditorView()
+        }
         
     }
     
@@ -182,6 +198,11 @@ class UserViewController: UIViewController {
         UIView.animateWithDuration(0.5) { () -> Void in
             self.otherLinksView.transform = CGAffineTransformIdentity
         }
+        
+        // Animate editor view
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.editorView?.transform = CGAffineTransformIdentity
+        }
     }
     
     func intoEditModeAnimations(){
@@ -206,6 +227,11 @@ class UserViewController: UIViewController {
         horizontalTranslateRotateAnimation(self.contactInfoView, duration: 0.5, delay: 0.0, tx: -480, degrees: 180, completion: nil)
         // iii) otherLinksView
         horizontalTranslateRotateAnimation(self.otherLinksView, duration: 0.5, delay: 0.0, tx: 240, degrees: 180, completion: nil)
+        
+        // Animate editor view
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.editorView!.transform = CGAffineTransformTranslate(self.editorView!.transform, 0.0, -1.0 * (self.view.frame.height/2.0 + 90))
+        }
     }
     
     func disableButtons(){
@@ -234,5 +260,90 @@ class UserViewController: UIViewController {
         UIView.animateWithDuration(duration, delay: delay, options: UIViewAnimationOptions.CurveLinear, animations: animation, completion: completion)
         
         return view.transform
+    }
+    
+    func addEditorView(){
+        
+        let user = PFUser.currentUser()
+        
+        // Main editor view
+        editorView = UIView(frame: CGRectMake(0, self.view.frame.height, 300, 180))
+        editorView!.backgroundColor = UIColor(red: 255.0/255.0, green: 195.0/255.0, blue: 14.0/255.0, alpha: 1.0)
+        editorView!.center.x = self.view.frame.width/2.0
+        editorView!.layer.cornerRadius = 6.0
+        
+        // Phone number
+        let phoneImageView = UIImageView(frame: CGRectMake(10, 10, 30, 30))
+        phoneImageView.image = UIImage(named: "PhoneIcon")
+        
+        phoneNumberTextField = UITextField(frame: CGRectMake(50, 10, 240, 30))
+        phoneNumberTextField!.borderStyle = UITextBorderStyle.RoundedRect
+        phoneNumberTextField!.placeholder = "Phone Number"
+        phoneNumberTextField!.tag = 0
+        phoneNumberTextField?.delegate = self
+        if let text = user?.valueForKey("phoneNumber") as! String?{
+            phoneNumberTextField!.text = text
+        }
+        
+        // Email
+        let emailImageView = UIImageView(frame: CGRectMake(10, 70, 30, 30))
+        emailImageView.image = UIImage(named: "EmailIcon")
+        
+        emailTextField = UITextField(frame: CGRectMake(50, 70, 240, 30))
+        emailTextField!.borderStyle = UITextBorderStyle.RoundedRect
+        emailTextField!.placeholder = "Email"
+        emailTextField!.tag = 1
+        emailTextField!.delegate = self
+        if let text = user?.valueForKey("email") as! String?{
+            emailTextField!.text = text
+        }
+        
+        // LinkedIn
+        linkedInTextField = UITextField(frame: CGRectMake(50, 130, 240, 30))
+        linkedInTextField!.borderStyle = UITextBorderStyle.RoundedRect
+        linkedInTextField!.placeholder = "LinkedIn"
+        linkedInTextField!.tag = 2
+        linkedInTextField!.delegate = self
+        if let text = user?.valueForKey("linkedIn") as! String?{
+            linkedInTextField!.text = text
+        }
+        
+        // Create text field, key dictionary
+        keyField = [phoneNumberTextField!.tag: "phoneNumber", emailTextField!.tag: "email", linkedInTextField!.tag: "linkedIn"]
+        
+        // Now add all components to editor view
+        editorView!.addSubview(phoneImageView)
+        editorView!.addSubview(phoneNumberTextField!)
+        
+        editorView!.addSubview(emailImageView)
+        editorView!.addSubview(emailTextField!)
+        
+        editorView!.addSubview(linkedInTextField!)
+        
+        self.view.addSubview(editorView!)
+    }
+    
+}
+
+extension UserViewController: UITextFieldDelegate{
+    // Save the contents of the text field that has just been edited
+    func textFieldDidEndEditing(textField: UITextField) {
+        let key = keyField![textField.tag]
+        let contents = textField.text
+        
+        let user = PFUser.currentUser()
+        user?.setValue(contents!, forKey: key!)
+        
+        user?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            if error != nil{
+                print("\(error?.localizedDescription)")
+            }
+            
+            if success{
+                print("Succesfully saved for  \(key!) field.")
+            }else{
+                print("Unable to save for \(key!) field.")
+            }
+        })
     }
 }

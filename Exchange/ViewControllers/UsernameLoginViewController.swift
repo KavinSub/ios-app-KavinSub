@@ -46,6 +46,7 @@ class UsernameLoginViewController: UIViewController {
                 if let user = user{
                     NSUserDefaults.standardUserDefaults().setValue(true, forKey: "userLoggedIn")
                     print("User has succesfully logged in.")
+                    self.performSegueWithIdentifier("Login", sender: self)
                 }else{
                     print("Invalid user credentials.")
                     self.presentAlertViewController("Please enter correct username and password.")

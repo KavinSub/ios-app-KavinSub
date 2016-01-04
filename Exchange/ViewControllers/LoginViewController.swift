@@ -63,7 +63,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                         print("User succesfully saved.")
                         NSUserDefaults.standardUserDefaults().setBool(true, forKey: "userLoggedIn")
                         
-                        //self.switchToMain()
+                        self.performSegueWithIdentifier("Login", sender: self)
                     }
                 })
             }

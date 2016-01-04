@@ -73,6 +73,7 @@ class EmailSignUpViewController: UIViewController {
                     try PFUser.logInWithUsername(username, password: password)
                     NSUserDefaults.standardUserDefaults().setValue(true, forKey: "userLoggedIn")
                     print("User has succesfully logged in.")
+                    self.performSegueWithIdentifier("Login", sender: self)
                 }catch{
                     print("Unable to login user.")
                 }
