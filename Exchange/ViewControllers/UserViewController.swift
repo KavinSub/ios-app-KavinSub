@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class UserViewController: UIViewController {
+class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -21,11 +21,11 @@ class UserViewController: UIViewController {
     
     @IBOutlet weak var aboutTextView: UITextView!
     
-    @IBOutlet weak var otherLinksView: UIView!
-    
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var editButton: UIButton!
+    
+    var infoView: InfoView?
     
     // All views related to the editor view component
     var editorView: UIView?
@@ -42,10 +42,14 @@ class UserViewController: UIViewController {
     // Constraints related to animations
     var backTrailingConstraint: NSLayoutConstraint?
     
+    //*************************************** View Actions Code *******************************************
+    
     // Toggles edit mode, changes UI components
     @IBAction func toggleEditMode(sender: AnyObject) {
-        if inEditingMode{
+        if inEditingMode{ // Put UI into show mode
             inEditingMode = false
+            
+            contactInfoView.userInteractionEnabled = true
             
             self.disableButtons()
             outOfEditModeAnimations()
@@ -55,6 +59,8 @@ class UserViewController: UIViewController {
             aboutTextView.editable = false
         }else{ // Put UI into edit mode
             inEditingMode = true
+            
+            contactInfoView.userInteractionEnabled = false
             
             self.disableButtons()
             intoEditModeAnimations()
@@ -82,6 +88,8 @@ class UserViewController: UIViewController {
         setupGestures()
         displayUser(user!)
         changeButtons()
+        addInfoView()
+        
         
         if allowsEditMode!{
             addEditorView()
@@ -122,15 +130,12 @@ class UserViewController: UIViewController {
             })
         }
         
-        // Change info views
+        // Make info views circular
         contactInfoView.layer.cornerRadius = contactInfoView.frame.size.width/2
         contactInfoView.clipsToBounds = true
         
         linkedInView.layer.cornerRadius = linkedInView.frame.size.width/2
         linkedInView.clipsToBounds = true
-        
-        otherLinksView.layer.cornerRadius = otherLinksView.frame.size.width/2
-        otherLinksView.clipsToBounds = true
         
         // Add content to text view
         if let text = user.valueForKey("about") as! String?{
@@ -138,6 +143,21 @@ class UserViewController: UIViewController {
         }
         aboutTextView.editable = false
     }
+    
+    func addInfoView(){
+        infoView = InfoView()
+        infoView!.frame = CGRectMake(0, 0, 300, 180)
+        infoView!.center.x = self.view.center.x
+        infoView!.center.y = self.nameLabel.center.y + self.nameLabel.frame.height + 20 + (self.infoView?.frame.height)!/2.0
+        
+        let rotationTransform = CATransform3DRotate(infoView!.layer.transform, CGFloat(M_PI) * -0.5, 0.0, 1.0, 0.0)
+        infoView?.layer.transform = rotationTransform
+        infoView!.hidden = true
+        
+        self.view.addSubview(infoView!)
+    }
+    
+    //*************************************** Component Interaction Code *******************************************
     
     // Changes settings of edit and back button
     func changeButtons(){
@@ -160,14 +180,72 @@ class UserViewController: UIViewController {
     
     // Sets up gestures for this view controller
     func setupGestures(){
+        
         let tapScreenGesture = UITapGestureRecognizer(target: self, action: Selector("closeKeyboards"))
         self.view.addGestureRecognizer(tapScreenGesture)
+        
+        // Gesture for opening contact information
+        let tapContactInfoGesture = UITapGestureRecognizer(target: self, action: Selector("openContactInformation"))
+        contactInfoView.addGestureRecognizer(tapContactInfoGesture)
+        
     }
     
     // Close open keyboards
     func closeKeyboards(){
         self.view.endEditing(true)
     }
+    
+    func disableButtons(){
+        self.editButton.enabled = false
+        self.backButton.enabled = false
+    }
+    
+    func enableButtons(){
+        self.editButton.enabled = true
+        self.backButton.enabled = true
+    }
+    
+    func disableInteraction(){
+        contactInfoView.userInteractionEnabled = false
+        linkedInView.userInteractionEnabled = false
+    }
+    
+    func enableInteraction(){
+        contactInfoView.userInteractionEnabled = true
+        linkedInView.userInteractionEnabled = true
+    }
+    
+    // Open contact information view
+    func openContactInformation(){
+        print("Show contact info")
+        
+        editButton.hidden = true
+        
+        // Animate circles out of way
+        // i) LinkedIn view
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.horizontalTranslateRotateAnimation(self.linkedInView, duration: 0.5, delay: 0.0, tx: -240, degrees: 180, completion: nil)
+        }
+        
+        // ii) Contact info view
+        UIView.animateWithDuration(0.3) { () -> Void in
+            let translateTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.contactInfoView.center.x - self.view.center.x), 0.0)
+            let rotateTransform = CGAffineTransformRotate(translateTransform, self.degreesToRadians(180.0))
+            let scaleTransform = CGAffineTransformScale(rotateTransform, 0.01, 0.01)
+            self.contactInfoView.transform = scaleTransform
+        }
+        
+        // Open up information
+        infoView!.hidden = false
+        let infoViewAnimation = {
+            self.infoView!.layer.transform = CATransform3DRotate(self.infoView!.layer.transform, CGFloat(M_PI) * 0.5, 0.0, 1.0, 0.0)
+        }
+        
+        UIView.animateWithDuration(0.2, delay: 0.3, options: .CurveEaseOut, animations: infoViewAnimation, completion: nil)
+    }
+    
+    //*************************************** Animation Code *******************************************
+    
     
     func outOfEditModeAnimations(){
         
@@ -194,15 +272,18 @@ class UserViewController: UIViewController {
         UIView.animateWithDuration(0.5) { () -> Void in
             self.contactInfoView.transform = CGAffineTransformIdentity
         }
-        // iii) otherLinksView
-        UIView.animateWithDuration(0.5) { () -> Void in
-            self.otherLinksView.transform = CGAffineTransformIdentity
-        }
         
         // Animate editor view
         UIView.animateWithDuration(0.5) { () -> Void in
-            self.editorView?.transform = CGAffineTransformIdentity
+            self.editorView!.center.y = self.view.frame.height + self.editorView!.frame.height/2.0
         }
+        
+        let infoView = InfoView()
+        infoView.center.x = self.view.center.x
+        infoView.center.y = self.view.center.y
+        self.view.addSubview(infoView)
+        self.view.setNeedsLayout()
+        
     }
     
     func intoEditModeAnimations(){
@@ -224,24 +305,13 @@ class UserViewController: UIViewController {
         // i) linkedInView
         horizontalTranslateRotateAnimation(self.linkedInView, duration: 0.5, delay: 0.0, tx: -240, degrees: 180, completion: nil)
         // ii) contactInfoView
-        horizontalTranslateRotateAnimation(self.contactInfoView, duration: 0.5, delay: 0.0, tx: -480, degrees: 180, completion: nil)
-        // iii) otherLinksView
-        horizontalTranslateRotateAnimation(self.otherLinksView, duration: 0.5, delay: 0.0, tx: 240, degrees: 180, completion: nil)
+        horizontalTranslateRotateAnimation(self.contactInfoView, duration: 0.5, delay: 0.0, tx: 240, degrees: 180, completion: nil)
         
         // Animate editor view
         UIView.animateWithDuration(0.5) { () -> Void in
-            self.editorView!.transform = CGAffineTransformTranslate(self.editorView!.transform, 0.0, -1.0 * (self.view.frame.height/2.0 + 90))
+            self.editorView!.center.y = self.nameLabel.center.y + self.nameLabel.frame.height + 20 + (self.editorView?.frame.height)!/2.0
         }
-    }
-    
-    func disableButtons(){
-        self.editButton.enabled = false
-        self.backButton.enabled = false
-    }
-    
-    func enableButtons(){
-        self.editButton.enabled = true
-        self.backButton.enabled = true
+        
     }
     
     func degreesToRadians(degrees: CGFloat) -> CGFloat{
@@ -262,6 +332,10 @@ class UserViewController: UIViewController {
         return view.transform
     }
     
+    //*************************************** Editor Code *******************************************
+    
+    // Creates, and adds the editor view. 
+    // TODO: This function is massive. Should be in separate view class.
     func addEditorView(){
         
         let user = PFUser.currentUser()
@@ -301,7 +375,7 @@ class UserViewController: UIViewController {
         // LinkedIn
         linkedInTextField = UITextField(frame: CGRectMake(50, 130, 240, 30))
         linkedInTextField!.borderStyle = UITextBorderStyle.RoundedRect
-        linkedInTextField!.placeholder = "LinkedIn"
+        linkedInTextField!.placeholder = "LinkedIn (Just the extension)"
         linkedInTextField!.tag = 2
         linkedInTextField!.delegate = self
         if let text = user?.valueForKey("linkedIn") as! String?{
@@ -323,7 +397,9 @@ class UserViewController: UIViewController {
         self.view.addSubview(editorView!)
     }
     
+    
 }
+
 
 extension UserViewController: UITextFieldDelegate{
     // Save the contents of the text field that has just been edited
