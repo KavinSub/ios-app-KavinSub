@@ -146,6 +146,9 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func addInfoView(){
         infoView = InfoView()
+        
+        infoView?.viewController = self
+        
         infoView!.frame = CGRectMake(0, 0, 300, 180)
         infoView!.center.x = self.view.center.x
         infoView!.center.y = self.nameLabel.center.y + self.nameLabel.frame.height + 20 + (self.infoView?.frame.height)!/2.0
@@ -156,6 +159,7 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.view.addSubview(infoView!)
     }
+    
     
     //*************************************** Component Interaction Code *******************************************
     
@@ -219,7 +223,18 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     func openContactInformation(){
         print("Show contact info")
         
-        editButton.hidden = true
+        disableInteraction()
+        
+        // Animate editButton out of way
+        if allowsEditMode!{
+            let editButtonAnimation =  { () -> Void in
+                self.editButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.editButton.frame.width + self.editButton.center.x), 0.0)
+            }
+            
+            UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseIn, animations: editButtonAnimation, completion: { (success: Bool) -> Void in
+                self.editButton.hidden = true
+            })
+        }
         
         // Animate circles out of way
         // i) LinkedIn view
@@ -311,6 +326,46 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         UIView.animateWithDuration(0.5) { () -> Void in
             self.editorView!.center.y = self.nameLabel.center.y + self.nameLabel.frame.height + 20 + (self.editorView?.frame.height)!/2.0
         }
+        
+    }
+    
+    // Code to close info view
+    func closeInfoView(){
+        
+        // Animate edit button if applicable
+        if allowsEditMode!{
+            editButton.hidden = false
+            editButton.userInteractionEnabled = false
+            let editButtonAnimation = { () -> Void in
+                self.editButton.transform = CGAffineTransformIdentity
+            }
+            
+            UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseOut, animations: editButtonAnimation, completion: { (success: Bool) -> Void in
+                self.editButton.userInteractionEnabled = true
+            })
+        }
+        
+        // Animate linkedIn circle
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.linkedInView.transform = CGAffineTransformIdentity
+        }
+        
+        // Animate info view out of the way
+        let infoViewAnimation = { () -> Void in
+            self.infoView!.layer.transform = CATransform3DRotate(self.infoView!.layer.transform, CGFloat(M_PI) * -0.5, 0.0, 1.0, 0.0)
+        }
+        
+        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseIn, animations: infoViewAnimation, completion: nil)
+        
+        // Animate contact info circle
+        let animation = {
+            self.contactInfoView!.transform = CGAffineTransformIdentity
+        }
+        
+        UIView.animateWithDuration(0.3, delay: 0.2, options: .CurveLinear, animations: animation) { (success: Bool) -> Void in
+            self.enableInteraction()
+        }
+        
         
     }
     
@@ -420,6 +475,9 @@ extension UserViewController: UITextFieldDelegate{
             }else{
                 print("Unable to save for \(key!) field.")
             }
+            
+            // The labels of the info view should be updated
+            self.infoView?.updateLabels()
         })
     }
 }
