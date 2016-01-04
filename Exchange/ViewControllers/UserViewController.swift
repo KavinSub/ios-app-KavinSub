@@ -192,6 +192,9 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         let tapContactInfoGesture = UITapGestureRecognizer(target: self, action: Selector("openContactInformation"))
         contactInfoView.addGestureRecognizer(tapContactInfoGesture)
         
+        // Gesture for opening linkedIn profile
+        let tapLinkedInGesture = UITapGestureRecognizer(target: self, action: Selector("openLinkedIn"))
+        linkedInView.addGestureRecognizer(tapLinkedInGesture)
     }
     
     // Close open keyboards
@@ -217,6 +220,24 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     func enableInteraction(){
         contactInfoView.userInteractionEnabled = true
         linkedInView.userInteractionEnabled = true
+    }
+    
+    // Open linked in profile
+    func openLinkedIn(){
+        let user = PFUser.currentUser()!
+        
+        if let userExtension = user.valueForKey("linkedIn") as! String?{
+            let URL = "https://www.linkedin.com/in/\(userExtension)"
+            
+            let encodedURL = NSURL(string: URL)
+            if let encodedURL = encodedURL{
+                UIApplication.sharedApplication().openURL(encodedURL)
+            }else{
+                print("This url does not exist")
+            }
+        }else{
+            print("User does not have a linkedIn")
+        }
     }
     
     // Open contact information view

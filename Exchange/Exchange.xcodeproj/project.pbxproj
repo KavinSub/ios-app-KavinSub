@@ -10,18 +10,15 @@
 		4C6BE4F532A5CE0DB4BE20C8 /* Pods_Exchange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */; };
 		AE0B4A991C375DD9008074EC /* UIElementProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B4A981C375DD9008074EC /* UIElementProperties.swift */; };
 		AE0B4A9B1C388155008074EC /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B4A9A1C388155008074EC /* UserViewController.swift */; };
-		AE2240BA1C0FA4AF004CBFCA /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240B91C0FA4AF004CBFCA /* ProfileViewController.swift */; };
 		AE2240BF1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */; };
 		AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */; };
 		AE2794331BFD4BA000254F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2794321BFD4BA000254F50 /* AppDelegate.swift */; };
 		AE2794381BFD4BA000254F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE2794361BFD4BA000254F50 /* Main.storyboard */; };
 		AE27943A1BFD4BA000254F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE2794391BFD4BA000254F50 /* Assets.xcassets */; };
 		AE27943D1BFD4BA000254F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE27943B1BFD4BA000254F50 /* LaunchScreen.storyboard */; };
-		AE73409F1C1A98FF00A6509E /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE73409E1C1A98FF00A6509E /* UserProfileViewController.swift */; };
 		AE7340A31C1BB5A200A6509E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */; };
 		AE945C7C1C1F4F8B00498424 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE945C7B1C1F4F8B00498424 /* SettingsViewController.swift */; };
 		AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */; };
-		AEAA5F581C1A60F300EFF10E /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEAA5F571C1A60F300EFF10E /* ProfileTableViewController.swift */; };
 		AEB0A9C31C2BA5B500C8117E /* UsernameLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */; };
 		AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */; };
 		AED984141C1A6ADF00002B9B /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED984131C1A6ADF00002B9B /* ProfileCell.swift */; };
@@ -39,7 +36,6 @@
 		A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exchange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0B4A981C375DD9008074EC /* UIElementProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIElementProperties.swift; sourceTree = "<group>"; };
 		AE0B4A9A1C388155008074EC /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
-		AE2240B91C0FA4AF004CBFCA /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHelper.swift; sourceTree = "<group>"; };
 		AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDeleteHelper.swift; sourceTree = "<group>"; };
 		AE27942F1BFD4BA000254F50 /* Exchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,11 +44,9 @@
 		AE2794391BFD4BA000254F50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE27943C1BFD4BA000254F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE27943E1BFD4BA000254F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE73409E1C1A98FF00A6509E /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AE945C7B1C1F4F8B00498424 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
-		AEAA5F571C1A60F300EFF10E /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameLoginViewController.swift; sourceTree = "<group>"; };
 		AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
 		AED984131C1A6ADF00002B9B /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
@@ -164,10 +158,7 @@
 				AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */,
 				AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */,
 				AEE33B411BFE797100067838 /* ExchangeViewController.swift */,
-				AE2240B91C0FA4AF004CBFCA /* ProfileViewController.swift */,
 				AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */,
-				AEAA5F571C1A60F300EFF10E /* ProfileTableViewController.swift */,
-				AE73409E1C1A98FF00A6509E /* UserProfileViewController.swift */,
 				AE945C7B1C1F4F8B00498424 /* SettingsViewController.swift */,
 				AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */,
 				AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */,
@@ -300,7 +291,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEAA5F581C1A60F300EFF10E /* ProfileTableViewController.swift in Sources */,
 				AE0B4A9B1C388155008074EC /* UserViewController.swift in Sources */,
 				AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */,
 				AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */,
@@ -309,11 +299,9 @@
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
 				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,
 				AEB0A9C31C2BA5B500C8117E /* UsernameLoginViewController.swift in Sources */,
-				AE2240BA1C0FA4AF004CBFCA /* ProfileViewController.swift in Sources */,
 				AEE33B421BFE797200067838 /* ExchangeViewController.swift in Sources */,
 				AE2794331BFD4BA000254F50 /* AppDelegate.swift in Sources */,
 				AE2240BF1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift in Sources */,
-				AE73409F1C1A98FF00A6509E /* UserProfileViewController.swift in Sources */,
 				AE0B4A991C375DD9008074EC /* UIElementProperties.swift in Sources */,
 				AED984141C1A6ADF00002B9B /* ProfileCell.swift in Sources */,
 				AE945C7C1C1F4F8B00498424 /* SettingsViewController.swift in Sources */,
