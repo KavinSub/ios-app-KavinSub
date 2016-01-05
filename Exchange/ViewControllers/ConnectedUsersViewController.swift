@@ -18,16 +18,27 @@ class ConnectedUsersViewController: UIViewController {
     // Array of all connected users
     var connectedUsers: [PFUser]?
     
+    var selectedUser: PFUser?
+    
     @IBAction func goBack(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     override func viewDidLoad(){
-        setupGestures()
+        //setupGestures()
         
         downloadUsers()
         
         setupTableView()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "viewUser"{
+            let viewController = segue.destinationViewController as! UserViewController
+            viewController.user = selectedUser!
+            viewController.allowsEditMode = false
+        }
+        
     }
     
     func setupGestures(){
@@ -105,7 +116,9 @@ extension ConnectedUsersViewController: UITableViewDelegate, UITableViewDataSour
         
         let user = connectedUsers![indexPath.row]
         
-        cell.setProfileImage(user.valueForKey("profilePicture") as! UIImage?)
+        let imageFile = user.valueForKey("profilePicture") as! PFFile?
+        cell.setProfileImage(imageFile)
+        
         cell.setName(user.valueForKey("firstName") as! String?, lastName: user.valueForKey("lastName") as! String?)
         
         return cell
@@ -124,6 +137,13 @@ extension ConnectedUsersViewController: UITableViewDelegate, UITableViewDataSour
         
         cell.layer.cornerRadius = 30.0
         cell.layer.masksToBounds = true
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("User Selected.")
+        
+        selectedUser = connectedUsers![indexPath.row]
+        self.performSegueWithIdentifier("viewUser", sender: self)
     }
     
     

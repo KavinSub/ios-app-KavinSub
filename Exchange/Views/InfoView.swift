@@ -20,6 +20,8 @@ class InfoView: UIView {
     
     var doneButton: UIButton?
     
+    var user: PFUser?
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         
@@ -36,25 +38,7 @@ class InfoView: UIView {
         
     }
     
-    // Draw all Shapes
-    /*override func drawRect(rect: CGRect) {
-        
-        super.drawRect(rect)
-
-        let graphicsContext = UIGraphicsGetCurrentContext()
-        
-        CGContextSetLineWidth(graphicsContext, 1.0)
-        
-        CGContextSetStrokeColorWithColor(graphicsContext, UIColor.blackColor().CGColor)
-        
-        CGContextMoveToPoint(graphicsContext, 50, 42)
-        CGContextAddLineToPoint(graphicsContext, 240, 42)
-        CGContextStrokePath(graphicsContext)
-    }*/
-    
     func addSubviews(){
-        
-        let user = PFUser.currentUser()!
         
         // Phone Number
         let phoneIconImageView = UIImageView(frame: CGRectMake(10, 30, 30, 30))
@@ -64,7 +48,7 @@ class InfoView: UIView {
         
         phoneNumberLabel!.adjustsFontSizeToFitWidth = true
         
-        if let number = user.valueForKey("phoneNumber") as! String?{
+        if let number = user!.valueForKey("phoneNumber") as! String?{
             phoneNumberLabel!.text = number
         }
         
@@ -75,7 +59,7 @@ class InfoView: UIView {
         emailLabel = UILabel(frame: CGRectMake(50, 120, 240, 30))
         emailLabel!.adjustsFontSizeToFitWidth = true
         
-        if let text = user.valueForKey("email") as! String?{
+        if let text = user!.valueForKey("email") as! String?{
             emailLabel!.text = text
         }
         

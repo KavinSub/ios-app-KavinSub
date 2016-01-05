@@ -21,6 +21,11 @@ class Bluetooth: NSObject{
     
     var peripheralManager: CBPeripheralManager?
     
+    var connectionStrength: Int = -999
+    let minConnectionStrength = -35
+    
+    var connectedPeripherals: [CBPeripheral] = []
+    
     var exchangedData: NSData?{
         didSet{
             if let data = exchangedData{
@@ -122,6 +127,7 @@ class Bluetooth: NSObject{
                     print("Connection object saved succesfully.")
                     // Call function that displays changes
                     self.viewController.connectionCreated()
+                    
                 }else{
                     print("Conection object not saved.")
                 }
@@ -159,6 +165,17 @@ extension Bluetooth: CBCentralManagerDelegate{
     // Called when the central manager discovers a peripheral
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
         
+        print("RSSI is \(RSSI.integerValue).")
+        
+        // If the signal is too weak (phone too far). Set the value of the strength
+        connectionStrength = RSSI.integerValue
+        
+        // Check if we have connected to this peripheral this session
+        if connectedPeripherals.contains(peripheral){
+            print("Already connected with this peripheral.")
+            return
+        }
+        
             // Save local copy
             self.discoveredPeripheral = peripheral
             
@@ -193,6 +210,8 @@ extension Bluetooth: CBCentralManagerDelegate{
         // Clean up the peripheral we are interacting with
         print("Disconnected from peripheral.")
         discoveredPeripheral = nil
+        
+        connectionStrength = -999
         
         // Begin scanning again
         self.scan()
@@ -263,9 +282,15 @@ extension Bluetooth: CBPeripheralDelegate{
             print("\(error?.localizedDescription)")
         }else{
             if let value = characteristic.value{
-                let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
-                print("\(objectID)")
-                exchangedData = value
+                // If the connection value is strong enough, proceed
+                if connectionStrength > minConnectionStrength{
+                    let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
+                    print("\(objectID)")
+                    exchangedData = value
+                
+                    // Add this peripheral to the list of peripherals we have connected with
+                    connectedPeripherals.append(self.discoveredPeripheral!)
+                }
             }
             self.centralManager?.cancelPeripheralConnection(peripheral)
         }

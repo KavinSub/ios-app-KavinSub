@@ -27,9 +27,16 @@ class ProfileCell: UITableViewCell {
         nameLabel.frame = CGRectMake(140, self.frame.height/2.0 - 10, 230, 20)
     }
     
-    func setProfileImage(image: UIImage?){
-        if let image = image{
-            profileImageView.image = image
+    func setProfileImage(imageFile: PFFile?){
+        
+        if let imageFile = imageFile{
+            do{
+                let imageData = try imageFile.getData()
+                profileImageView.image = UIImage(data: imageData)
+            }catch{
+                print("Unable to download image data")
+                profileImageView.image = UIImage(named: "EmailIcon")
+            }
         }else{
             // TODO: Load default image
             profileImageView.image = UIImage(named: "EmailIcon")

@@ -25,6 +25,10 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var editButton: UIButton!
     
+    @IBOutlet weak var leftTextFieldView: UIView!
+    
+    @IBOutlet weak var rightTextFieldView: UIView!
+    
     var infoView: InfoView?
     
     // All views related to the editor view component
@@ -41,6 +45,12 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // Constraints related to animations
     var backTrailingConstraint: NSLayoutConstraint?
+    
+    // Keyboard constants
+    var keyboardHeight: CGFloat?
+    
+    var keyboardAnimationTime: Double?
+    
     
     //*************************************** View Actions Code *******************************************
     
@@ -89,7 +99,9 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         displayUser(user!)
         changeButtons()
         addInfoView()
+        setUpImageView()
         
+        aboutTextView.delegate = self
         
         if allowsEditMode!{
             addEditorView()
@@ -147,6 +159,8 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     func addInfoView(){
         infoView = InfoView()
         
+        infoView!.user = user
+        
         infoView?.viewController = self
         
         infoView!.frame = CGRectMake(0, 0, 300, 180)
@@ -179,6 +193,17 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
             
             self.view.addConstraint(editTopConstraint)
             self.view.addConstraint(editLeadingConstraint)
+        }else{
+            // Hide edit button, disable interaction
+            self.editButton.userInteractionEnabled = false
+            self.editButton.hidden = true
+            
+            // Place the back button in the proper position
+            let backTopConstraint = NSLayoutConstraint(item: backButton, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 24.0)
+            let backLeadingConstraint = NSLayoutConstraint(item: backButton, attribute: .Leading, relatedBy: .Equal, toItem: self.view, attribute: .Leading, multiplier: 1.0, constant: 0.0)
+            
+            self.view.addConstraint(backTopConstraint)
+            self.view.addConstraint(backLeadingConstraint)
         }
     }
     
@@ -199,7 +224,7 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // Close open keyboards
     func closeKeyboards(){
-        self.view.endEditing(true)
+            self.view.endEditing(false)
     }
     
     func disableButtons(){
@@ -240,6 +265,14 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
+    func setUpImageView(){
+        // This constraint is added so the image moves up with the rest of the view
+        let profileTopConstraint = NSLayoutConstraint(item: profileImageView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 50.0)
+        
+        self.view.addConstraint(profileTopConstraint)
+    }
+
+    
     //*************************************** Animation Code *******************************************
     
     
@@ -274,6 +307,17 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
             self.editorView!.center.y = self.view.frame.height + self.editorView!.frame.height/2.0
         }
         
+        // Animate text field bars back
+        // i) Left field bar
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.leftTextFieldView.transform = CGAffineTransformIdentity
+        }
+        
+        // ii) Right field bar
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.rightTextFieldView.transform = CGAffineTransformIdentity
+        }
+        
     }
     
     func intoEditModeAnimations(){
@@ -302,6 +346,16 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
             self.editorView!.center.y = self.nameLabel.center.y + self.nameLabel.frame.height + 20 + (self.editorView?.frame.height)!/2.0
         }
         
+        // Animate text field bars away
+        // i) left field bar
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.leftTextFieldView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * self.leftTextFieldView.frame.width, 0.0)
+        }
+        
+        // ii) Right field bar
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.rightTextFieldView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, self.rightTextFieldView.frame.width, 0.0)
+        }
     }
     
     // Code to close info view
@@ -407,9 +461,7 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     // Creates, and adds the editor view. 
     // TODO: This function is massive. Should be in separate view class.
     func addEditorView(){
-        
-        let user = PFUser.currentUser()
-        
+    
         // Main editor view
         editorView = UIView(frame: CGRectMake(0, self.view.frame.height, 300, 180))
         editorView!.backgroundColor = UIColor(red: 255.0/255.0, green: 195.0/255.0, blue: 14.0/255.0, alpha: 1.0)
@@ -495,4 +547,28 @@ extension UserViewController: UITextFieldDelegate{
             self.infoView?.updateLabels()
         })
     }
+}
+
+extension UserViewController: UITextViewDelegate{
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        print("Editing begins")
+
+        
+        
+        let animation = { () -> Void in
+            self.view.center.y -= (216)
+        }
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: animation, completion: nil)
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        print("Editing ends")
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.view.center.y += (216)
+        }
+    }
+    
+
 }
