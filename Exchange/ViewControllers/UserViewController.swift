@@ -240,46 +240,6 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    // Open contact information view
-    func openContactInformation(){
-        print("Show contact info")
-        
-        disableInteraction()
-        
-        // Animate editButton out of way
-        if allowsEditMode!{
-            let editButtonAnimation =  { () -> Void in
-                self.editButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.editButton.frame.width + self.editButton.center.x), 0.0)
-            }
-            
-            UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseIn, animations: editButtonAnimation, completion: { (success: Bool) -> Void in
-                self.editButton.hidden = true
-            })
-        }
-        
-        // Animate circles out of way
-        // i) LinkedIn view
-        UIView.animateWithDuration(0.5) { () -> Void in
-            self.horizontalTranslateRotateAnimation(self.linkedInView, duration: 0.5, delay: 0.0, tx: -240, degrees: 180, completion: nil)
-        }
-        
-        // ii) Contact info view
-        UIView.animateWithDuration(0.3) { () -> Void in
-            let translateTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.contactInfoView.center.x - self.view.center.x), 0.0)
-            let rotateTransform = CGAffineTransformRotate(translateTransform, self.degreesToRadians(180.0))
-            let scaleTransform = CGAffineTransformScale(rotateTransform, 0.01, 0.01)
-            self.contactInfoView.transform = scaleTransform
-        }
-        
-        // Open up information
-        infoView!.hidden = false
-        let infoViewAnimation = {
-            self.infoView!.layer.transform = CATransform3DRotate(self.infoView!.layer.transform, CGFloat(M_PI) * 0.5, 0.0, 1.0, 0.0)
-        }
-        
-        UIView.animateWithDuration(0.2, delay: 0.3, options: .CurveEaseOut, animations: infoViewAnimation, completion: nil)
-    }
-    
     //*************************************** Animation Code *******************************************
     
     
@@ -313,12 +273,6 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         UIView.animateWithDuration(0.5) { () -> Void in
             self.editorView!.center.y = self.view.frame.height + self.editorView!.frame.height/2.0
         }
-        
-        let infoView = InfoView()
-        infoView.center.x = self.view.center.x
-        infoView.center.y = self.view.center.y
-        self.view.addSubview(infoView)
-        self.view.setNeedsLayout()
         
     }
     
@@ -376,7 +330,7 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
             self.infoView!.layer.transform = CATransform3DRotate(self.infoView!.layer.transform, CGFloat(M_PI) * -0.5, 0.0, 1.0, 0.0)
         }
         
-        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveEaseIn, animations: infoViewAnimation, completion: nil)
+        UIView.animateWithDuration(0.2, delay: 0.0, options: .CurveLinear, animations: infoViewAnimation, completion: nil)
         
         // Animate contact info circle
         let animation = {
@@ -388,6 +342,46 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         
+    }
+    
+    // Open contact information view
+    func openContactInformation(){
+        print("Show contact info")
+        
+        disableInteraction()
+        
+        // Animate editButton out of way
+        if allowsEditMode!{
+            let editButtonAnimation =  { () -> Void in
+                self.editButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.editButton.frame.width + self.editButton.center.x), 0.0)
+            }
+            
+            UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseIn, animations: editButtonAnimation, completion: { (success: Bool) -> Void in
+                self.editButton.hidden = true
+            })
+        }
+        
+        // Animate circles out of way
+        // i) LinkedIn view
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.horizontalTranslateRotateAnimation(self.linkedInView, duration: 0.5, delay: 0.0, tx: -240, degrees: 180, completion: nil)
+        }
+        
+        // ii) Contact info view
+        UIView.animateWithDuration(0.3) { () -> Void in
+            let translateTransform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.contactInfoView.center.x - self.view.center.x), 0.0)
+            let rotateTransform = CGAffineTransformRotate(translateTransform, self.degreesToRadians(180.0))
+            let scaleTransform = CGAffineTransformScale(rotateTransform, 0.01, 0.01)
+            self.contactInfoView.transform = scaleTransform
+        }
+        
+        // Open up information
+        infoView!.hidden = false
+        let infoViewAnimation = {
+            self.infoView!.layer.transform = CATransform3DRotate(self.infoView!.layer.transform, CGFloat(M_PI) * 0.5, 0.0, 1.0, 0.0)
+        }
+        
+        UIView.animateWithDuration(0.2, delay: 0.3, options: .CurveLinear, animations: infoViewAnimation, completion: nil)
     }
     
     func degreesToRadians(degrees: CGFloat) -> CGFloat{
