@@ -28,6 +28,7 @@
 		AEEE828D1BFD4E88008891A7 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */; };
 		AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */; };
 		AEFF7C731C3A354C00129265 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFF7C721C3A354C00129265 /* InfoView.swift */; };
+		AEFF7C751C3B238100129265 /* ConnectedUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFF7C741C3B238100129265 /* ConnectedUsersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AEFF7C721C3A354C00129265 /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		AEFF7C741C3B238100129265 /* ConnectedUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedUsersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */,
 				AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */,
 				AE0B4A9A1C388155008074EC /* UserViewController.swift */,
+				AEFF7C741C3B238100129265 /* ConnectedUsersViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = SOURCE_ROOT;
@@ -294,6 +297,7 @@
 				AE0B4A9B1C388155008074EC /* UserViewController.swift in Sources */,
 				AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */,
 				AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */,
+				AEFF7C751C3B238100129265 /* ConnectedUsersViewController.swift in Sources */,
 				AEFF7C731C3A354C00129265 /* InfoView.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
