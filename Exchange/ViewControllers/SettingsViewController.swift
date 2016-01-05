@@ -16,11 +16,37 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var lastNameTextField: UITextField!
     
+    @IBOutlet weak var logoutButton: UIButton!
+    
+    @IBOutlet weak var deleteButton: UIButton!
+    
     // Tag -> Key
     var textFields: [Int: String]?
     
-    // Will logout the user
+    @IBAction func logoutTouchUpOutside(sender: AnyObject){
+        logoutButton.backgroundColor = UIColor.whiteColor()
+    }
+    
+    
+    @IBAction func deleteTouchUpOutside(sender: AnyObject) {
+        deleteButton.backgroundColor = UIColor.whiteColor()
+    }
+    
+    
+    @IBAction func logoutTouchDown(sender: AnyObject) {
+        logoutButton.backgroundColor = UIColor(white: 0.85, alpha: 1.0)
+    }
+    
+    @IBAction func deleteTouchDown(sender: AnyObject) {
+        deleteButton.backgroundColor = UIColor(white: 0.85, alpha: 1.0)
+    }
+    
+    
+    // Will logout the user (touch up inside)
     @IBAction func logoutUser(sender: AnyObject) {
+        
+        logoutButton.backgroundColor = UIColor.whiteColor()
+        
         let message = "Are you sure you want to logout?"
         
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .ActionSheet)
@@ -36,7 +62,11 @@ class SettingsViewController: UIViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    // Will delete the users account (touch up inside)
     @IBAction func deleteUser(sender: AnyObject) {
+        
+        deleteButton.backgroundColor = UIColor.whiteColor()
+        
         let message = "If you delete your account, you will permanently lose your profile, and all connections.\n\nIn addition, all your connections will no longer be able to view your profile.\n\nAre you sure want to delete your account?"
         
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .ActionSheet)

@@ -162,7 +162,7 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
             })
         }
         
-        // Make info views circular
+        // Make info views circular with a border
         contactInfoView.layer.cornerRadius = contactInfoView.frame.size.width/2
         contactInfoView.clipsToBounds = true
         
@@ -550,6 +550,17 @@ extension UserViewController: UITextFieldDelegate{
         
         let user = PFUser.currentUser()
         user?.setValue(contents!, forKey: key!)
+        
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.view.center.y += (40)
+        }
+    }
+    
+    // Push up view ever so slightly
+    func textFieldDidBeginEditing(textField: UITextField) {
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.view.center.y -= (40)
+        }
     }
 }
 

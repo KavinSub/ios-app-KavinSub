@@ -684,6 +684,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="48"/>
                                         <state key="normal" title="Logout"/>
                                         <connections>
+                                            <action selector="logoutTouchDown:" destination="zrT-bu-c0P" eventType="touchDown" id="Pgc-0d-bmd"/>
+                                            <action selector="logoutTouchUpOutside:" destination="zrT-bu-c0P" eventType="touchUpOutside" id="dSO-Wn-3sa"/>
                                             <action selector="logoutUser:" destination="zrT-bu-c0P" eventType="touchUpInside" id="xaj-WF-TRM"/>
                                         </connections>
                                     </button>
@@ -709,6 +711,8 @@
                                             <color key="titleColor" red="1" green="0.11008059161256623" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="deleteTouchDown:" destination="zrT-bu-c0P" eventType="touchDown" id="eAI-GL-0qx"/>
+                                            <action selector="deleteTouchUpOutside:" destination="zrT-bu-c0P" eventType="touchUpOutside" id="yhc-BG-QTz"/>
                                             <action selector="deleteUser:" destination="zrT-bu-c0P" eventType="touchUpInside" id="GjV-VD-QcK"/>
                                         </connections>
                                     </button>
@@ -738,8 +742,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Settings" id="tuM-JI-VPg"/>
                     <connections>
+                        <outlet property="deleteButton" destination="I9q-YW-oI1" id="vo3-4g-Vei"/>
                         <outlet property="firstNameTextField" destination="c5X-nX-xbB" id="Y0L-65-Tye"/>
                         <outlet property="lastNameTextField" destination="M9c-jU-wfa" id="yMp-PB-mUx"/>
+                        <outlet property="logoutButton" destination="0Y3-v4-FlT" id="Md1-Pd-Hhe"/>
                         <segue destination="Css-3S-clV" kind="show" identifier="LogoutUser" id="v1d-sr-OVr"/>
                     </connections>
                 </viewController>
