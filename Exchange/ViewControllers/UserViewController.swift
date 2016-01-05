@@ -104,6 +104,11 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         addInfoView()
         setUpImageView()
         
+        // Change background color of text view bars
+        leftTextFieldView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        rightTextFieldView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        aboutTextView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        
         aboutTextView.delegate = self
         
         if allowsEditMode!{
@@ -338,6 +343,21 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
             self.rightTextFieldView.transform = CGAffineTransformIdentity
         }
         
+        // Animate text view
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.aboutTextView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        }
+        
+        aboutTextView.layer.setValue(0.0, forKey: "cornerRadius")
+        
+        let animation = CABasicAnimation(keyPath: "cornerRadius")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.byValue = NSNumber(float: -6.0)
+        animation.toValue = NSNumber(float: 0.0)
+        animation.duration = 0.5
+        
+        aboutTextView.layer.addAnimation(animation, forKey: "cornerRadius")
+        
     }
     
     func intoEditModeAnimations(){
@@ -376,6 +396,21 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         UIView.animateWithDuration(0.5) { () -> Void in
             self.rightTextFieldView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, self.rightTextFieldView.frame.width, 0.0)
         }
+        
+        // Animate text view
+        UIView.animateWithDuration(0.5) { () -> Void in
+            self.aboutTextView.backgroundColor = UIColor.whiteColor()
+        }
+        
+        aboutTextView.layer.setValue(6.0, forKey: "cornerRadius")
+        
+        let animation = CABasicAnimation(keyPath: "cornerRadius")
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.byValue = NSNumber(float: 6.0)
+        animation.toValue = NSNumber(float: 6.0)
+        animation.duration = 0.5
+        
+        aboutTextView.layer.addAnimation(animation, forKey: "cornerRadius")
     }
     
     // Code to close info view
