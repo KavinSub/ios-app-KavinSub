@@ -67,6 +67,8 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
             editButton.setTitle("Edit", forState: UIControlState.Normal)
             
             aboutTextView.editable = false
+            
+            saveUser()
         }else{ // Put UI into edit mode
             inEditingMode = true
             
@@ -80,6 +82,7 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
             aboutTextView.editable = true
         }
     }
+    
     
     // Goes back to the previous view controller
     @IBAction func goBack(sender: AnyObject){
@@ -107,6 +110,23 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
             addEditorView()
         }
         
+    }
+    
+    func saveUser(){
+        user?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
+            if error != nil{
+                print("\(error?.localizedDescription)")
+            }
+            
+            if success{
+                print("Succesfully new user values.")
+            }else{
+                print("Unable to save user values.")
+            }
+            
+            // The labels of the info view should be updated
+            self.infoView?.updateLabels()
+        })
     }
     
     func displayUser(user: PFUser){
@@ -522,7 +542,6 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     
 }
 
-
 extension UserViewController: UITextFieldDelegate{
     // Save the contents of the text field that has just been edited
     func textFieldDidEndEditing(textField: UITextField) {
@@ -531,21 +550,6 @@ extension UserViewController: UITextFieldDelegate{
         
         let user = PFUser.currentUser()
         user?.setValue(contents!, forKey: key!)
-        
-        user?.saveInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-            if error != nil{
-                print("\(error?.localizedDescription)")
-            }
-            
-            if success{
-                print("Succesfully saved for  \(key!) field.")
-            }else{
-                print("Unable to save for \(key!) field.")
-            }
-            
-            // The labels of the info view should be updated
-            self.infoView?.updateLabels()
-        })
     }
 }
 
@@ -554,8 +558,6 @@ extension UserViewController: UITextViewDelegate{
     func textViewDidBeginEditing(textView: UITextView) {
         print("Editing begins")
 
-        
-        
         let animation = { () -> Void in
             self.view.center.y -= (216)
         }
@@ -568,6 +570,10 @@ extension UserViewController: UITextViewDelegate{
         UIView.animateWithDuration(0.3) { () -> Void in
             self.view.center.y += (216)
         }
+        
+        let user = PFUser.currentUser()!
+        
+        user.setValue(textView.text, forKey: "about")
     }
     
 
