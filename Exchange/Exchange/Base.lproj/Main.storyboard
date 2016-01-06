@@ -439,14 +439,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFd-Bi-J9s">
-                                <rect key="frame" x="240" y="240" width="120" height="120"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="ray-eC-N8W"/>
-                                    <constraint firstAttribute="width" constant="120" id="vwp-qQ-5Vx"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehP-8a-Dql">
                                 <rect key="frame" x="259" y="550" width="83" height="30"/>
                                 <constraints>
@@ -466,7 +458,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Profile">
-                                    <color key="titleColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="goToProfile:" destination="WGA-j9-JgN" eventType="touchUpInside" id="Hbf-jq-riJ"/>
@@ -480,23 +472,21 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Connections">
-                                    <color key="titleColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="d6f-nJ-Bx1" kind="show" id="JUO-1q-DRG"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0RV-U2-BVt" firstAttribute="top" secondItem="AsN-Zi-fd7" secondAttribute="bottom" id="9yU-mT-Z1O"/>
-                            <constraint firstItem="ZFd-Bi-J9s" firstAttribute="centerY" secondItem="1qz-sj-lXm" secondAttribute="centerY" id="MQ0-v2-LdJ"/>
                             <constraint firstItem="ehP-8a-Dql" firstAttribute="centerX" secondItem="1qz-sj-lXm" secondAttribute="centerX" id="NKf-Mz-Lbx"/>
                             <constraint firstItem="0RV-U2-BVt" firstAttribute="leading" secondItem="1qz-sj-lXm" secondAttribute="leadingMargin" id="OYq-Od-LQM"/>
                             <constraint firstItem="ZYX-YW-Ff1" firstAttribute="top" secondItem="AsN-Zi-fd7" secondAttribute="bottom" id="bAW-4t-Uch"/>
                             <constraint firstItem="ZYX-YW-Ff1" firstAttribute="trailing" secondItem="1qz-sj-lXm" secondAttribute="trailingMargin" id="cx3-tJ-JeG"/>
                             <constraint firstItem="8Fz-o1-VWa" firstAttribute="top" secondItem="ehP-8a-Dql" secondAttribute="bottom" constant="20" id="lVA-vS-stP"/>
-                            <constraint firstItem="ZFd-Bi-J9s" firstAttribute="centerX" secondItem="1qz-sj-lXm" secondAttribute="centerX" id="vVQ-l4-3oJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Connect" id="hbn-Wh-wPU">
@@ -504,7 +494,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Users" id="JDg-N0-YHf"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="statusView" destination="ZFd-Bi-J9s" id="xxu-wM-BeJ"/>
                         <segue destination="4BO-b1-aTG" kind="show" identifier="DisplayCurrentUser" id="3GR-6J-loK"/>
                     </connections>
                 </viewController>
@@ -772,6 +761,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="57S-YC-c94"/>
-        <segue reference="YEd-1d-oiK"/>
+        <segue reference="3GR-6J-loK"/>
     </inferredMetricsTieBreakers>
 </document>
