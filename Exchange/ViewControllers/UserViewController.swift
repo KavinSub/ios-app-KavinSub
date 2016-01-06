@@ -98,6 +98,7 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     var user: PFUser?
     
     override func viewDidLoad(){
+        
         setupGestures()
         displayUser(user!)
         changeButtons()
@@ -177,6 +178,8 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         // Add content to text view
         if let text = user.valueForKey("about") as! String?{
             aboutTextView.text = text
+        }else{
+            aboutTextView.text = ""
         }
         aboutTextView.editable = false
     }
@@ -274,9 +277,8 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
     
     // Open linked in profile
     func openLinkedIn(){
-        let user = PFUser.currentUser()!
         
-        if let userExtension = user.valueForKey("linkedIn") as! String?{
+        if let userExtension = user!.valueForKey("linkedIn") as! String?{
             let URL = "https://www.linkedin.com/in/\(userExtension)"
             
             let encodedURL = NSURL(string: URL)
@@ -534,6 +536,8 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         phoneNumberTextField?.delegate = self
         if let text = user?.valueForKey("phoneNumber") as! String?{
             phoneNumberTextField!.text = text
+        }else{
+            phoneNumberTextField!.text = ""
         }
         
         // Email
@@ -547,6 +551,8 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         emailTextField!.delegate = self
         if let text = user?.valueForKey("email") as! String?{
             emailTextField!.text = text
+        }else{
+            emailTextField!.text = ""
         }
         
         // LinkedIn
@@ -557,6 +563,8 @@ class UserViewController: UIViewController, UIGestureRecognizerDelegate {
         linkedInTextField!.delegate = self
         if let text = user?.valueForKey("linkedIn") as! String?{
             linkedInTextField!.text = text
+        }else{
+            linkedInTextField!.text = ""
         }
         
         // Create text field, key dictionary
