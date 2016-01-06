@@ -38,6 +38,8 @@ class ExchangeViewController: UIViewController {
         
         statusView.backgroundColor = UIElementProperties.textColor
         
+        setupStatusView()
+        
         bluetoothHandler = Bluetooth(viewController: self)
         
         bluetoothHandler?.setupAsCentral()
@@ -45,8 +47,6 @@ class ExchangeViewController: UIViewController {
     }
     
 
-    
-    
     override func viewDidAppear(animated: Bool) {
         statusView.backgroundColor = UIElementProperties.textColor
         
@@ -67,6 +67,11 @@ class ExchangeViewController: UIViewController {
     func connectionCreated(){
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         statusView.backgroundColor = UIElementProperties.connectionStatus
+    }
+    
+    func setupStatusView(){
+        statusView.layer.cornerRadius = statusView.layer.frame.width/2.0
+        statusView.layer.masksToBounds = true
     }
     
     

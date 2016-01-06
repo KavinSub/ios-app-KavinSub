@@ -20,6 +20,9 @@ class SettingsViewController: UIViewController {
     
     @IBOutlet weak var deleteButton: UIButton!
     
+    @IBAction func goBack(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
     // Tag -> Key
     var textFields: [Int: String]?
     
