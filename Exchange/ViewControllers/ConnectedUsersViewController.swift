@@ -30,6 +30,8 @@ class ConnectedUsersViewController: UIViewController {
         downloadUsers()
         
         setupTableView()
+        
+        setNeedsStatusBarAppearanceUpdate()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -39,6 +41,10 @@ class ConnectedUsersViewController: UIViewController {
             viewController.allowsEditMode = false
         }
         
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     func setupGestures(){

@@ -54,7 +54,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if !hasLoggedIn{
             rootViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
         }else{
-            rootViewController = storyboard.instantiateViewControllerWithIdentifier("ExchangeViewController") as! ExchangeViewController
+            /*rootViewController = storyboard.instantiateViewControllerWithIdentifier("ExchangeViewController") as! ExchangeViewController*/
+            
+            rootViewController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
         }
         
         self.window?.rootViewController = rootViewController
