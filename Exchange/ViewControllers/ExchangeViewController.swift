@@ -92,7 +92,7 @@ class ExchangeViewController: UIViewController {
     
 
     override func viewDidAppear(animated: Bool) {
-        //statusView.backgroundColor = UIElementProperties.textColor
+        statusButton?.backgroundColor = UIElementProperties.textColor
         
         bluetoothHandler?.setupAsCentral()
         bluetoothHandler?.setupAsPeripheral()
@@ -111,7 +111,6 @@ class ExchangeViewController: UIViewController {
     func connectionCreated(){
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         statusButton?.backgroundColor = UIElementProperties.connectionStatus
-        //statusView.backgroundColor = UIElementProperties.connectionStatus
     }
     
     func setupStatusView(){
