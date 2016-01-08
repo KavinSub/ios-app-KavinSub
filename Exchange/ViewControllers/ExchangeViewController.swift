@@ -21,16 +21,13 @@ class ExchangeViewController: UIViewController {
     
     // Status view button
     var statusButton: UIButton?
+
+    var rippleTimer: NSTimer?
     
     @IBAction func unwindToSegue(segue: UIStoryboardSegue){
     }
     
-    func statusTouchDown(){
-        // Shrink center button
-        UIView.animateWithDuration(0.2) { () -> Void in
-            self.statusButton!.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.shrinkFactor, self.shrinkFactor)
-        }
-        
+    func createRipple(){
         // Draw blue circle radiating from center
         
         let frame = CGRectMake(self.view.center.x - initialValue * shrinkFactor/2.0, self.view.center.y - initialValue * shrinkFactor/2.0, initialValue * shrinkFactor, initialValue * shrinkFactor)
@@ -40,19 +37,25 @@ class ExchangeViewController: UIViewController {
         blueCircle.layer.cornerRadius = blueCircle.frame.width/2.0
         blueCircle.layer.masksToBounds = true
         
-        self.view.addSubview(blueCircle)
-        self.view.sendSubviewToBack(blueCircle)
+        self.view.insertSubview(blueCircle, belowSubview: statusButton!)
         
         let circleAnimation = { () -> Void in
-            blueCircle.transform = CGAffineTransformScale(CGAffineTransformIdentity, 3.5, 3.5)
+            blueCircle.transform = CGAffineTransformScale(CGAffineTransformIdentity, 4.0, 4.0)
             blueCircle.backgroundColor = UIElementProperties.textColor
         }
         
         UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: circleAnimation) { (succeeded: Bool) -> Void in
             blueCircle.removeFromSuperview()
         }
+    }
+    
+    func statusTouchDown(){
+        // Shrink center button
+        UIView.animateWithDuration(0.2) { () -> Void in
+            self.statusButton!.transform = CGAffineTransformScale(CGAffineTransformIdentity, self.shrinkFactor, self.shrinkFactor)
+        }
         
-        
+        createRipple()
         
     }
     
@@ -83,6 +86,7 @@ class ExchangeViewController: UIViewController {
     override func viewDidLoad(){
         
         setupStatusView()
+        setupTimers()
         
         bluetoothHandler = Bluetooth(viewController: self)
         
@@ -102,6 +106,7 @@ class ExchangeViewController: UIViewController {
     }
     
     override func viewDidDisappear(animated: Bool) {
+        
         bluetoothHandler?.stopScan()
         bluetoothHandler?.stopAdvertisting()
         
@@ -129,8 +134,14 @@ class ExchangeViewController: UIViewController {
         statusButton!.addTarget(self, action: Selector("statusTouchUpInside"), forControlEvents: UIControlEvents.TouchUpInside)
         statusButton!.addTarget(self, action: Selector("statusTouchUpOutside"), forControlEvents: UIControlEvents.TouchUpOutside)
         
+        
         self.view.addSubview(statusButton!)
     }
     
+    func setupTimers(){
+        rippleTimer = NSTimer(timeInterval: 1.5, target: self, selector: Selector("createRipple"), userInfo: nil, repeats: true)
+        let runner = NSRunLoop.currentRunLoop()
+        runner.addTimer(rippleTimer!, forMode: NSDefaultRunLoopMode)
+    }
     
 }
