@@ -21,6 +21,8 @@
 		AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */; };
 		AEB0A9C31C2BA5B500C8117E /* UsernameLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */; };
 		AEBFA4E91C3DFB6C00B5E8F8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */; };
+		AEBFA4F11C40513100B5E8F8 /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBFA4F01C40513100B5E8F8 /* ConnectionsViewController.swift */; };
+		AEBFA4F31C4055EF00B5E8F8 /* ConnectionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBFA4F21C4055EF00B5E8F8 /* ConnectionsCell.swift */; };
 		AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */; };
 		AED984141C1A6ADF00002B9B /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED984131C1A6ADF00002B9B /* ProfileCell.swift */; };
 		AEE33B401BFD65DF00067838 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */; };
@@ -51,6 +53,8 @@
 		AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameLoginViewController.swift; sourceTree = "<group>"; };
 		AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AEBFA4F01C40513100B5E8F8 /* ConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
+		AEBFA4F21C4055EF00B5E8F8 /* ConnectionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsCell.swift; sourceTree = "<group>"; };
 		AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
 		AED984131C1A6ADF00002B9B /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 				AED984131C1A6ADF00002B9B /* ProfileCell.swift */,
 				AE0B4A981C375DD9008074EC /* UIElementProperties.swift */,
 				AEFF7C721C3A354C00129265 /* InfoView.swift */,
+				AEBFA4F21C4055EF00B5E8F8 /* ConnectionsCell.swift */,
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
@@ -169,6 +174,7 @@
 				AE0B4A9A1C388155008074EC /* UserViewController.swift */,
 				AEFF7C741C3B238100129265 /* ConnectedUsersViewController.swift */,
 				AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */,
+				AEBFA4F01C40513100B5E8F8 /* ConnectionsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = SOURCE_ROOT;
@@ -298,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE0B4A9B1C388155008074EC /* UserViewController.swift in Sources */,
+				AEBFA4F11C40513100B5E8F8 /* ConnectionsViewController.swift in Sources */,
 				AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */,
 				AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */,
 				AEFF7C751C3B238100129265 /* ConnectedUsersViewController.swift in Sources */,
@@ -305,6 +312,7 @@
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEBFA4E91C3DFB6C00B5E8F8 /* ProfileViewController.swift in Sources */,
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
+				AEBFA4F31C4055EF00B5E8F8 /* ConnectionsCell.swift in Sources */,
 				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,
 				AEB0A9C31C2BA5B500C8117E /* UsernameLoginViewController.swift in Sources */,
 				AEE33B421BFE797200067838 /* ExchangeViewController.swift in Sources */,

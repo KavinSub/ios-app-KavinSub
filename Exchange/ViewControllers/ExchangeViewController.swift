@@ -134,7 +134,6 @@ class ExchangeViewController: UIViewController {
         statusButton!.addTarget(self, action: Selector("statusTouchUpInside"), forControlEvents: UIControlEvents.TouchUpInside)
         statusButton!.addTarget(self, action: Selector("statusTouchUpOutside"), forControlEvents: UIControlEvents.TouchUpOutside)
         
-        
         self.view.addSubview(statusButton!)
     }
     
