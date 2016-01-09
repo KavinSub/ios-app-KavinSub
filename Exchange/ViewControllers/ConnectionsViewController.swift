@@ -15,6 +15,8 @@ class ConnectionsViewController: UIViewController {
     
     var users: [PFUser]?
     
+    var selectedUser: PFUser?
+    
     let colors: [UIColor] = [UIElementProperties.blueColor, UIElementProperties.orangeColor, UIElementProperties.yellowColor]
     
     override func viewDidLoad() {
@@ -37,16 +39,20 @@ class ConnectionsViewController: UIViewController {
         return UIStatusBarStyle.LightContent
     }
     
-
-    /*
+    @IBAction func unwindToConnections(segue: UIStoryboardSegue){
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "OpenProfile"{
+            let viewController = segue.destinationViewController as! ProfileViewController
+            viewController.user = selectedUser!
+            viewController.allowsEditMode = false
+        }
     }
-    */
+    
     
     func getUsers(){
         let user = PFUser.currentUser()!
@@ -131,5 +137,11 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.layer.masksToBounds = true
         
         cell.contentView.backgroundColor = colors[indexPath.section % colors.count]
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedUser = users![indexPath.section]
+        
+        self.performSegueWithIdentifier("OpenProfile", sender: self)
     }
 }

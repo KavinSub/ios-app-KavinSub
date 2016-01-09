@@ -27,6 +27,8 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var editButton: UIButton!
     
+    @IBOutlet weak var backButton: UIButton!
+    
     @IBOutlet weak var positionField: UITextField!
     
     @IBOutlet weak var companyField: UITextField!
@@ -36,12 +38,15 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     
     @IBOutlet weak var infoDoneButton: UIButton!
+    
     // text fields dict
     var textFields: [Int: String]?
     
     var inEditMode: Bool = false
     
     var inViewMode: Bool = false
+    
+    var allowsEditMode = true
     
     // Everything related to edit view
     
@@ -64,9 +69,32 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func goBack(sender: AnyObject) {
+        if inViewMode{
+            inViewMode = false
+            
+            let animation = { () -> Void in
+                self.linkedInButton.transform = CGAffineTransformIdentity
+                self.contactInfoButton.transform = CGAffineTransformIdentity
+                self.infoView.transform = CGAffineTransformIdentity
+                self.aboutTextView.transform = CGAffineTransformIdentity
+                self.editButton.transform = CGAffineTransformIdentity
+            }
+            
+            UIView.animateWithDuration(0.35, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
+                self.performSegueWithIdentifier("ExitProfile", sender: self)
+            })
+        }else{
+            self.performSegueWithIdentifier("ExitProfile", sender: self)
+        }
+    }
+    
     @IBAction func showEdit(sender: AnyObject) {
         if !inEditMode{
             inEditMode = true
+            
+            editButton.userInteractionEnabled = false
             
             profileImageView.userInteractionEnabled = true
             
@@ -74,12 +102,14 @@ class ProfileViewController: UIViewController {
             
             infoDoneButton.hidden = true
             
+            self.aboutTextView.editable = true
+            
             self.phoneField.enabled = true
             self.emailField.enabled = true
             self.phoneField.backgroundColor = UIColor.whiteColor()
             self.emailField.backgroundColor = UIColor.whiteColor()
             
-            UIView.animateWithDuration(0.5, animations: { () -> Void in
+            let animation = { () -> Void in
                 self.jobLabel.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.view.frame.width/2.0 + self.jobLabel.frame.width), 0.0)
                 
                 self.positionLeading.constant =  -1.0 * (self.view.frame.width - ((self.view.frame.width - (2 * self.positionField.frame.width + self.companyLeading.constant))/2.0))
@@ -95,6 +125,12 @@ class ProfileViewController: UIViewController {
                 self.profileImageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.75, 0.75)
                 
                 self.view.layoutIfNeeded()
+                
+                self.aboutTextView.backgroundColor = UIColor.whiteColor()
+            }
+            
+            UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
+                self.editButton.userInteractionEnabled = true
             })
         }else{
             inEditMode = false
@@ -103,7 +139,11 @@ class ProfileViewController: UIViewController {
             
             endEditing()
             
+            editButton.userInteractionEnabled = false
+            
             editButton.setTitle("Edit", forState: UIControlState.Normal)
+            
+            self.aboutTextView.editable = false
             
             displayUser()
             
@@ -122,6 +162,8 @@ class ProfileViewController: UIViewController {
                 
                 self.profileImageView.transform = CGAffineTransformIdentity
                 
+                self.aboutTextView.backgroundColor = UIElementProperties.textColor
+                
                 self.view.layoutIfNeeded()
             }
             
@@ -131,6 +173,7 @@ class ProfileViewController: UIViewController {
                 self.emailField.enabled = false
                 self.phoneField.backgroundColor = UIElementProperties.textColor
                 self.emailField.backgroundColor = UIElementProperties.textColor
+                self.editButton.userInteractionEnabled = true
             })
             
             user.saveInBackground()
@@ -206,9 +249,18 @@ class ProfileViewController: UIViewController {
     }
     
     
-    let user = PFUser.currentUser()!
+    var user = PFUser.currentUser()!
     
     override func viewDidLoad(){
+        
+        print("\(user)")
+        
+        if !allowsEditMode{
+            editButton.hidden = true
+            backButton.hidden = false
+        }else{
+            backButton.hidden = true
+        }
         
         UIChanges()
         addGestures()
@@ -227,6 +279,8 @@ class ProfileViewController: UIViewController {
         emailField.tag = 3
         
         textFields = [positionField.tag: "position", companyField.tag: "company", phoneField.tag: "phoneNumber", emailField.tag: "email"]
+        
+        aboutTextView.delegate = self
         
         displayUser()
     }
@@ -277,6 +331,8 @@ class ProfileViewController: UIViewController {
         phoneField.text = (user.valueForKey("phoneNumber") as! String?) ?? ""
         emailField.text = (user.valueForKey("email") as! String?) ?? ""
         
+        // v) about text view
+        aboutTextView.text = (user.valueForKey("about") as! String?) ?? ""
     }
     
     // UI Changes that cannot be done in storyboard
@@ -318,6 +374,35 @@ extension ProfileViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(textField: UITextField) {
         let key = textFields![textField.tag]!
         let value = textField.text
+        
+        user.setValue(value, forKey: key)
+    }
+}
+
+extension ProfileViewController: UITabBarDelegate{
+    func tabBar(tabBar: UITabBar, didSelectItem item: UITabBarItem) {
+        print("Selected item")
+    }
+}
+
+extension ProfileViewController: UITextViewDelegate{
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        let animation = { () -> Void in
+            self.view.center.y -= (216)
+        }
+        
+        UIView.animateWithDuration(0.3, delay: 0.0, options: .CurveEaseOut, animations: animation, completion: nil)
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.view.center.y += (216)
+        }
+        
+        let key = "about"
+        let value = textView.text
         
         user.setValue(value, forKey: key)
     }
