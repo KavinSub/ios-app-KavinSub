@@ -16,6 +16,7 @@
 		AE2794381BFD4BA000254F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE2794361BFD4BA000254F50 /* Main.storyboard */; };
 		AE27943A1BFD4BA000254F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE2794391BFD4BA000254F50 /* Assets.xcassets */; };
 		AE27943D1BFD4BA000254F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE27943B1BFD4BA000254F50 /* LaunchScreen.storyboard */; };
+		AE4D54C21C419D8D0022DB3B /* BetterSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */; };
 		AE7340A31C1BB5A200A6509E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */; };
 		AE945C7C1C1F4F8B00498424 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE945C7B1C1F4F8B00498424 /* SettingsViewController.swift */; };
 		AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */; };
@@ -48,6 +49,7 @@
 		AE2794391BFD4BA000254F50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE27943C1BFD4BA000254F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE27943E1BFD4BA000254F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterSettingsViewController.swift; sourceTree = "<group>"; };
 		AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AE945C7B1C1F4F8B00498424 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				AEFF7C741C3B238100129265 /* ConnectedUsersViewController.swift */,
 				AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */,
 				AEBFA4F01C40513100B5E8F8 /* ConnectionsViewController.swift */,
+				AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = SOURCE_ROOT;
@@ -311,6 +314,7 @@
 				AEFF7C731C3A354C00129265 /* InfoView.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEBFA4E91C3DFB6C00B5E8F8 /* ProfileViewController.swift in Sources */,
+				AE4D54C21C419D8D0022DB3B /* BetterSettingsViewController.swift in Sources */,
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
 				AEBFA4F31C4055EF00B5E8F8 /* ConnectionsCell.swift in Sources */,
 				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,
