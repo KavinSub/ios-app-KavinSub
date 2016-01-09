@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4C6BE4F532A5CE0DB4BE20C8 /* Pods_Exchange.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */; };
 		AE0B4A991C375DD9008074EC /* UIElementProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B4A981C375DD9008074EC /* UIElementProperties.swift */; };
-		AE0B4A9B1C388155008074EC /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0B4A9A1C388155008074EC /* UserViewController.swift */; };
 		AE2240BF1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */; };
 		AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */; };
 		AE2794331BFD4BA000254F50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2794321BFD4BA000254F50 /* AppDelegate.swift */; };
@@ -18,21 +17,17 @@
 		AE27943D1BFD4BA000254F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE27943B1BFD4BA000254F50 /* LaunchScreen.storyboard */; };
 		AE4D54C21C419D8D0022DB3B /* BetterSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */; };
 		AE7340A31C1BB5A200A6509E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */; };
-		AE945C7C1C1F4F8B00498424 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE945C7B1C1F4F8B00498424 /* SettingsViewController.swift */; };
 		AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */; };
 		AEB0A9C31C2BA5B500C8117E /* UsernameLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */; };
 		AEBFA4E91C3DFB6C00B5E8F8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */; };
 		AEBFA4F11C40513100B5E8F8 /* ConnectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBFA4F01C40513100B5E8F8 /* ConnectionsViewController.swift */; };
 		AEBFA4F31C4055EF00B5E8F8 /* ConnectionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBFA4F21C4055EF00B5E8F8 /* ConnectionsCell.swift */; };
 		AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */; };
-		AED984141C1A6ADF00002B9B /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED984131C1A6ADF00002B9B /* ProfileCell.swift */; };
 		AEE33B401BFD65DF00067838 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */; };
 		AEE33B421BFE797200067838 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B411BFE797100067838 /* ExchangeViewController.swift */; };
 		AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B491C03D8DD00067838 /* Exchange.swift */; };
 		AEEE828D1BFD4E88008891A7 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */; };
 		AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */; };
-		AEFF7C731C3A354C00129265 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFF7C721C3A354C00129265 /* InfoView.swift */; };
-		AEFF7C751C3B238100129265 /* ConnectedUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFF7C741C3B238100129265 /* ConnectedUsersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +35,6 @@
 		20F2CBE93C54B27FF3D2F8D3 /* Pods-Exchange.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exchange.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Exchange/Pods-Exchange.debug.xcconfig"; sourceTree = "<group>"; };
 		A1D8589BA2FE6912B0204242 /* Pods_Exchange.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exchange.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE0B4A981C375DD9008074EC /* UIElementProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIElementProperties.swift; sourceTree = "<group>"; };
-		AE0B4A9A1C388155008074EC /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHelper.swift; sourceTree = "<group>"; };
 		AE2240C21C0FD625004CBFCA /* PhotoDeleteHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoDeleteHelper.swift; sourceTree = "<group>"; };
 		AE27942F1BFD4BA000254F50 /* Exchange.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exchange.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,21 +45,17 @@
 		AE27943E1BFD4BA000254F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterSettingsViewController.swift; sourceTree = "<group>"; };
 		AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		AE945C7B1C1F4F8B00498424 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameLoginViewController.swift; sourceTree = "<group>"; };
 		AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AEBFA4F01C40513100B5E8F8 /* ConnectionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsViewController.swift; sourceTree = "<group>"; };
 		AEBFA4F21C4055EF00B5E8F8 /* ConnectionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionsCell.swift; sourceTree = "<group>"; };
 		AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bluetooth.swift; sourceTree = "<group>"; };
-		AED984131C1A6ADF00002B9B /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AEE33B411BFE797100067838 /* ExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		AEE33B491C03D8DD00067838 /* Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		AEFF7C721C3A354C00129265 /* InfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
-		AEFF7C741C3B238100129265 /* ConnectedUsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedUsersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,9 +128,7 @@
 		AEAA5F591C1A687500EFF10E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AED984131C1A6ADF00002B9B /* ProfileCell.swift */,
 				AE0B4A981C375DD9008074EC /* UIElementProperties.swift */,
-				AEFF7C721C3A354C00129265 /* InfoView.swift */,
 				AEBFA4F21C4055EF00B5E8F8 /* ConnectionsCell.swift */,
 			);
 			path = Views;
@@ -170,11 +158,8 @@
 				AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */,
 				AEE33B411BFE797100067838 /* ExchangeViewController.swift */,
 				AE2240BE1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift */,
-				AE945C7B1C1F4F8B00498424 /* SettingsViewController.swift */,
 				AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */,
 				AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */,
-				AE0B4A9A1C388155008074EC /* UserViewController.swift */,
-				AEFF7C741C3B238100129265 /* ConnectedUsersViewController.swift */,
 				AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */,
 				AEBFA4F01C40513100B5E8F8 /* ConnectionsViewController.swift */,
 				AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */,
@@ -306,12 +291,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE0B4A9B1C388155008074EC /* UserViewController.swift in Sources */,
 				AEBFA4F11C40513100B5E8F8 /* ConnectionsViewController.swift in Sources */,
 				AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */,
 				AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */,
-				AEFF7C751C3B238100129265 /* ConnectedUsersViewController.swift in Sources */,
-				AEFF7C731C3A354C00129265 /* InfoView.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEBFA4E91C3DFB6C00B5E8F8 /* ProfileViewController.swift in Sources */,
 				AE4D54C21C419D8D0022DB3B /* BetterSettingsViewController.swift in Sources */,
@@ -323,8 +305,6 @@
 				AE2794331BFD4BA000254F50 /* AppDelegate.swift in Sources */,
 				AE2240BF1C0FB9A0004CBFCA /* PhotoSelectorHelper.swift in Sources */,
 				AE0B4A991C375DD9008074EC /* UIElementProperties.swift in Sources */,
-				AED984141C1A6ADF00002B9B /* ProfileCell.swift in Sources */,
-				AE945C7C1C1F4F8B00498424 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -76,15 +76,7 @@ class ExchangeViewController: UIViewController {
     @IBAction func goToProfile(sender: AnyObject) {
         self.performSegueWithIdentifier("DisplayCurrentUser", sender: self)
     }
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "DisplayCurrentUser"{
-            let viewController = segue.destinationViewController as! UserViewController
-            viewController.user = PFUser.currentUser()
-            viewController.allowsEditMode = true
-        }
-    }
-    
+        
     override func viewDidLoad(){
         
         setupStatusView()
