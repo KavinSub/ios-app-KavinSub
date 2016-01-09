@@ -517,6 +517,14 @@
                                                     <rect key="frame" x="102" y="0.0" width="462" height="49"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                            <integer key="value" value="0"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Y2q-4D-b43" id="6OQ-dh-Tht"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZY-bY-v8N">
                                                     <rect key="frame" x="572" y="14" width="20" height="21"/>
@@ -560,6 +568,14 @@
                                                     <rect key="frame" x="102" y="0.0" width="462" height="49"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                            <integer key="value" value="1"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Y2q-4D-b43" id="yba-vN-763"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gWd-MD-WA0">
                                                     <rect key="frame" x="572" y="13" width="20" height="24"/>
@@ -607,6 +623,14 @@
                                                     <rect key="frame" x="102" y="0.0" width="482" height="49"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="tag">
+                                                            <integer key="value" value="2"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Y2q-4D-b43" id="9I0-09-EIq"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -644,6 +668,9 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="49" id="o6b-Qb-lGh"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <action selector="toggleExchange:" destination="Y2q-4D-b43" eventType="valueChanged" id="nDw-t9-RXA"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -665,20 +692,20 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0r-un-UbI">
-                                                    <rect key="frame" x="242" y="13" width="117" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="Kmq-ku-X2E"/>
-                                                        <constraint firstAttribute="width" constant="117" id="qCL-Ik-uq9"/>
-                                                    </constraints>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLl-F2-1yK">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.36184210526315785" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <state key="normal" title="Logout"/>
+                                                    <connections>
+                                                        <action selector="logoutUser:" destination="Y2q-4D-b43" eventType="touchUpInside" id="nP7-gn-cRP"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="c0r-un-UbI" firstAttribute="centerX" secondItem="bUC-n4-8rk" secondAttribute="centerX" id="52d-aN-LPb"/>
-                                                <constraint firstItem="c0r-un-UbI" firstAttribute="centerY" secondItem="bUC-n4-8rk" secondAttribute="centerY" id="yBv-Zy-Y5n"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="PLl-F2-1yK" secondAttribute="bottom" constant="-8" id="Hvb-k9-5y1"/>
+                                                <constraint firstItem="PLl-F2-1yK" firstAttribute="top" secondItem="bUC-n4-8rk" secondAttribute="topMargin" constant="-8" id="LZb-se-5vH"/>
+                                                <constraint firstItem="PLl-F2-1yK" firstAttribute="leading" secondItem="bUC-n4-8rk" secondAttribute="leadingMargin" constant="-8" id="gGV-pQ-UrN"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="PLl-F2-1yK" secondAttribute="trailing" constant="-8" id="vuq-Bh-xPl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -693,20 +720,22 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZj-uI-dFS">
-                                                    <rect key="frame" x="236" y="13" width="128" height="24"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="24" id="ANr-Wk-eAr"/>
-                                                        <constraint firstAttribute="width" constant="128" id="dne-Zz-cOB"/>
-                                                    </constraints>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7LF-i3-rKR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
                                                     <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                    <state key="normal" title="Delete Account">
+                                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteUser:" destination="Y2q-4D-b43" eventType="touchUpInside" id="Ph7-o3-WjS"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="MZj-uI-dFS" firstAttribute="centerY" secondItem="Gf0-E3-4Vz" secondAttribute="centerY" id="ROL-YP-XR5"/>
-                                                <constraint firstItem="MZj-uI-dFS" firstAttribute="centerX" secondItem="Gf0-E3-4Vz" secondAttribute="centerX" id="SDa-X9-w25"/>
+                                                <constraint firstItem="7LF-i3-rKR" firstAttribute="top" secondItem="Gf0-E3-4Vz" secondAttribute="topMargin" constant="-8" id="4cv-AJ-EUT"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="7LF-i3-rKR" secondAttribute="trailing" constant="-8" id="HFu-zw-gOq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="7LF-i3-rKR" secondAttribute="bottom" constant="-8" id="UsD-Yq-ZlJ"/>
+                                                <constraint firstItem="7LF-i3-rKR" firstAttribute="leading" secondItem="Gf0-E3-4Vz" secondAttribute="leadingMargin" constant="-8" id="sLV-3l-tbZ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -719,6 +748,15 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Settings" id="L2a-3e-FXF"/>
+                    <connections>
+                        <outlet property="firstNameField" destination="PtV-gg-ZQ6" id="Kzb-G4-Oqb"/>
+                        <outlet property="firstNameFieldCount" destination="GZY-bY-v8N" id="tAb-W0-k0a"/>
+                        <outlet property="lastNameField" destination="Qzs-6s-2Xg" id="bKF-3p-tLF"/>
+                        <outlet property="lastNameFieldCount" destination="gWd-MD-WA0" id="P0a-3v-a6Z"/>
+                        <outlet property="linkedInField" destination="Pal-cq-gVf" id="i7X-sM-CKC"/>
+                        <outlet property="switchControl" destination="ovR-eg-QQU" id="h77-S1-n9m"/>
+                        <segue destination="Css-3S-clV" kind="show" identifier="LogoutUser" id="4XE-hv-IYW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xXr-a9-fwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1412,8 +1450,9 @@
         <image name="PhoneIcon" width="1200" height="1200"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wZ7-ZG-72J"/>
+        <segue reference="4XE-hv-IYW"/>
         <segue reference="1I9-H5-GhK"/>
+        <segue reference="wZ7-ZG-72J"/>
         <segue reference="3GR-6J-loK"/>
     </inferredMetricsTieBreakers>
 </document>

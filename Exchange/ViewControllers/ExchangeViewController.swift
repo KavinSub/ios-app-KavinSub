@@ -13,6 +13,8 @@ import AudioToolbox
 
 class ExchangeViewController: UIViewController {
     
+    static var allowExchange: Bool = NSUserDefaults.standardUserDefaults().valueForKey("allowExchange") as! Bool? ?? true
+    
     let exchange = Exchange()
     var bluetoothHandler: Bluetooth?
     
@@ -86,20 +88,33 @@ class ExchangeViewController: UIViewController {
     override func viewDidLoad(){
         
         setupStatusView()
-        setupTimers()
         
         bluetoothHandler = Bluetooth(viewController: self)
         
-        bluetoothHandler?.setupAsCentral()
-        bluetoothHandler?.setupAsPeripheral()
+        if ExchangeViewController.allowExchange{
+            turnOnBluetooth()
+            setupTimers()
+        }else{
+            turnOffBluetooth()
+            if let rippleTimer = rippleTimer{
+                rippleTimer.invalidate()
+            }
+        }
     }
     
 
     override func viewDidAppear(animated: Bool) {
         statusButton?.backgroundColor = UIElementProperties.textColor
         
-        bluetoothHandler?.setupAsCentral()
-        bluetoothHandler?.setupAsPeripheral()
+        if ExchangeViewController.allowExchange{
+            turnOnBluetooth()
+            setupTimers()
+        }else{
+            turnOffBluetooth()
+            if let rippleTimer = rippleTimer{
+                rippleTimer.invalidate()
+            }
+        }
         
         super.viewDidAppear(animated)
         
@@ -107,8 +122,7 @@ class ExchangeViewController: UIViewController {
     
     override func viewDidDisappear(animated: Bool) {
         
-        bluetoothHandler?.stopScan()
-        bluetoothHandler?.stopAdvertisting()
+        turnOffBluetooth()
         
         super.viewDidDisappear(animated)
     }
@@ -141,6 +155,24 @@ class ExchangeViewController: UIViewController {
         rippleTimer = NSTimer(timeInterval: 1.5, target: self, selector: Selector("createRipple"), userInfo: nil, repeats: true)
         let runner = NSRunLoop.currentRunLoop()
         runner.addTimer(rippleTimer!, forMode: NSDefaultRunLoopMode)
+    }
+    
+    func turnOnBluetooth(){
+        bluetoothHandler?.setupAsCentral()
+        bluetoothHandler?.setupAsPeripheral()
+    }
+    
+    func turnOffBluetooth(){
+        bluetoothHandler?.stopScan()
+        bluetoothHandler?.stopAdvertisting()
+    }
+    
+    func startAnimation(){
+        
+    }
+    
+    func stopAnimation(){
+        
     }
     
 }

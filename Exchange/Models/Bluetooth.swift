@@ -146,8 +146,10 @@ extension Bluetooth: CBCentralManagerDelegate{
     
     // Wrapper function stops central manager
     func stopScan(){
-        self.centralManager!.stopScan()
-        print("Central Manager has stopped scanning.")
+        if let centralManager = centralManager{
+            centralManager.stopScan()
+            print("Central Manager has stopped scanning.")
+        }
     }
     
     // Called when central manager changes state
@@ -224,8 +226,10 @@ extension Bluetooth: CBPeripheralManagerDelegate{
     
     // Wrapper function called to stop advertising services of Bluetooth
     func stopAdvertisting(){
-        peripheralManager?.stopAdvertising()
-        print("Peripheral has stopped advertising.")
+        if let peripheralManager = peripheralManager{
+            peripheralManager.stopAdvertising()
+            print("Peripheral has stopped advertising.")
+        }
     }
     
     // Called when peripheral manager changes state
