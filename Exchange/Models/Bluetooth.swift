@@ -119,7 +119,7 @@ class Bluetooth: NSObject{
         newConnection.setValue(otherUser!, forKey: "other_user")
         
         // We save the connection object in the backend
-        newConnection.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+        /*newConnection.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if error != nil{
                 print("\(error?.localizedDescription)")
             }else{
@@ -132,6 +132,14 @@ class Bluetooth: NSObject{
                     print("Conection object not saved.")
                 }
             }
+        }*/
+        do{
+           try newConnection.save()
+            print("Connection object saved succesfully.")
+            // Call function that displays changes
+            self.viewController.connectionCreated()
+        }catch{
+            print("Conection object not saved.")
         }
     }
 }
@@ -290,12 +298,15 @@ extension Bluetooth: CBPeripheralDelegate{
                 if connectionStrength > minConnectionStrength{
                     let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
                     print("\(objectID)")
-                    exchangedData = value
+                    /*exchangedData = value
                 
                     // Add this peripheral to the list of peripherals we have connected with
-                    connectedPeripherals.append(self.discoveredPeripheral!)
+                    connectedPeripherals.append(self.discoveredPeripheral!)*/
+                    
+                    createConnection(value)
                 }
             }
+            print("About to cancel")
             self.centralManager?.cancelPeripheralConnection(peripheral)
         }
     }

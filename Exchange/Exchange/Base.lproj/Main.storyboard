@@ -346,17 +346,49 @@
                                     <action selector="sendInfo:" destination="bn0-0b-lbu" eventType="touchUpInside" id="Dxv-9J-F46"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QCB-C4-PbH">
+                                <rect key="frame" x="240" y="242" width="121" height="29"/>
+                                <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="D0V-Tl-u4L"/>
+                                    <constraint firstAttribute="width" constant="121" id="XIV-rU-WCQ"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Phone"/>
+                                    <segment title="Email"/>
+                                </segments>
+                                <connections>
+                                    <action selector="toggleField:" destination="bn0-0b-lbu" eventType="valueChanged" id="abR-KC-w8H"/>
+                                </connections>
+                            </segmentedControl>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vmo-zO-Rxq">
+                                <rect key="frame" x="600" y="278" width="544" height="45"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <connections>
+                                    <outlet property="delegate" destination="bn0-0b-lbu" id="WZw-Ai-UNC"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="1s3-HL-BIW" firstAttribute="centerX" secondItem="BVE-wc-1vu" secondAttribute="centerX" id="4tP-eq-9DH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8hE-YD-FDH" secondAttribute="trailing" constant="8" id="Iks-2T-shn"/>
+                            <constraint firstItem="QCB-C4-PbH" firstAttribute="centerX" secondItem="BVE-wc-1vu" secondAttribute="centerX" id="Pus-38-mzP"/>
+                            <constraint firstItem="Vmo-zO-Rxq" firstAttribute="width" secondItem="8hE-YD-FDH" secondAttribute="width" id="bWd-z4-AgR"/>
+                            <constraint firstItem="Vmo-zO-Rxq" firstAttribute="centerY" secondItem="BVE-wc-1vu" secondAttribute="centerY" id="by2-0d-v7Q"/>
                             <constraint firstItem="8hE-YD-FDH" firstAttribute="centerY" secondItem="BVE-wc-1vu" secondAttribute="centerY" id="dho-f8-jaD"/>
+                            <constraint firstItem="Vmo-zO-Rxq" firstAttribute="height" secondItem="8hE-YD-FDH" secondAttribute="height" id="pQy-eV-0r7"/>
                             <constraint firstItem="1s3-HL-BIW" firstAttribute="top" secondItem="8hE-YD-FDH" secondAttribute="bottom" constant="8" id="uTZ-Kl-T8X"/>
+                            <constraint firstItem="Vmo-zO-Rxq" firstAttribute="leading" secondItem="BVE-wc-1vu" secondAttribute="trailing" id="upO-OC-hVo"/>
                             <constraint firstItem="8hE-YD-FDH" firstAttribute="leading" secondItem="BVE-wc-1vu" secondAttribute="leadingMargin" constant="8" id="xPt-8d-dgu"/>
+                            <constraint firstItem="8hE-YD-FDH" firstAttribute="top" secondItem="QCB-C4-PbH" secondAttribute="bottom" constant="8" id="xSr-6D-ewp"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailField" destination="Vmo-zO-Rxq" id="tyg-ro-50S"/>
+                        <outlet property="phoneEmailControl" destination="QCB-C4-PbH" id="kXi-2f-O77"/>
                         <outlet property="phoneField" destination="8hE-YD-FDH" id="OV4-NR-ZgT"/>
                     </connections>
                 </viewController>

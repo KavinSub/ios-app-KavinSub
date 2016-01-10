@@ -12,16 +12,42 @@ import Parse
 
 class NoAppViewController: UIViewController{
 
+    @IBOutlet weak var phoneEmailControl: UISegmentedControl!
+    
+    @IBAction func toggleField(sender: UISegmentedControl) {
+        // 0 -> phoneField
+        // 1 -> emailField
+        // By default, phoneField is initial state
+        let state = sender.selectedSegmentIndex
+        
+        if state == 1{
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.phoneField.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.phoneField.frame.width + 30.0), 0.0)
+                
+                self.emailField.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, self.phoneField.center.x - self.emailField.center.x, 0.0)
+            })
+        }else if state == 0{
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.phoneField.transform = CGAffineTransformIdentity
+                self.emailField.transform = CGAffineTransformIdentity
+            })
+        }
+    }
     
     @IBOutlet weak var phoneField: UITextField!
     
+    @IBOutlet weak var emailField: UITextField!
+    
     var enteredNumber = ""
+    
+    var enteredEmail = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addGestures()
         
+        // i) Phone Field
         phoneField.backgroundColor = UIColor.whiteColor()
         
         let leftView = UILabel(frame: CGRectMake(10, 0, 7, 26))
@@ -31,37 +57,77 @@ class NoAppViewController: UIViewController{
         phoneField.leftViewMode = UITextFieldViewMode.Always
         phoneField.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
         
-        // Do any additional setup after loading the view.
+        phoneField.tag = 0
+        
+        // ii) Email Field
+        
+        let emailLeftView = UILabel(frame: CGRectMake(10, 0, 7, 26))
+        leftView.backgroundColor = UIColor.clearColor()
+        
+        emailField.leftView = emailLeftView
+        emailField.leftViewMode = UITextFieldViewMode.Always
+        emailField.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
+        
+        emailField.tag = 1
+        
+        // iii) PhoneEmail toggle control
+        phoneEmailControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIElementProperties.textColor], forState: UIControlState.Normal)
+        phoneEmailControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIElementProperties.textColor], forState: UIControlState.Selected)
+        
+        
     }
     
     
     @IBAction func sendInfo(sender: AnyObject) {
-        if MFMessageComposeViewController.canSendText(){
-            let message = MFMessageComposeViewController()
+        
+        let user = PFUser.currentUser()!
+        
+        var messageBody = ""
+        
+        let firstName = user.valueForKey("firstName") as! String? ?? ""
+        let lastName = user.valueForKey("lastName") as! String? ?? ""
+        
+        if firstName != "" && lastName != "" {
+            messageBody += "Hey it's \(firstName) \(lastName). It was great meeting you. Here's my contact info.\n"
+        }
+        
+        if let number = user.valueForKey("phoneNumber") as! String?{
+            messageBody += "Phone number: \(number)\n"
+        }
+        
+        if let email = user.valueForKey("email") as! String?{
+            messageBody += "Email: \(email)\n"
+        }
+        
+        if let linkedIn = user.valueForKey("linkedIn") as! String?{
+            messageBody += "LinkedIn: https://www.linkedin.com/in/\(linkedIn)\n"
+        }
+        
+        if phoneEmailControl.selectedSegmentIndex == 0{
+            if MFMessageComposeViewController.canSendText(){ // TODO: Give user warning if unable to send text/email
+                
+                let message = MFMessageComposeViewController()
             
-            let user = PFUser.currentUser()!
-            
-            var messageBody = ""
-            
-            if let number = user.valueForKey("phoneNumber") as! String?{
-                messageBody += "Phone number: \(number)\n"
+                message.body = messageBody
+                
+                message.recipients = [enteredNumber]
+                
+                message.messageComposeDelegate = self
+                
+                self.presentViewController(message, animated: true, completion: nil)
             }
-            
-            if let email = user.valueForKey("email") as! String?{
-                messageBody += "Email: \(email)\n"
+        }else if phoneEmailControl.selectedSegmentIndex == 1{
+            if MFMailComposeViewController.canSendMail(){
+                let mail = MFMailComposeViewController()
+                
+                mail.setMessageBody(messageBody, isHTML: false)
+                
+                mail.setToRecipients([enteredEmail])
+                
+                mail.mailComposeDelegate = self
+                
+                self.presentViewController(mail, animated: true, completion: nil)
             }
-            
-            if let linkedIn = user.valueForKey("linkedIn") as! String?{
-                messageBody += "LinkedIn: https://www.linkedin.com/in/\(linkedIn)\n"
-            }
-            
-            message.body = messageBody
-            
-            message.recipients = [enteredNumber]
-            
-            message.messageComposeDelegate = self
-            
-            self.presentViewController(message, animated: true, completion: nil)
         }
     }
 
@@ -128,21 +194,26 @@ class NoAppViewController: UIViewController{
 
 extension NoAppViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(textField: UITextField) {
-        
-        textField.text = enteredNumber
+        if textField.tag == 0{
+            textField.text = enteredNumber
+        }
         
         textField.layer.borderWidth = 1.0
         textField.layer.borderColor = UIElementProperties.backgroundColor.CGColor
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
-        if textField.text?.characters.count >= 0 && textField.text?.characters.count <= 10{
-            enteredNumber = stripNonNumbers(textField.text! ?? "")
-        }else{
-            enteredNumber = stripNonNumbers(textField.text!.substringToIndex(textField.text!.startIndex.advancedBy(10)))
+        if textField.tag == 0{
+            if textField.text?.characters.count >= 0 && textField.text?.characters.count <= 10{
+                enteredNumber = stripNonNumbers(textField.text! ?? "")
+            }else{
+                enteredNumber = stripNonNumbers(textField.text!.substringToIndex(textField.text!.startIndex.advancedBy(10)))
+            }
+            print("\(enteredNumber)")
+            textField.text = formatNumber(enteredNumber)
+        }else if textField.tag == 1{
+            enteredEmail = textField.text! ?? ""
         }
-        print("\(enteredNumber)")
-        textField.text = formatNumber(enteredNumber)
         textField.layer.borderWidth = 0.0
     }
     
@@ -158,4 +229,11 @@ extension NoAppViewController: MFMessageComposeViewControllerDelegate{
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+}
+
+extension NoAppViewController: MFMailComposeViewControllerDelegate{
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
