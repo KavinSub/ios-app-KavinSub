@@ -11,7 +11,18 @@ import CoreBluetooth
 import Parse
 import AudioToolbox
 
+enum ConnectionStatus{
+    case SavedNow
+    case SaveLater
+}
+
 class ExchangeViewController: UIViewController {
+    
+    
+    
+    @IBAction func createTask(sender: AnyObject) {
+        let task = Task(userId: "11111111")
+    }
     
     static var allowExchange: Bool = NSUserDefaults.standardUserDefaults().valueForKey("allowExchange") as! Bool? ?? true
     
@@ -126,7 +137,7 @@ class ExchangeViewController: UIViewController {
         super.viewDidDisappear(animated)
     }
     
-    func connectionCreated(){
+    func connectionCreated(status: ConnectionStatus){
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         statusButton?.backgroundColor = UIElementProperties.connectionStatus
     }

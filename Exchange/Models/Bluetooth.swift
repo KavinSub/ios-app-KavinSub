@@ -20,6 +20,7 @@ class Bluetooth: NSObject{
     var discoveredPeripheral: CBPeripheral?
     
     var peripheralManager: CBPeripheralManager?
+    var peripheralManagerHasTurnedOn = false
     
     var connectionStrength: Int = -999
     let minConnectionStrength = -35
@@ -81,66 +82,8 @@ class Bluetooth: NSObject{
             return
         }
         
-        // Find instance of other user
-        let otherUserQuery = PFUser.query()
-        var otherUser: PFUser?
-        do{
-           otherUser = try otherUserQuery?.getObjectWithId(String(otherUserObjectId)) as! PFUser
-        }catch{
-            print("Unable to perform query of other user.")
-            return
-        }
-        
-        if otherUser == nil{
-            print("Unable to find instance of other user.")
-            return
-        }
-        
-        // Then check if the connection between users already exists
-        let connectionQuery = PFQuery(className: "Connection")
-        var connectionObject: PFObject?
-        
-        connectionQuery.whereKey("this_user", equalTo: currentUser!)
-        connectionQuery.whereKey("other_user", equalTo: otherUser!)
-        do{
-            connectionObject = try connectionQuery.getFirstObject()
-        }catch{
-            print("Error occured while perform connection query.")
-        }
-        
-        if(connectionObject != nil){
-            print("Connection already exists.")
-            return
-        }
-        
-        // At this point the connection object does not exist. We create one
-        let newConnection = PFObject(className: "Connection")
-        newConnection.setValue(currentUser!, forKey: "this_user")
-        newConnection.setValue(otherUser!, forKey: "other_user")
-        
-        // We save the connection object in the backend
-        /*newConnection.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if error != nil{
-                print("\(error?.localizedDescription)")
-            }else{
-                if success{
-                    print("Connection object saved succesfully.")
-                    // Call function that displays changes
-                    self.viewController.connectionCreated()
-                    
-                }else{
-                    print("Conection object not saved.")
-                }
-            }
-        }*/
-        do{
-           try newConnection.save()
-            print("Connection object saved succesfully.")
-            // Call function that displays changes
-            self.viewController.connectionCreated()
-        }catch{
-            print("Conection object not saved.")
-        }
+        print("Can now manipulate data.")
+        connectedPeripherals.append(discoveredPeripheral!)
     }
 }
 
@@ -166,7 +109,7 @@ extension Bluetooth: CBCentralManagerDelegate{
             print("Central Manager not on.")
             presentBluetoothNotOn()
             return
-        }else{
+        }else if central.state == CBCentralManagerState.PoweredOn{
             print("Central Manager is on.")
             self.scan()
         }
@@ -245,9 +188,12 @@ extension Bluetooth: CBPeripheralManagerDelegate{
         if(peripheral.state != CBPeripheralManagerState.PoweredOn){
             print("Peripheral Manager not on.")
             return
-        }else{
+        }else if peripheral.state == CBPeripheralManagerState.PoweredOn{
             print("Peripheral Manager is on.")
-            peripheralManager!.addService(exchange.exchangeService)
+            if !peripheralManagerHasTurnedOn{
+                peripheralManager!.addService(exchange.exchangeService)
+                peripheralManagerHasTurnedOn = true
+            }
             peripheralManager!.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [exchange.exchangeService.UUID]])
         }
     }
@@ -255,7 +201,7 @@ extension Bluetooth: CBPeripheralManagerDelegate{
     // Called when peripheral begins to advertise data
     func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager, error: NSError?) {
         if error != nil{
-            print("\(error?.localizedDescription))")
+            print("\(error!.localizedDescription))")
         }else{
             print("Peripheral has begun advertising services.")
         }
@@ -298,11 +244,7 @@ extension Bluetooth: CBPeripheralDelegate{
                 if connectionStrength > minConnectionStrength{
                     let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
                     print("\(objectID)")
-                    /*exchangedData = value
-                
-                    // Add this peripheral to the list of peripherals we have connected with
-                    connectedPeripherals.append(self.discoveredPeripheral!)*/
-                    
+
                     createConnection(value)
                 }
             }

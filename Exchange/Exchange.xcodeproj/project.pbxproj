@@ -28,6 +28,9 @@
 		AE4D54D91C41D3F50022DB3B /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54CE1C41D3F50022DB3B /* YokoTextField.swift */; };
 		AE4D54DA1C41D3F50022DB3B /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54CF1C41D3F50022DB3B /* YoshikoTextField.swift */; };
 		AE4D54DE1C42068A0022DB3B /* NoAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54DD1C42068A0022DB3B /* NoAppViewController.swift */; };
+		AE4D54E01C42FEF10022DB3B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54DF1C42FEF10022DB3B /* Task.swift */; };
+		AE4D54E21C4305CF0022DB3B /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54E11C4305CF0022DB3B /* NetworkHelper.swift */; };
+		AE4D54E41C430AB20022DB3B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54E31C430AB20022DB3B /* Reachability.swift */; };
 		AE7340A31C1BB5A200A6509E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */; };
 		AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */; };
 		AEB0A9C31C2BA5B500C8117E /* UsernameLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */; };
@@ -69,6 +72,9 @@
 		AE4D54CE1C41D3F50022DB3B /* YokoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YokoTextField.swift; sourceTree = "<group>"; };
 		AE4D54CF1C41D3F50022DB3B /* YoshikoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshikoTextField.swift; sourceTree = "<group>"; };
 		AE4D54DD1C42068A0022DB3B /* NoAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAppViewController.swift; sourceTree = "<group>"; };
+		AE4D54DF1C42FEF10022DB3B /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		AE4D54E11C4305CF0022DB3B /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		AE4D54E31C430AB20022DB3B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameLoginViewController.swift; sourceTree = "<group>"; };
@@ -182,8 +188,11 @@
 		AEE33B481C03D8AF00067838 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				AE4D54E31C430AB20022DB3B /* Reachability.swift */,
 				AEE33B491C03D8DD00067838 /* Exchange.swift */,
 				AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */,
+				AE4D54DF1C42FEF10022DB3B /* Task.swift */,
+				AE4D54E11C4305CF0022DB3B /* NetworkHelper.swift */,
 			);
 			path = Models;
 			sourceTree = SOURCE_ROOT;
@@ -346,10 +355,13 @@
 				AE4D54DE1C42068A0022DB3B /* NoAppViewController.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEBFA4E91C3DFB6C00B5E8F8 /* ProfileViewController.swift in Sources */,
+				AE4D54E01C42FEF10022DB3B /* Task.swift in Sources */,
 				AE4D54D51C41D3F50022DB3B /* KaedeTextField.swift in Sources */,
+				AE4D54E21C4305CF0022DB3B /* NetworkHelper.swift in Sources */,
 				AE4D54C21C419D8D0022DB3B /* BetterSettingsViewController.swift in Sources */,
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
 				AEBFA4F31C4055EF00B5E8F8 /* ConnectionsCell.swift in Sources */,
+				AE4D54E41C430AB20022DB3B /* Reachability.swift in Sources */,
 				AE4D54D61C41D3F50022DB3B /* MadokaTextField.swift in Sources */,
 				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,
 				AE4D54D01C41D3F50022DB3B /* AkiraTextField.swift in Sources */,
