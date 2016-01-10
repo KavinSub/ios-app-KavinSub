@@ -2,22 +2,17 @@
 
 import UIKit
 
-var str = "Hello, playground"
+let string = "32qsdasdfj2"
 
+let numberSet: Set<Character> = Set("0123456789".characters)
+let characters = Array(string.characters)
 
-// Returns true if a string's characters are alphanumeric
-func isAlphanumeric(string: String) -> Bool{
-    let letters = NSCharacterSet.letterCharacterSet()
-    let digits = NSCharacterSet.decimalDigitCharacterSet()
-    
-    for char in string.unicodeScalars{
-        if !(letters.longCharacterIsMember(char.value) || digits.longCharacterIsMember(char.value)){
-            return false
-        }
+var returnable = ""
+
+for character in characters{
+    if numberSet.contains(character){
+        returnable += String(character)
     }
-    return true
 }
 
-let b = isAlphanumeric("ThisShouldReturnTrue")
-let c = isAlphanumeric("So123Should12this")
-let d = isAlphanumeric("But not this one")
+returnable

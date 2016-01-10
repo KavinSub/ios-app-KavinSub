@@ -27,7 +27,7 @@
 		AE4D54D81C41D3F50022DB3B /* TextFieldsEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54CD1C41D3F50022DB3B /* TextFieldsEffects.swift */; };
 		AE4D54D91C41D3F50022DB3B /* YokoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54CE1C41D3F50022DB3B /* YokoTextField.swift */; };
 		AE4D54DA1C41D3F50022DB3B /* YoshikoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54CF1C41D3F50022DB3B /* YoshikoTextField.swift */; };
-		AE4D54DC1C41D5160022DB3B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54DB1C41D5160022DB3B /* TestViewController.swift */; };
+		AE4D54DE1C42068A0022DB3B /* NoAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54DD1C42068A0022DB3B /* NoAppViewController.swift */; };
 		AE7340A31C1BB5A200A6509E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */; };
 		AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */; };
 		AEB0A9C31C2BA5B500C8117E /* UsernameLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */; };
@@ -68,7 +68,7 @@
 		AE4D54CD1C41D3F50022DB3B /* TextFieldsEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldsEffects.swift; sourceTree = "<group>"; };
 		AE4D54CE1C41D3F50022DB3B /* YokoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YokoTextField.swift; sourceTree = "<group>"; };
 		AE4D54CF1C41D3F50022DB3B /* YoshikoTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoshikoTextField.swift; sourceTree = "<group>"; };
-		AE4D54DB1C41D5160022DB3B /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		AE4D54DD1C42068A0022DB3B /* NoAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAppViewController.swift; sourceTree = "<group>"; };
 		AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameLoginViewController.swift; sourceTree = "<group>"; };
@@ -208,7 +208,7 @@
 				AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */,
 				AEBFA4F01C40513100B5E8F8 /* ConnectionsViewController.swift */,
 				AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */,
-				AE4D54DB1C41D5160022DB3B /* TestViewController.swift */,
+				AE4D54DD1C42068A0022DB3B /* NoAppViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = SOURCE_ROOT;
@@ -343,12 +343,12 @@
 				AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */,
 				AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */,
 				AE4D54D11C41D3F50022DB3B /* HoshiTextField.swift in Sources */,
+				AE4D54DE1C42068A0022DB3B /* NoAppViewController.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEBFA4E91C3DFB6C00B5E8F8 /* ProfileViewController.swift in Sources */,
 				AE4D54D51C41D3F50022DB3B /* KaedeTextField.swift in Sources */,
 				AE4D54C21C419D8D0022DB3B /* BetterSettingsViewController.swift in Sources */,
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
-				AE4D54DC1C41D5160022DB3B /* TestViewController.swift in Sources */,
 				AEBFA4F31C4055EF00B5E8F8 /* ConnectionsCell.swift in Sources */,
 				AE4D54D61C41D3F50022DB3B /* MadokaTextField.swift in Sources */,
 				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,

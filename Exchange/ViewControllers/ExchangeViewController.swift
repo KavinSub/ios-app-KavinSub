@@ -81,6 +81,9 @@ class ExchangeViewController: UIViewController {
         
         setupStatusView()
         
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        self.navigationController?.navigationBar.tintColor = UIElementProperties.textColor
+        
         bluetoothHandler = Bluetooth(viewController: self)
         
         if ExchangeViewController.allowExchange{
