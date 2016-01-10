@@ -33,3 +33,10 @@ class TestViewController: UIViewController {
     */
 
 }
+
+extension TestViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}

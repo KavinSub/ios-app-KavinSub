@@ -37,6 +37,14 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var emailField: UITextField!
     
+    @IBOutlet weak var phoneLabel: UILabel!
+    
+    @IBOutlet weak var emailLabel: UILabel!
+    
+    @IBOutlet weak var phoneTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var emailTopConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var infoDoneButton: UIButton!
     
     // text fields dict
@@ -106,8 +114,20 @@ class ProfileViewController: UIViewController {
             
             self.phoneField.enabled = true
             self.emailField.enabled = true
-            self.phoneField.backgroundColor = UIColor.whiteColor()
-            self.emailField.backgroundColor = UIColor.whiteColor()
+            
+            self.emailLabel.hidden = true
+            self.phoneLabel.hidden = true
+            
+            // Animate about box first to avoid collisions
+            
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                
+                self.aboutTextView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0.0, 1.0 * self.infoView.frame.height - 20)
+                
+                self.aboutTextView.backgroundColor = UIColor.whiteColor()
+            })
+                        
+            // Now animate everything else
             
             let animation = { () -> Void in
                 self.jobLabel.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.view.frame.width/2.0 + self.jobLabel.frame.width), 0.0)
@@ -120,16 +140,12 @@ class ProfileViewController: UIViewController {
                 
                 self.infoView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * self.infoView.frame.width, 0.0)
                 
-                self.aboutTextView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0.0, 1.0 * self.infoView.frame.height - 20)
-                
                 self.profileImageView.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.75, 0.75)
                 
                 self.view.layoutIfNeeded()
-                
-                self.aboutTextView.backgroundColor = UIColor.whiteColor()
             }
             
-            UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
+            UIView.animateWithDuration(0.5, delay: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
                 self.editButton.userInteractionEnabled = true
             })
         }else{
@@ -158,11 +174,7 @@ class ProfileViewController: UIViewController {
                 
                 self.infoView.transform = CGAffineTransformIdentity
                 
-                self.aboutTextView.transform = CGAffineTransformIdentity
-                
                 self.profileImageView.transform = CGAffineTransformIdentity
-                
-                self.aboutTextView.backgroundColor = UIElementProperties.textColor
                 
                 self.view.layoutIfNeeded()
             }
@@ -171,10 +183,21 @@ class ProfileViewController: UIViewController {
                 self.infoDoneButton.hidden = false
                 self.phoneField.enabled = false
                 self.emailField.enabled = false
+                self.phoneLabel.hidden = false
+                self.emailLabel.hidden = false
                 self.phoneField.backgroundColor = UIElementProperties.textColor
                 self.emailField.backgroundColor = UIElementProperties.textColor
                 self.editButton.userInteractionEnabled = true
             })
+            
+            // Animate about view last
+            
+            let aboutAnimation = { () -> Void in
+                self.aboutTextView.transform = CGAffineTransformIdentity
+                self.aboutTextView.backgroundColor = UIElementProperties.textColor
+            }
+            
+            UIView.animateWithDuration(0.5, delay: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: aboutAnimation, completion: nil)
             
             user.saveInBackground()
         }
@@ -183,13 +206,20 @@ class ProfileViewController: UIViewController {
     // Everything related to the info view
     @IBOutlet weak var infoView: UIView!
     
-    
-    
-    
     // Animates the info view in
     @IBAction func showInfoView(sender: AnyObject) {
         if !inEditMode{
             inViewMode = true
+            
+            phoneField.hidden = true
+            emailField.hidden = true
+            
+            phoneLabel.text = (user.valueForKey("phoneNumber") as! String?) ?? ""
+            emailLabel.text = (user.valueForKey("email") as! String?) ?? ""
+            
+            emailTopConstraint.constant = 8.0
+            phoneTopConstraint.constant = 8.0
+            
             let animation = { () -> Void in
                 self.linkedInButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -2.0 * self.linkedInButton.frame.width, 0.0)
                 self.contactInfoButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -2.0 * self.contactInfoButton.frame.width, 0.0)
@@ -213,7 +243,13 @@ class ProfileViewController: UIViewController {
                 self.editButton.transform = CGAffineTransformIdentity
             }
             
-            UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: nil)
+            UIView.animateWithDuration(0.5, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: animation, completion: { (success: Bool) -> Void in
+                self.phoneField.hidden = false
+                self.emailField.hidden = false
+                
+                self.phoneTopConstraint.constant = 22
+                self.emailTopConstraint.constant = 22
+            })
         }
     }
     
@@ -368,6 +404,13 @@ class ProfileViewController: UIViewController {
         
         let tapProfileGesture = UITapGestureRecognizer(target: self, action: Selector("changeProfileImage"))
         self.profileImageView.addGestureRecognizer(tapProfileGesture)
+        
+        let swipeContactGesture = UISwipeGestureRecognizer(target: self, action: Selector("showInfoView:"))
+        swipeContactGesture.direction = UISwipeGestureRecognizerDirection.Left
+        self.contactInfoButton.addGestureRecognizer(swipeContactGesture)
+        
+        let swipeInfoGesture = UISwipeGestureRecognizer(target: self, action: Selector("hideInfoView:"))
+        self.infoView.addGestureRecognizer(swipeInfoGesture)
     }
     
     func endEditing(){

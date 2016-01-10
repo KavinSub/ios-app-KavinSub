@@ -85,7 +85,9 @@ class ExchangeViewController: UIViewController {
         
         if ExchangeViewController.allowExchange{
             turnOnBluetooth()
-            setupTimers()
+            if rippleTimer == nil{
+                setupTimers()
+            }
         }else{
             turnOffBluetooth()
             if let rippleTimer = rippleTimer{
@@ -100,7 +102,9 @@ class ExchangeViewController: UIViewController {
         
         if ExchangeViewController.allowExchange{
             turnOnBluetooth()
-            setupTimers()
+            if rippleTimer == nil{
+                setupTimers()
+            }
         }else{
             turnOffBluetooth()
             if let rippleTimer = rippleTimer{
@@ -157,14 +161,6 @@ class ExchangeViewController: UIViewController {
     func turnOffBluetooth(){
         bluetoothHandler?.stopScan()
         bluetoothHandler?.stopAdvertisting()
-    }
-    
-    func startAnimation(){
-        
-    }
-    
-    func stopAnimation(){
-        
     }
     
 }
