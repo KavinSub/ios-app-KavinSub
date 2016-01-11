@@ -1083,43 +1083,11 @@
                                             <action selector="showEdit:" destination="LNy-UA-l3O" eventType="touchUpInside" id="GgF-mF-pr9"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B0j-oh-pXH">
-                                        <rect key="frame" x="8" y="26" width="46" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="46" id="C39-Ko-BON"/>
-                                            <constraint firstAttribute="height" constant="30" id="aCl-v0-9W6"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                        <state key="normal" title="Back">
-                                            <color key="titleColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="goBack:" destination="LNy-UA-l3O" eventType="touchUpInside" id="dcs-hv-sqR"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRe-kn-oA9">
-                                        <rect key="frame" x="323" y="26" width="52" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="52" id="o3L-dU-0sI"/>
-                                            <constraint firstAttribute="height" constant="30" id="tRe-dx-0er"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                        <state key="normal" title="Export">
-                                            <color key="titleColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="exportToContacts:" destination="LNy-UA-l3O" eventType="touchUpInside" id="1OZ-aO-eqT"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="B0j-oh-pXH" secondAttribute="bottom" constant="8" id="GqB-GP-Srn"/>
-                                    <constraint firstAttribute="trailing" secondItem="VRe-kn-oA9" secondAttribute="trailing" constant="8" id="Llh-Yg-hrc"/>
                                     <constraint firstAttribute="trailing" secondItem="O72-km-Oot" secondAttribute="trailing" constant="8" id="nPB-bN-4gy"/>
-                                    <constraint firstItem="B0j-oh-pXH" firstAttribute="leading" secondItem="gNW-vp-mBh" secondAttribute="leading" constant="8" id="q6x-vg-kFZ"/>
                                     <constraint firstAttribute="height" constant="64" id="svE-ge-uRz"/>
-                                    <constraint firstItem="VRe-kn-oA9" firstAttribute="top" secondItem="gNW-vp-mBh" secondAttribute="top" constant="26" id="wxv-ZM-qnJ"/>
                                     <constraint firstAttribute="bottom" secondItem="O72-km-Oot" secondAttribute="bottom" constant="8" id="zNw-AY-Oj7"/>
                                 </constraints>
                             </view>
@@ -1410,7 +1378,6 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="aboutTextView" destination="4cz-NV-Urb" id="O9n-Ht-ChZ"/>
-                        <outlet property="backButton" destination="B0j-oh-pXH" id="BYJ-9C-Vc0"/>
                         <outlet property="companyField" destination="pzq-FX-UFe" id="das-DC-zlJ"/>
                         <outlet property="companyLeading" destination="5uy-p8-76U" id="ea9-3e-T2x"/>
                         <outlet property="contactInfoButton" destination="Z6k-kB-Nii" id="aGT-qK-aRq"/>
@@ -1418,7 +1385,6 @@
                         <outlet property="emailField" destination="dgA-QX-PwS" id="soE-Gh-SJi"/>
                         <outlet property="emailLabel" destination="ehh-vU-nUF" id="Bam-KO-Qzb"/>
                         <outlet property="emailTopConstraint" destination="PcW-ad-Tod" id="0on-dX-9Bc"/>
-                        <outlet property="exportButton" destination="VRe-kn-oA9" id="3av-b8-IyJ"/>
                         <outlet property="infoDoneButton" destination="ppc-57-inD" id="s8b-gS-4lJ"/>
                         <outlet property="infoView" destination="3lc-2y-xNR" id="HIA-xz-lGw"/>
                         <outlet property="jobLabel" destination="8rm-g8-09W" id="WGH-RM-GWC"/>

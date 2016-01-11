@@ -8,8 +8,6 @@
 
 import UIKit
 import Parse
-import Contacts
-import ContactsUI
 
 class ProfileViewController: UIViewController {
     
@@ -29,8 +27,6 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var editButton: UIButton!
     
-    @IBOutlet weak var backButton: UIButton!
-    
     @IBOutlet weak var positionField: UITextField!
     
     @IBOutlet weak var companyField: UITextField!
@@ -42,8 +38,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var phoneLabel: UILabel!
     
     @IBOutlet weak var emailLabel: UILabel!
-    
-    @IBOutlet weak var exportButton: UIButton!
     
     @IBOutlet weak var phoneTopConstraint: NSLayoutConstraint!
     
@@ -58,8 +52,6 @@ class ProfileViewController: UIViewController {
     
     var inViewMode: Bool = false
     
-    var allowsEditMode = true
-    
     var enteredNumber = ""
     
     // Everything related to edit view
@@ -67,28 +59,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var positionLeading: NSLayoutConstraint!
     
     @IBOutlet weak var companyLeading: NSLayoutConstraint!
-    
-    @IBAction func exportToContacts(sender: AnyObject) {
-        let store = CNContactStore()
-        
-        let contact = CNMutableContact()
-        contact.familyName = user.valueForKey("lastName") as! String? ?? ""
-        contact.givenName = user.valueForKey("firstName") as! String? ?? ""
-        
-        let mainPhone = CNLabeledValue(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: user.valueForKey("phoneNumber") as! String? ?? ""))
-        contact.phoneNumbers = [mainPhone]
-        
-        let workEmail = CNLabeledValue(label: CNLabelWork, value: user.valueForKey("email") as! String? ?? "")
-        contact.emailAddresses = [workEmail]
-        
-        let contactController = CNContactViewController(forUnknownContact: contact)
-        contactController.contactStore = store
-        contactController.delegate = self
-        
-        print("About to present contact UI.")
-        
-        self.presentViewController(contactController, animated: true, completion: nil)
-    }
     
     @IBAction func showLinkedIn(sender: AnyObject) {
         if let userExtension = user.valueForKey("linkedIn") as! String?{
@@ -102,27 +72,6 @@ class ProfileViewController: UIViewController {
             }
         }else{
             print("User does not have a linkedIn")
-        }
-    }
-    
-    
-    @IBAction func goBack(sender: AnyObject) {
-        if inViewMode{
-            inViewMode = false
-            
-            let animation = { () -> Void in
-                self.linkedInButton.transform = CGAffineTransformIdentity
-                self.contactInfoButton.transform = CGAffineTransformIdentity
-                self.infoView.transform = CGAffineTransformIdentity
-                self.aboutTextView.transform = CGAffineTransformIdentity
-                self.editButton.transform = CGAffineTransformIdentity
-            }
-            
-            UIView.animateWithDuration(0.35, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
-                self.performSegueWithIdentifier("ExitProfile", sender: self)
-            })
-        }else{
-            self.performSegueWithIdentifier("ExitProfile", sender: self)
         }
     }
     
@@ -318,14 +267,6 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad(){
         
         print("\(user)")
-        
-        if !allowsEditMode{
-            editButton.hidden = true
-            backButton.hidden = false
-        }else{
-            backButton.hidden = true
-            exportButton.hidden = true
-        }
         
         UIChanges()
         addGestures()
@@ -538,12 +479,5 @@ extension ProfileViewController: UITextViewDelegate{
         
         user.setValue(value, forKey: key)
         
-    }
-}
-
-extension ProfileViewController: CNContactViewControllerDelegate{
-    func contactViewController(viewController: CNContactViewController, didCompleteWithContact contact: CNContact?) {
-        print("Contact created.")
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }
