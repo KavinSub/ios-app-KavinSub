@@ -52,6 +52,11 @@ PODS:
     - FBSDKCoreKit (~> 4.8)
     - FBSDKLoginKit (~> 4.8)
     - Parse (~> 1.9)
+  - Realm (0.97.0):
+    - Realm/Headers (= 0.97.0)
+  - Realm/Headers (0.97.0)
+  - RealmSwift (0.97.0):
+    - Realm (= 0.97.0)
 
 DEPENDENCIES:
   - FBSDKCoreKit
@@ -61,6 +66,7 @@ DEPENDENCIES:
   - Google/SignIn
   - Parse
   - ParseFacebookUtilsV4
+  - RealmSwift
 
 SPEC CHECKSUMS:
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
@@ -77,5 +83,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 8ed9134debe11719097881711464752900668f10
   Parse: 54a965c8c19a6dde90284ab654dbcc77ef8c001b
   ParseFacebookUtilsV4: eab9b4ade12f0800b4d30f6b808bca55ce17a0e9
+  Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
+  RealmSwift: d014810dec75c9a3f1a33926d2dabfed855c582c
 
 COCOAPODS: 0.39.0

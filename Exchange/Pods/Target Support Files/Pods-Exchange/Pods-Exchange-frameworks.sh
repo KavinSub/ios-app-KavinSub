@@ -90,6 +90,8 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Exchange/FBSDKShareKit.framework"
   install_framework "Pods-Exchange/Parse.framework"
   install_framework "Pods-Exchange/ParseFacebookUtilsV4.framework"
+  install_framework "Pods-Exchange/Realm.framework"
+  install_framework "Pods-Exchange/RealmSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Exchange/Bolts.framework"
@@ -98,4 +100,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-Exchange/FBSDKShareKit.framework"
   install_framework "Pods-Exchange/Parse.framework"
   install_framework "Pods-Exchange/ParseFacebookUtilsV4.framework"
+  install_framework "Pods-Exchange/Realm.framework"
+  install_framework "Pods-Exchange/RealmSwift.framework"
 fi

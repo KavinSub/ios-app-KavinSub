@@ -11,4 +11,5 @@ pod 'FBSDKShareKit'
 pod 'Google'
 pod 'Google/SignIn'
 pod 'ParseFacebookUtilsV4'
+pod 'RealmSwift'
 end

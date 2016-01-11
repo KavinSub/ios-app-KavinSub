@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 import CoreBluetooth
 import Parse
+import SystemConfiguration
+import RealmSwift
 
 class Bluetooth: NSObject{
     // Instance of Exchange
@@ -82,8 +84,49 @@ class Bluetooth: NSObject{
             return
         }
         
-        print("Can now manipulate data.")
+        let otherUser = PFUser(withoutDataWithObjectId: otherUserObjectId as String)
+        
+        self.viewController.connectionCreated()
+        
         connectedPeripherals.append(discoveredPeripheral!)
+        
+        // Then check if the connection between users already exists
+        let connectionQuery = PFQuery(className: "Connection")
+        var connectionObject: PFObject?
+        
+        connectionQuery.whereKey("this_user", equalTo: currentUser!)
+        connectionQuery.whereKey("other_user", equalTo: otherUser)
+        do{
+            connectionObject = try connectionQuery.getFirstObject()
+        }catch{
+            print("Error occured while perform connection query.")
+        }
+        
+        if(connectionObject != nil){
+            print("Connection already exists.")
+            return
+        }
+        
+        // At this point the connection object does not exist. We create one
+        let newConnection = PFObject(className: "Connection")
+        newConnection.setValue(currentUser!, forKey: "this_user")
+        newConnection.setValue(otherUser, forKey: "other_user")
+        
+        // We save the connection object in the backend
+        newConnection.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            if error != nil{
+                print("\(error?.localizedDescription)")
+            }else{
+                if success{
+                    print("Connection object saved succesfully.")
+                    // Call function that displays changes
+                    self.viewController.connectionCreated()
+                    
+                }else{
+                    print("Conection object not saved.")
+                }
+            }
+        }
     }
 }
 

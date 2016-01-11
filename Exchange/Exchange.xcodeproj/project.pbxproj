@@ -41,6 +41,7 @@
 		AEE33B401BFD65DF00067838 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */; };
 		AEE33B421BFE797200067838 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B411BFE797100067838 /* ExchangeViewController.swift */; };
 		AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B491C03D8DD00067838 /* Exchange.swift */; };
+		AEE5C6E81C43378B00CEC394 /* TaskExecuter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5C6E71C43378B00CEC394 /* TaskExecuter.swift */; };
 		AEEE828D1BFD4E88008891A7 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */; };
 		AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
@@ -85,6 +86,7 @@
 		AEE33B3F1BFD65DF00067838 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AEE33B411BFE797100067838 /* ExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		AEE33B491C03D8DD00067838 /* Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
+		AEE5C6E71C43378B00CEC394 /* TaskExecuter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskExecuter.swift; sourceTree = "<group>"; };
 		AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -193,6 +195,7 @@
 				AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */,
 				AE4D54DF1C42FEF10022DB3B /* Task.swift */,
 				AE4D54E11C4305CF0022DB3B /* NetworkHelper.swift */,
+				AEE5C6E71C43378B00CEC394 /* TaskExecuter.swift */,
 			);
 			path = Models;
 			sourceTree = SOURCE_ROOT;
@@ -351,6 +354,7 @@
 				AE4D54D91C41D3F50022DB3B /* YokoTextField.swift in Sources */,
 				AEC1F5F61C1769A30029A1E1 /* Bluetooth.swift in Sources */,
 				AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */,
+				AEE5C6E81C43378B00CEC394 /* TaskExecuter.swift in Sources */,
 				AE4D54D11C41D3F50022DB3B /* HoshiTextField.swift in Sources */,
 				AE4D54DE1C42068A0022DB3B /* NoAppViewController.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,

@@ -10,19 +10,10 @@ import UIKit
 import CoreBluetooth
 import Parse
 import AudioToolbox
+import RealmSwift
 
-enum ConnectionStatus{
-    case SavedNow
-    case SaveLater
-}
 
 class ExchangeViewController: UIViewController {
-    
-    
-    
-    @IBAction func createTask(sender: AnyObject) {
-        let task = Task(userId: "11111111")
-    }
     
     static var allowExchange: Bool = NSUserDefaults.standardUserDefaults().valueForKey("allowExchange") as! Bool? ?? true
     
@@ -36,6 +27,10 @@ class ExchangeViewController: UIViewController {
     var statusButton: UIButton?
 
     var rippleTimer: NSTimer?
+    
+    var i = 1
+    
+    
     
     @IBAction func unwindToSegue(segue: UIStoryboardSegue){
     }
@@ -137,7 +132,7 @@ class ExchangeViewController: UIViewController {
         super.viewDidDisappear(animated)
     }
     
-    func connectionCreated(status: ConnectionStatus){
+    func connectionCreated(){
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         statusButton?.backgroundColor = UIElementProperties.connectionStatus
     }

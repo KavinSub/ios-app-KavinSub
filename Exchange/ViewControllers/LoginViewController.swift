@@ -49,7 +49,7 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
                         // Save the user info in user object fields
                         self.saveResult(result)
                         // Now get the profile picture
-                        self.saveProfilePicture(result["id"] as! String)
+                        self.saveProfilePicture(result.valueForKey("id") as! String)
                         
                         let user = PFUser.currentUser()!
                         
@@ -103,9 +103,9 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     // Given a result object from FB graph request, saves info into user object
     func saveResult(result: AnyObject){
-        let userFirstName: String? = result["first_name"] as? String
-        let userLastName: String? = result["last_name"] as? String
-        let userEmail: String? = result["email"] as? String
+        let userFirstName: String? = result.valueForKey("first_name") as? String
+        let userLastName: String? = result.valueForKey("last_name") as? String
+        let userEmail: String? = result.valueForKey("email") as? String
         
         let myUser: PFUser = PFUser.currentUser()!
         

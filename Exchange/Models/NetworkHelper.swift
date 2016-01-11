@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 // Class to help with network connectivity issues
 class NetworkHelper: NSObject{
@@ -17,6 +18,13 @@ class NetworkHelper: NSObject{
         
         if reachability.isReachable(){
             // Begin executing tasks
+            let realm = try! Realm()
+            var tasks = realm.objects(Task)
+            while reachability.isReachable() && tasks.count > 0{
+                tasks.forEach({ (task: (Task)) -> () in
+                    TaskExecuter.perform(task, status: ConnectionStatus.SavedLater)
+                })
+            }
         }else{
             print("Not Reachable")
         }

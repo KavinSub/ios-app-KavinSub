@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Add observer for network connectivity changes
         
         
-        do{
+        /*do{
             reachability = try Reachability.reachabilityForInternetConnection()
             
             NSNotificationCenter.defaultCenter().addObserver(self.networkHelper, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability!)
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             try reachability!.startNotifier()
         }catch{
             print("Unable to create Reachability.")
-        }
+        }*/
         
         // Choose correct view controller
         let hasLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn")
