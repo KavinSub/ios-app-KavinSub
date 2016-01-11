@@ -50,6 +50,9 @@ class ConnectionsViewController: UIViewController {
             let viewController = segue.destinationViewController as! ProfileViewController
             viewController.user = selectedUser!
             viewController.allowsEditMode = false
+        }else if segue.identifier == "UserProfile"{
+            let viewController = segue.destinationViewController as! OtherUserViewController
+            viewController.user = selectedUser!
         }
     }
     
@@ -142,6 +145,7 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedUser = users![indexPath.section]
         
-        self.performSegueWithIdentifier("OpenProfile", sender: self)
+        //self.performSegueWithIdentifier("OpenProfile", sender: self)
+        self.performSegueWithIdentifier("UserProfile", sender: self)
     }
 }

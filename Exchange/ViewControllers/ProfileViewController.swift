@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import Contacts
+import ContactsUI
 
 class ProfileViewController: UIViewController {
     
@@ -41,6 +43,8 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var emailLabel: UILabel!
     
+    @IBOutlet weak var exportButton: UIButton!
+    
     @IBOutlet weak var phoneTopConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var emailTopConstraint: NSLayoutConstraint!
@@ -63,6 +67,28 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var positionLeading: NSLayoutConstraint!
     
     @IBOutlet weak var companyLeading: NSLayoutConstraint!
+    
+    @IBAction func exportToContacts(sender: AnyObject) {
+        let store = CNContactStore()
+        
+        let contact = CNMutableContact()
+        contact.familyName = user.valueForKey("lastName") as! String? ?? ""
+        contact.givenName = user.valueForKey("firstName") as! String? ?? ""
+        
+        let mainPhone = CNLabeledValue(label: CNLabelPhoneNumberMain, value: CNPhoneNumber(stringValue: user.valueForKey("phoneNumber") as! String? ?? ""))
+        contact.phoneNumbers = [mainPhone]
+        
+        let workEmail = CNLabeledValue(label: CNLabelWork, value: user.valueForKey("email") as! String? ?? "")
+        contact.emailAddresses = [workEmail]
+        
+        let contactController = CNContactViewController(forUnknownContact: contact)
+        contactController.contactStore = store
+        contactController.delegate = self
+        
+        print("About to present contact UI.")
+        
+        self.presentViewController(contactController, animated: true, completion: nil)
+    }
     
     @IBAction func showLinkedIn(sender: AnyObject) {
         if let userExtension = user.valueForKey("linkedIn") as! String?{
@@ -298,6 +324,7 @@ class ProfileViewController: UIViewController {
             backButton.hidden = false
         }else{
             backButton.hidden = true
+            exportButton.hidden = true
         }
         
         UIChanges()
@@ -511,5 +538,12 @@ extension ProfileViewController: UITextViewDelegate{
         
         user.setValue(value, forKey: key)
         
+    }
+}
+
+extension ProfileViewController: CNContactViewControllerDelegate{
+    func contactViewController(viewController: CNContactViewController, didCompleteWithContact contact: CNContact?) {
+        print("Contact created.")
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

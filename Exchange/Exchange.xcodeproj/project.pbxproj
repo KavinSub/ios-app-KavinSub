@@ -42,6 +42,7 @@
 		AEE33B421BFE797200067838 /* ExchangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B411BFE797100067838 /* ExchangeViewController.swift */; };
 		AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE33B491C03D8DD00067838 /* Exchange.swift */; };
 		AEE5C6E81C43378B00CEC394 /* TaskExecuter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5C6E71C43378B00CEC394 /* TaskExecuter.swift */; };
+		AEE5C6EA1C442D4700CEC394 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE5C6E91C442D4700CEC394 /* OtherUserViewController.swift */; };
 		AEEE828D1BFD4E88008891A7 /* linkedin-sdk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */; };
 		AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 		AEE33B411BFE797100067838 /* ExchangeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeViewController.swift; sourceTree = "<group>"; };
 		AEE33B491C03D8DD00067838 /* Exchange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
 		AEE5C6E71C43378B00CEC394 /* TaskExecuter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskExecuter.swift; sourceTree = "<group>"; };
+		AEE5C6E91C442D4700CEC394 /* OtherUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
 		AEEE828C1BFD4E88008891A7 /* linkedin-sdk.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = "linkedin-sdk.framework"; sourceTree = "<group>"; };
 		AEEE828F1BFD4EE0008891A7 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -221,6 +223,7 @@
 				AEBFA4F01C40513100B5E8F8 /* ConnectionsViewController.swift */,
 				AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */,
 				AE4D54DD1C42068A0022DB3B /* NoAppViewController.swift */,
+				AEE5C6E91C442D4700CEC394 /* OtherUserViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = SOURCE_ROOT;
@@ -366,6 +369,7 @@
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
 				AEBFA4F31C4055EF00B5E8F8 /* ConnectionsCell.swift in Sources */,
 				AE4D54E41C430AB20022DB3B /* Reachability.swift in Sources */,
+				AEE5C6EA1C442D4700CEC394 /* OtherUserViewController.swift in Sources */,
 				AE4D54D61C41D3F50022DB3B /* MadokaTextField.swift in Sources */,
 				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,
 				AE4D54D01C41D3F50022DB3B /* AkiraTextField.swift in Sources */,
