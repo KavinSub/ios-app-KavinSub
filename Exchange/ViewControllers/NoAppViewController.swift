@@ -110,7 +110,7 @@ class NoAppViewController: UIViewController{
             
                 message.body = messageBody
                 
-                message.recipients = [enteredNumber]
+                message.recipients = [stripNonNumbers(phoneField.text!)]
                 
                 message.messageComposeDelegate = self
                 
@@ -122,7 +122,7 @@ class NoAppViewController: UIViewController{
                 
                 mail.setMessageBody(messageBody, isHTML: false)
                 
-                mail.setToRecipients([enteredEmail])
+                mail.setToRecipients([emailField.text!])
                 
                 mail.mailComposeDelegate = self
                 

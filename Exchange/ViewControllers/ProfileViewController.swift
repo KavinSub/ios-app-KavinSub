@@ -56,6 +56,8 @@ class ProfileViewController: UIViewController {
     
     var allowsEditMode = true
     
+    var enteredNumber = ""
+    
     // Everything related to edit view
     
     @IBOutlet weak var positionLeading: NSLayoutConstraint!
@@ -375,6 +377,9 @@ class ProfileViewController: UIViewController {
         
         // v) about text view
         aboutTextView.text = (user.valueForKey("about") as! String?) ?? ""
+        
+        // vi) Phone Number
+        enteredNumber = user.valueForKey("phoneNumber") as! String? ?? ""
     }
     
     // UI Changes that cannot be done in storyboard
@@ -417,14 +422,65 @@ class ProfileViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    // Keeps only the numbers of the string
+    func stripNonNumbers(string: String) -> String{
+        let numberSet: Set<Character> = Set("0123456789".characters)
+        let characters = Array(string.characters)
+        
+        var returnable = ""
+        
+        for character in characters{
+            if numberSet.contains(character){
+                returnable += String(character)
+            }
+        }
+        return returnable
+    }
+    
+    // Formats a number into (xxx) xxx-xxxx
+    func formatNumber(number: String) -> String{
+        let count = number.characters.count
+        
+        let index = number.startIndex
+        
+        if count == 0{
+            return ""
+        }else if count >= 1 && count < 3{
+            return String(format: "(%@", arguments: [number.substringToIndex(index.advancedBy(count))])
+        }else if count == 3{
+            return String(format: "(%@)", arguments: [number.substringToIndex(index.advancedBy(3))])
+        }else if count > 3 && count <= 6{
+            return String(format: "(%@) %@", arguments: [number.substringToIndex(index.advancedBy(3)), number.substringWithRange(Range(start: index.advancedBy(3), end: index.advancedBy(count)))])
+        }else{
+            return String(format: "(%@) %@-%@", arguments: [number.substringToIndex(index.advancedBy(3)), number.substringWithRange(Range(start: index.advancedBy(3), end: index.advancedBy(6))), number.substringWithRange(Range(start: index.advancedBy(6), end: index.advancedBy(count)))])
+        }
+    }
 }
 
 extension ProfileViewController: UITextFieldDelegate{
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        if textField.tag == phoneField.tag{
+            textField.text = enteredNumber
+        }
+    }
+    
     func textFieldDidEndEditing(textField: UITextField) {
         let key = textFields![textField.tag]!
         let value = textField.text
         
         user.setValue(value, forKey: key)
+        
+        if textField.tag == self.phoneField.tag{
+            if textField.text?.characters.count >= 0 && textField.text?.characters.count <= 10{
+                enteredNumber = stripNonNumbers(textField.text! ?? "")
+            }else{
+                enteredNumber = stripNonNumbers(textField.text!.substringToIndex(textField.text!.startIndex.advancedBy(10)))
+            }
+            let formatted = formatNumber(enteredNumber)
+            textField.text = formatted
+            user.setValue(formatted, forKey: "phoneNumber")
+        }
     }
 }
 
@@ -454,5 +510,6 @@ extension ProfileViewController: UITextViewDelegate{
         let value = textView.text
         
         user.setValue(value, forKey: key)
+        
     }
 }
