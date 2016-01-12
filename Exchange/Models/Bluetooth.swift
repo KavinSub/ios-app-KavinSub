@@ -133,8 +133,10 @@ class Bluetooth: NSObject{
 extension Bluetooth: CBCentralManagerDelegate{
     // Starts scanning
     func scan(){
-        self.centralManager!.scanForPeripheralsWithServices([exchange.exchangeService.UUID], options: nil)
-        print("Central has begun scanning for devices.")
+        if let centralManager = centralManager{
+            centralManager.scanForPeripheralsWithServices([exchange.exchangeService.UUID], options: nil)
+            print("Central has begun scanning for devices.")
+        }
     }
     
     // Wrapper function stops central manager
@@ -218,6 +220,12 @@ extension Bluetooth: CBCentralManagerDelegate{
 
 // Extension responsible for handling Peripheral Manager tasks
 extension Bluetooth: CBPeripheralManagerDelegate{
+    
+    func advertise(){
+        if let peripheralManager = peripheralManager{
+            peripheralManager.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [exchange.exchangeService.UUID]])
+        }
+    }
     
     // Wrapper function called to stop advertising services of Bluetooth
     func stopAdvertisting(){

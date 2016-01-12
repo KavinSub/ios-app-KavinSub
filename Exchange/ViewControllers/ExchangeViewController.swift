@@ -23,6 +23,9 @@ class ExchangeViewController: UIViewController {
     let initialValue: CGFloat = 120
     let shrinkFactor: CGFloat = 0.75
     
+    var hasLoaded = false
+    var hasTurnedOnFirstTime = false
+    
     // Status view button
     var statusButton: UIButton?
 
@@ -111,7 +114,7 @@ class ExchangeViewController: UIViewController {
     }
         
     override func viewDidLoad(){
-        
+        print("Loaded")
         setupStatusView()
         scanningLabel.text = baseText
         setScanningLabelTimer()
@@ -121,7 +124,11 @@ class ExchangeViewController: UIViewController {
         bluetoothHandler = Bluetooth(viewController: self)
         
         if ExchangeViewController.allowExchange{
-            turnOnBluetooth()
+            if !hasTurnedOnFirstTime{
+                turnOnBluetoothFirstTime()
+                hasTurnedOnFirstTime = true
+            }
+            //turnOnBluetooth()
             if rippleTimer == nil{
                 setupTimers()
             }
@@ -130,24 +137,35 @@ class ExchangeViewController: UIViewController {
             if let rippleTimer = rippleTimer{
                 rippleTimer.invalidate()
             }
+            rippleTimer = nil
         }
     }
     
 
     override func viewDidAppear(animated: Bool) {
         statusButton?.backgroundColor = UIElementProperties.textColor
+        print("Appeared")
+        if hasLoaded{
+            if ExchangeViewController.allowExchange{
+                if !hasTurnedOnFirstTime{
+                    turnOnBluetoothFirstTime()
+                    hasTurnedOnFirstTime = true
+                }else{
+                    turnOnBluetooth()
+                }
+                if rippleTimer == nil{
+                    setupTimers()
+                }
+            }else{
+                turnOffBluetooth()
+                if let rippleTimer = rippleTimer{
+                    rippleTimer.invalidate()
+                }
+                rippleTimer = nil
+            }
+        }
         
-        /*if ExchangeViewController.allowExchange{
-            turnOnBluetooth()
-            if rippleTimer == nil{
-                setupTimers()
-            }
-        }else{
-            turnOffBluetooth()
-            if let rippleTimer = rippleTimer{
-                rippleTimer.invalidate()
-            }
-        }*/
+        hasLoaded = true
         
         super.viewDidAppear(animated)
         
@@ -190,9 +208,16 @@ class ExchangeViewController: UIViewController {
         runner.addTimer(rippleTimer!, forMode: NSDefaultRunLoopMode)
     }
     
-    func turnOnBluetooth(){
+    func turnOnBluetoothFirstTime(){
         bluetoothHandler?.setupAsCentral()
         bluetoothHandler?.setupAsPeripheral()
+    }
+    
+    func turnOnBluetooth(){
+        //bluetoothHandler?.setupAsCentral()
+        //bluetoothHandler?.setupAsPeripheral()
+        bluetoothHandler?.scan()
+        bluetoothHandler?.advertise()
     }
     
     func turnOffBluetooth(){
