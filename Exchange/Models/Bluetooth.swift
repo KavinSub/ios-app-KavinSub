@@ -87,7 +87,6 @@ class Bluetooth: NSObject{
         let otherUser = PFUser(withoutDataWithObjectId: otherUserObjectId as String)
         
         self.viewController.connectionCreated()
-        
         connectedPeripherals.append(discoveredPeripheral!)
         
         // Then check if the connection between users already exists
@@ -151,10 +150,12 @@ extension Bluetooth: CBCentralManagerDelegate{
         if(central.state != CBCentralManagerState.PoweredOn){
             print("Central Manager not on.")
             presentBluetoothNotOn()
+            self.viewController.isScanning = false
             return
         }else if central.state == CBCentralManagerState.PoweredOn{
             print("Central Manager is on.")
             self.scan()
+            self.viewController.isScanning = true
         }
     }
     

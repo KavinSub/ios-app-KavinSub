@@ -25,6 +25,7 @@ class BetterSettingsViewController: UITableViewController {
     
     @IBAction func toggleExchange(sender: AnyObject) {
         let value = switchControl.on
+        
         ExchangeViewController.allowExchange = value
         NSUserDefaults.standardUserDefaults().setBool(value, forKey: "allowExchange")
     }
@@ -67,6 +68,10 @@ class BetterSettingsViewController: UITableViewController {
         alertController.addAction(deleteAction)
         
         self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
     }
     
     func deleteAccount(){
@@ -134,6 +139,10 @@ class BetterSettingsViewController: UITableViewController {
         lastNameFieldCount.hidden = true
         
         switchControl.setOn(NSUserDefaults.standardUserDefaults().valueForKey("allowExchange") as! Bool? ?? true, animated: true)
+        
+        self.setNeedsStatusBarAppearanceUpdate()
+        
+        self.navigationController?.navigationBar.barTintColor = UIElementProperties.backgroundColor
     }
 
     override func didReceiveMemoryWarning() {

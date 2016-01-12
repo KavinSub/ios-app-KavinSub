@@ -28,9 +28,36 @@ class ExchangeViewController: UIViewController {
 
     var rippleTimer: NSTimer?
     
-    var i = 1
+    var dots = 0
     
+    @IBOutlet weak var scanningLabel: UILabel!
+    let baseText = "Scanning for devices"
     
+    var isScanning = false{
+        didSet{
+            if isScanning == true{
+                UIView.animateWithDuration(0.7, animations: { () -> Void in
+                    self.scanningLabel.alpha = 1.0
+                })
+            }else{
+                UIView.animateWithDuration(0.7, animations: { () -> Void in
+                    self.scanningLabel.alpha = 0.0
+                })
+            }
+        }
+    }
+    
+    func animateScanningLabel(){
+        let array = Array(count: dots, repeatedValue: ".")
+        scanningLabel.text = baseText + array.joinWithSeparator("")
+        dots = (dots + 1) % 4
+    }
+    
+    func setScanningLabelTimer(){
+        let scanningLabelTimer = NSTimer(timeInterval: 0.4, target: self, selector: Selector("animateScanningLabel"), userInfo: nil, repeats: true)
+        let runner = NSRunLoop.currentRunLoop()
+        runner.addTimer(scanningLabelTimer, forMode: NSDefaultRunLoopMode)
+    }
     
     @IBAction func unwindToSegue(segue: UIStoryboardSegue){
     }
@@ -86,7 +113,8 @@ class ExchangeViewController: UIViewController {
     override func viewDidLoad(){
         
         setupStatusView()
-        
+        scanningLabel.text = baseText
+        setScanningLabelTimer()
         self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
         self.navigationController?.navigationBar.tintColor = UIElementProperties.textColor
         
@@ -109,7 +137,7 @@ class ExchangeViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         statusButton?.backgroundColor = UIElementProperties.textColor
         
-        if ExchangeViewController.allowExchange{
+        /*if ExchangeViewController.allowExchange{
             turnOnBluetooth()
             if rippleTimer == nil{
                 setupTimers()
@@ -119,7 +147,7 @@ class ExchangeViewController: UIViewController {
             if let rippleTimer = rippleTimer{
                 rippleTimer.invalidate()
             }
-        }
+        }*/
         
         super.viewDidAppear(animated)
         

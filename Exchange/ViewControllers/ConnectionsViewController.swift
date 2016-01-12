@@ -9,10 +9,13 @@
 import UIKit
 import Parse
 
-class ConnectionsViewController: UIViewController {
+class ConnectionsViewController: UIViewController{
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchTrailing: NSLayoutConstraint!
     
+    @IBOutlet weak var cancelButton: UIButton!
     var users: [PFUser]?
     
     var selectedUser: PFUser?
@@ -142,5 +145,27 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
         selectedUser = users![indexPath.section]
         
         self.performSegueWithIdentifier("UserProfile", sender: self)
+    }
+}
+
+extension ConnectionsViewController: UISearchBarDelegate{
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        print("Editing")
+        animateSearchBarUsed()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        print("Searching")
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        print("Cancelled")
+    }
+
+    func animateSearchBarUsed(){
+        self.searchTrailing.constant += self.cancelButton.frame.width
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.view.layoutIfNeeded()
+        }
     }
 }

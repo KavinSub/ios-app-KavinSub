@@ -39,7 +39,7 @@ class ConnectionsCell: UITableViewCell {
         self.profileImageView.clipsToBounds = true
         self.profileImageView.layer.masksToBounds = true
         self.profileImageView.layer.borderColor = UIElementProperties.textColor.CGColor
-        self.profileImageView.layer.borderWidth = 3.0
+        self.profileImageView.layer.borderWidth = 1.0
     }
     
     func setName(firstName: String, lastName: String){
