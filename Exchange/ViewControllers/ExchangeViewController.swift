@@ -36,20 +36,6 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var scanningLabel: UILabel!
     let baseText = "Scanning for devices"
     
-    var isScanning = false{
-        didSet{
-            if isScanning == true{
-                UIView.animateWithDuration(0.7, animations: { () -> Void in
-                    self.scanningLabel.alpha = 1.0
-                })
-            }else{
-                UIView.animateWithDuration(0.7, animations: { () -> Void in
-                    self.scanningLabel.alpha = 0.0
-                })
-            }
-        }
-    }
-    
     func animateScanningLabel(){
         let array = Array(count: dots, repeatedValue: ".")
         scanningLabel.text = baseText + array.joinWithSeparator("")
@@ -128,16 +114,21 @@ class ExchangeViewController: UIViewController {
                 turnOnBluetoothFirstTime()
                 hasTurnedOnFirstTime = true
             }
-            //turnOnBluetooth()
             if rippleTimer == nil{
                 setupTimers()
             }
+            UIView.animateWithDuration(0.7, animations: { () -> Void in
+                self.scanningLabel.alpha = 1.0
+            })
         }else{
             turnOffBluetooth()
             if let rippleTimer = rippleTimer{
                 rippleTimer.invalidate()
             }
             rippleTimer = nil
+            UIView.animateWithDuration(0.7, animations: { () -> Void in
+                self.scanningLabel.alpha = 0.0
+            })
         }
     }
     
@@ -156,12 +147,18 @@ class ExchangeViewController: UIViewController {
                 if rippleTimer == nil{
                     setupTimers()
                 }
+                UIView.animateWithDuration(0.7, animations: { () -> Void in
+                    self.scanningLabel.alpha = 1.0
+                })
             }else{
                 turnOffBluetooth()
                 if let rippleTimer = rippleTimer{
                     rippleTimer.invalidate()
                 }
                 rippleTimer = nil
+                UIView.animateWithDuration(0.7, animations: { () -> Void in
+                    self.scanningLabel.alpha = 0.0
+                })
             }
         }
         

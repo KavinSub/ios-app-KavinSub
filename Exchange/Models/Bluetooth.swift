@@ -37,6 +37,9 @@ class Bluetooth: NSObject{
         }
     }
     
+    var isScanning = false
+    var isAdvertising = false
+    
     // Event queue for all Bluetooth events
     let bluetoothEventQueue = dispatch_queue_create("bluetoothEventQueue", DISPATCH_QUEUE_CONCURRENT)
     
@@ -152,12 +155,12 @@ extension Bluetooth: CBCentralManagerDelegate{
         if(central.state != CBCentralManagerState.PoweredOn){
             print("Central Manager not on.")
             presentBluetoothNotOn()
-            self.viewController.isScanning = false
+            isScanning = false
             return
         }else if central.state == CBCentralManagerState.PoweredOn{
             print("Central Manager is on.")
             self.scan()
-            self.viewController.isScanning = true
+            isScanning = true
         }
     }
     
@@ -239,6 +242,7 @@ extension Bluetooth: CBPeripheralManagerDelegate{
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
         if(peripheral.state != CBPeripheralManagerState.PoweredOn){
             print("Peripheral Manager not on.")
+            isAdvertising = false
             return
         }else if peripheral.state == CBPeripheralManagerState.PoweredOn{
             print("Peripheral Manager is on.")
@@ -246,6 +250,7 @@ extension Bluetooth: CBPeripheralManagerDelegate{
                 peripheralManager!.addService(exchange.exchangeService)
                 peripheralManagerHasTurnedOn = true
             }
+            isAdvertising = true
             peripheralManager!.startAdvertising([CBAdvertisementDataServiceUUIDsKey: [exchange.exchangeService.UUID]])
         }
     }
@@ -296,8 +301,10 @@ extension Bluetooth: CBPeripheralDelegate{
                 if connectionStrength > minConnectionStrength{
                     let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
                     print("\(objectID)")
-
-                    createConnection(value)
+                    
+                    if ExchangeViewController.allowExchange{
+                        createConnection(value)
+                    }
                 }
             }
             print("About to cancel")
