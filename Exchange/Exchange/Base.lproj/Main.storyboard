@@ -753,7 +753,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="gan-XP-Kjb" firstAttribute="leading" secondItem="PLt-gy-AUU" secondAttribute="leadingMargin" id="4sD-eA-QQc"/>
                                                 <constraint firstItem="T0d-99-LDY" firstAttribute="leading" secondItem="gan-XP-Kjb" secondAttribute="trailing" constant="8" id="7DT-65-gVc"/>
@@ -883,7 +883,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                         <state key="normal" title="Back">
-                                            <color key="titleColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <segue destination="b78-cn-EbG" kind="unwind" unwindAction="unwindToConnections:" id="7d2-qB-sHe"/>
@@ -1266,14 +1266,14 @@
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="agr-Yd-Rt0">
-                                        <rect key="frame" x="8" y="22" width="30" height="30"/>
+                                        <rect key="frame" x="8" y="8" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="9Iv-KN-8wZ"/>
                                             <constraint firstAttribute="height" constant="30" id="PQD-EB-oqc"/>
                                         </constraints>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EmailIcon" translatesAutoresizingMaskIntoConstraints="NO" id="56t-EZ-vq4">
-                                        <rect key="frame" x="8" y="74" width="30" height="30"/>
+                                        <rect key="frame" x="8" y="46" width="30" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="30" id="Ve0-1x-pef"/>
                                             <constraint firstAttribute="height" constant="30" id="XgR-YK-Uuh"/>
@@ -1297,66 +1297,44 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WeR-Ze-i7o" customClass="AkiraTextField" customModule="Exchange" customModuleProvider="target">
-                                        <rect key="frame" x="48" y="8" width="319" height="44"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Phone Field" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t8E-Gu-0hy">
+                                        <rect key="frame" x="46" y="8" width="329" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="MGI-a4-aia"/>
+                                            <constraint firstAttribute="height" constant="30" id="N6g-XY-Kwq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dgA-QX-PwS" customClass="AkiraTextField" customModule="Exchange" customModuleProvider="target">
-                                        <rect key="frame" x="46" y="60" width="321" height="44"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Email Field" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6oz-2j-JUt">
+                                        <rect key="frame" x="46" y="46" width="329" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="vlR-po-IlB"/>
+                                            <constraint firstAttribute="height" constant="30" id="HYD-SX-axE"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="placeholderFontScale">
-                                                <real key="value" value="1"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="dgA-QX-PwS" secondAttribute="trailing" constant="8" id="1VE-Bt-pW3"/>
                                     <constraint firstAttribute="trailing" secondItem="ehh-vU-nUF" secondAttribute="trailing" constant="8" id="23L-I0-qq9"/>
                                     <constraint firstAttribute="height" constant="135" id="8VJ-7a-xc9"/>
-                                    <constraint firstItem="agr-Yd-Rt0" firstAttribute="top" secondItem="3lc-2y-xNR" secondAttribute="top" constant="22" id="AMe-sf-JYn"/>
-                                    <constraint firstItem="dgA-QX-PwS" firstAttribute="leading" secondItem="56t-EZ-vq4" secondAttribute="trailing" constant="8" id="CDN-TR-aGp"/>
-                                    <constraint firstItem="WeR-Ze-i7o" firstAttribute="top" secondItem="3lc-2y-xNR" secondAttribute="top" constant="8" id="CtH-Ri-NQk"/>
-                                    <constraint firstItem="56t-EZ-vq4" firstAttribute="top" secondItem="agr-Yd-Rt0" secondAttribute="bottom" constant="22" id="PcW-ad-Tod"/>
+                                    <constraint firstAttribute="trailing" secondItem="6oz-2j-JUt" secondAttribute="trailing" id="9I9-Jo-10j"/>
+                                    <constraint firstItem="agr-Yd-Rt0" firstAttribute="top" secondItem="3lc-2y-xNR" secondAttribute="top" constant="8" id="AMe-sf-JYn"/>
+                                    <constraint firstAttribute="trailing" secondItem="t8E-Gu-0hy" secondAttribute="trailing" id="Ja8-gt-dHc"/>
+                                    <constraint firstItem="6oz-2j-JUt" firstAttribute="top" secondItem="t8E-Gu-0hy" secondAttribute="bottom" constant="8" id="Lsi-3v-0Xq"/>
+                                    <constraint firstItem="56t-EZ-vq4" firstAttribute="top" secondItem="agr-Yd-Rt0" secondAttribute="bottom" constant="8" id="PcW-ad-Tod"/>
                                     <constraint firstAttribute="bottom" secondItem="ppc-57-inD" secondAttribute="bottom" constant="13" id="RM6-gn-HzP"/>
                                     <constraint firstItem="mP7-pW-gdx" firstAttribute="leading" secondItem="agr-Yd-Rt0" secondAttribute="trailing" constant="8" id="S6I-Oa-ZUs"/>
                                     <constraint firstItem="56t-EZ-vq4" firstAttribute="leading" secondItem="3lc-2y-xNR" secondAttribute="leading" constant="8" id="SVG-mT-MZd"/>
                                     <constraint firstItem="ehh-vU-nUF" firstAttribute="leading" secondItem="56t-EZ-vq4" secondAttribute="trailing" constant="8" id="TTG-QT-dMz"/>
                                     <constraint firstItem="agr-Yd-Rt0" firstAttribute="leading" secondItem="3lc-2y-xNR" secondAttribute="leading" constant="8" id="Tae-J0-1ee"/>
+                                    <constraint firstItem="t8E-Gu-0hy" firstAttribute="leading" secondItem="agr-Yd-Rt0" secondAttribute="trailing" constant="8" id="Upd-a0-eLe"/>
                                     <constraint firstItem="mP7-pW-gdx" firstAttribute="top" secondItem="3lc-2y-xNR" secondAttribute="top" constant="8" id="ayP-WY-YVr"/>
                                     <constraint firstItem="ehh-vU-nUF" firstAttribute="top" secondItem="mP7-pW-gdx" secondAttribute="bottom" constant="8" id="cEa-a4-ONc"/>
+                                    <constraint firstItem="t8E-Gu-0hy" firstAttribute="top" secondItem="3lc-2y-xNR" secondAttribute="top" constant="8" id="dlE-Ma-dXj"/>
                                     <constraint firstItem="ppc-57-inD" firstAttribute="centerX" secondItem="3lc-2y-xNR" secondAttribute="centerX" id="ftY-KY-wQy"/>
-                                    <constraint firstItem="WeR-Ze-i7o" firstAttribute="leading" secondItem="agr-Yd-Rt0" secondAttribute="trailing" constant="10" id="hSH-JI-cm2"/>
                                     <constraint firstAttribute="trailing" secondItem="mP7-pW-gdx" secondAttribute="trailing" constant="8" id="knG-fI-Dt3"/>
-                                    <constraint firstItem="dgA-QX-PwS" firstAttribute="top" secondItem="WeR-Ze-i7o" secondAttribute="bottom" constant="8" id="mHj-L1-Czm"/>
-                                    <constraint firstAttribute="trailing" secondItem="WeR-Ze-i7o" secondAttribute="trailing" constant="8" id="xuH-pi-Z9o"/>
+                                    <constraint firstItem="6oz-2j-JUt" firstAttribute="leading" secondItem="56t-EZ-vq4" secondAttribute="trailing" constant="8" id="ms3-6f-8c0"/>
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cz-NV-Urb">
@@ -1462,17 +1440,15 @@
                         <outlet property="companyLeading" destination="5uy-p8-76U" id="ea9-3e-T2x"/>
                         <outlet property="contactInfoButton" destination="Z6k-kB-Nii" id="aGT-qK-aRq"/>
                         <outlet property="editButton" destination="O72-km-Oot" id="hYm-LP-OAT"/>
-                        <outlet property="emailField" destination="dgA-QX-PwS" id="soE-Gh-SJi"/>
+                        <outlet property="emailField" destination="6oz-2j-JUt" id="XJE-Bv-9SW"/>
                         <outlet property="emailLabel" destination="ehh-vU-nUF" id="Bam-KO-Qzb"/>
-                        <outlet property="emailTopConstraint" destination="PcW-ad-Tod" id="0on-dX-9Bc"/>
                         <outlet property="infoDoneButton" destination="ppc-57-inD" id="s8b-gS-4lJ"/>
                         <outlet property="infoView" destination="3lc-2y-xNR" id="HIA-xz-lGw"/>
                         <outlet property="jobLabel" destination="8rm-g8-09W" id="WGH-RM-GWC"/>
                         <outlet property="linkedInButton" destination="VxS-D4-Yvk" id="dp9-Dr-RkL"/>
                         <outlet property="nameLabel" destination="wAH-zb-3GW" id="BzS-FB-yh4"/>
-                        <outlet property="phoneField" destination="WeR-Ze-i7o" id="MLf-wD-o6K"/>
+                        <outlet property="phoneField" destination="t8E-Gu-0hy" id="l5z-SG-cZL"/>
                         <outlet property="phoneLabel" destination="mP7-pW-gdx" id="kbt-6f-Yr2"/>
-                        <outlet property="phoneTopConstraint" destination="AMe-sf-JYn" id="XUR-0D-DWw"/>
                         <outlet property="positionField" destination="J0M-Sc-3LC" id="OCQ-vY-wwF"/>
                         <outlet property="positionLeading" destination="uFD-N6-107" id="M36-Zm-byj"/>
                         <outlet property="profileBackView" destination="cwo-e6-SgJ" id="sHd-ti-66C"/>

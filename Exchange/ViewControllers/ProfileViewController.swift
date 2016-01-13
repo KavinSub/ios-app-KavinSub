@@ -39,10 +39,6 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var emailLabel: UILabel!
     
-    @IBOutlet weak var phoneTopConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var emailTopConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var infoDoneButton: UIButton!
     
     // text fields dict
@@ -61,6 +57,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var companyLeading: NSLayoutConstraint!
     
     @IBAction func showLinkedIn(sender: AnyObject) {
+        
         if let userExtension = user.valueForKey("linkedIn") as! String?{
             let URL = "https://www.linkedin.com/in/\(userExtension)"
             
@@ -102,8 +99,20 @@ class ProfileViewController: UIViewController {
                 self.aboutTextView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0.0, 1.0 * self.infoView.frame.height - (self.infoDoneButton.frame.height * 3.0 + 10.0))
                 
                 self.aboutTextView.backgroundColor = UIColor.whiteColor()
+                
             })
-                        
+            
+            let borderAnimation = CABasicAnimation(keyPath: "borderColor")
+            borderAnimation.fromValue = UIColor.clearColor().CGColor
+            borderAnimation.toValue = UIColor.blackColor().CGColor
+            borderAnimation.repeatCount = 1.0
+            borderAnimation.duration = 0.5
+            
+            self.aboutTextView.layer.addAnimation(borderAnimation, forKey: "borderColor")
+            
+            self.aboutTextView.layer.borderColor = UIColor.blackColor().CGColor
+            
+
             // Now animate everything else
             
             let animation = { () -> Void in
@@ -176,6 +185,16 @@ class ProfileViewController: UIViewController {
             
             UIView.animateWithDuration(0.5, delay: 0.1, options: UIViewAnimationOptions.CurveEaseInOut, animations: aboutAnimation, completion: nil)
             
+            let borderAnimation = CABasicAnimation(keyPath: "borderColor")
+            borderAnimation.fromValue = UIColor.blackColor().CGColor
+            borderAnimation.toValue = UIColor.clearColor().CGColor
+            borderAnimation.repeatCount = 1.0
+            borderAnimation.duration = 0.5
+            
+            self.aboutTextView.layer.addAnimation(borderAnimation, forKey: "borderColor")
+            
+            self.aboutTextView.layer.borderColor = UIColor.clearColor().CGColor
+            
             user.saveInBackground()
         }
     }
@@ -193,9 +212,6 @@ class ProfileViewController: UIViewController {
             
             phoneLabel.text = (user.valueForKey("phoneNumber") as! String?) ?? ""
             emailLabel.text = (user.valueForKey("email") as! String?) ?? ""
-            
-            emailTopConstraint.constant = 8.0
-            phoneTopConstraint.constant = 8.0
             
             let animation = { () -> Void in
                 self.linkedInButton.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -2.0 * self.linkedInButton.frame.width, 0.0)
@@ -224,8 +240,6 @@ class ProfileViewController: UIViewController {
                 self.phoneField.hidden = false
                 self.emailField.hidden = false
                 
-                self.phoneTopConstraint.constant = 22
-                self.emailTopConstraint.constant = 22
             })
         }
     }
@@ -287,8 +301,27 @@ class ProfileViewController: UIViewController {
         textFields = [positionField.tag: "position", companyField.tag: "company", phoneField.tag: "phoneNumber", emailField.tag: "email"]
         
         aboutTextView.delegate = self
+        aboutTextView.layer.borderColor = UIColor.clearColor().CGColor
+        aboutTextView.layer.borderWidth = 1.0
+        
         
         displayUser()
+        
+        // Email and Phone Fields
+        let leftView = UILabel(frame: CGRectMake(10, 0, 7, 26))
+        leftView.backgroundColor = UIColor.clearColor()
+        
+        phoneField.leftView = leftView
+        phoneField.leftViewMode = UITextFieldViewMode.Always
+        phoneField.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
+        
+        let emailLeftView = UILabel(frame: CGRectMake(10, 0, 7, 26))
+        emailLeftView.backgroundColor = UIColor.clearColor()
+        
+        emailField.leftView = emailLeftView
+        emailField.leftViewMode = UITextFieldViewMode.Always
+        emailField.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -431,6 +464,12 @@ extension ProfileViewController: UITextFieldDelegate{
         if textField.tag == phoneField.tag{
             textField.text = enteredNumber
         }
+        
+        if textField.tag == phoneField.tag || textField.tag == emailField.tag{
+            textField.layer.borderColor = UIElementProperties.backgroundColor.CGColor
+            textField.layer.borderWidth = 1.0
+        }
+        
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
@@ -449,6 +488,10 @@ extension ProfileViewController: UITextFieldDelegate{
             textField.text = formatted
             user.setValue(formatted, forKey: "phoneNumber")
         }
+        
+        if textField.tag == phoneField.tag || textField.tag == emailField.tag{
+            textField.layer.borderWidth = 0.0
+        }
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -466,6 +509,8 @@ extension ProfileViewController: UITabBarDelegate{
 extension ProfileViewController: UITextViewDelegate{
     
     func textViewDidBeginEditing(textView: UITextView) {
+        textView.layer.borderColor = UIElementProperties.backgroundColor.CGColor
+        
         let animation = { () -> Void in
             self.view.center.y -= (216)
         }
@@ -474,6 +519,7 @@ extension ProfileViewController: UITextViewDelegate{
     }
     
     func textViewDidEndEditing(textView: UITextView) {
+        textView.layer.borderColor = UIColor.blackColor().CGColor
         
         UIView.animateWithDuration(0.3) { () -> Void in
             self.view.center.y += (216)

@@ -22,7 +22,7 @@ class ConnectionsViewController: UIViewController{
     
     var selectedUser: PFUser?
     
-    let colors: [UIColor] = [UIElementProperties.blueColor, UIElementProperties.orangeColor, UIElementProperties.yellowColor]
+    let colors: [UIColor] = [UIElementProperties.beigeColor]
     
     override func viewDidLoad() {
         super.viewDidLoad()
