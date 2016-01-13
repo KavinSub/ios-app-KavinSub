@@ -11,6 +11,9 @@ import CoreBluetooth
 import Parse
 
 class Exchange{
+    
+    static var newUserAdded = false
+    
     // Custom UUID's
     let exchangeCharacteristicUUID = CBUUID(string: "C7E4333D-E760-4769-975A-C5FB28ECCECA")
     let exchangeServiceUUID = CBUUID(string: "7C950867-15B1-47B3-B6B6-88BDF9B848E7")

@@ -89,6 +89,7 @@ class Bluetooth: NSObject{
         
         let otherUser = PFUser(withoutDataWithObjectId: otherUserObjectId as String)
         
+        Exchange.newUserAdded = true
         self.viewController.connectionCreated()
         connectedPeripherals.append(discoveredPeripheral!)
         

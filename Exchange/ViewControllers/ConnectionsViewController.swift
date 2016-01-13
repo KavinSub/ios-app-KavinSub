@@ -16,6 +16,10 @@ class ConnectionsViewController: UIViewController{
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTrailing: NSLayoutConstraint!
     var users: [PFUser]?
+    
+    // Array of name strings to filter. Order is as same as users.
+    
+    var filteredUsersNames: [String]?
     var filteredUsers: [PFUser]?
     
     var selectedUser: PFUser?
@@ -34,6 +38,13 @@ class ConnectionsViewController: UIViewController{
         
         filteredTableView.backgroundColor = UIColor.clearColor()
         filteredTableView.tag = 1
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        if Exchange.newUserAdded{
+            getUsers()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,7 +108,6 @@ class ConnectionsViewController: UIViewController{
                         
                         // Reload data in table view
                         self.tableView.reloadData()
-                        self.filteredTableView.reloadData()
                     }
                 })
                 
@@ -126,21 +136,27 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
             cell.setName(user.valueForKey("firstName") as! String? ?? "", lastName: user.valueForKey("lastName") as! String? ?? "")
             
             cell.setJob(user.valueForKey("position") as! String? ?? "", company: user.valueForKey("company") as! String? ?? "")
-            return cell
-        }else{
-            
-            let user = users![indexPath.section]
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("FilteredConnectionsCell") as! FilteredConnectionsCell
-            
-            cell.setProfileImage(user.valueForKey("profilePicture") as! PFFile?)
-            
-            cell.setName(user.valueForKey("firstName") as! String? ?? "", lastName: user.valueForKey("lastName") as! String? ?? "")
-            
-            cell.setJob(user.valueForKey("position") as! String? ?? "", company: user.valueForKey("company") as! String? ?? "")
             
             return cell
+        }else if tableView.tag == self.filteredTableView.tag{
+            
+            if let filteredUsers = filteredUsers{
+                
+                let user = filteredUsers[indexPath.section]
+                
+                let cell = tableView.dequeueReusableCellWithIdentifier("FilteredConnectionsCell") as! FilteredConnectionsCell
+                
+                cell.setProfileImage(user.valueForKey("profilePicture") as! PFFile?)
+                
+                cell.setName(user.valueForKey("firstName") as! String? ?? "", lastName: user.valueForKey("lastName") as! String? ?? "")
+                
+                cell.setJob(user.valueForKey("position") as! String? ?? "", company: user.valueForKey("company") as! String? ?? "")
+                
+                return cell
+            }
         }
+        
+        return UITableViewCell()
         
     }
     
@@ -152,7 +168,7 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
         if tableView.tag == self.tableView.tag{
             return self.users?.count ?? 0
         }else if tableView.tag == self.filteredTableView.tag{
-            return self.users?.count ?? 0
+            return self.filteredUsers?.count ?? 0
         }
         
         return 0
@@ -182,9 +198,12 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
 
 extension ConnectionsViewController: UISearchBarDelegate{
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        print("Editing")
         animateSearchBarUsed()
         searchBar.setShowsCancelButton(true, animated: true)
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        print("Edited")
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -192,7 +211,6 @@ extension ConnectionsViewController: UISearchBarDelegate{
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        print("Cancelled")
         animateSearchBarDone()
         searchBar.endEditing(true)
         searchBar.setShowsCancelButton(false, animated: true)
