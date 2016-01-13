@@ -81,6 +81,14 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
+        if let nav = self.navigationController{
+            nav.navigationBarHidden = true
+        }
+        
+        if let tab = self.tabBarController{
+            tab.tabBar.hidden = true
+        }
+        
         print("View has appeared")
     }
     

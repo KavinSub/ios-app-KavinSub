@@ -490,7 +490,6 @@ extension ProfileViewController: UITextFieldDelegate{
             let formatted = formatNumber(enteredNumber)
             textField.text = formatted
             user.setValue(formatted, forKey: "phoneNumber")
-            print("\(value) -> \(enteredNumber) -> \(formatted)")
         }
         
         if textField.tag == phoneField.tag || textField.tag == emailField.tag{
