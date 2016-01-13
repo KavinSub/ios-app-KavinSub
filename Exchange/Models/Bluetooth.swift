@@ -122,9 +122,6 @@ class Bluetooth: NSObject{
             }else{
                 if success{
                     print("Connection object saved succesfully.")
-                    // Call function that displays changes
-                    self.viewController.connectionCreated()
-                    
                 }else{
                     print("Conection object not saved.")
                 }
@@ -174,10 +171,10 @@ extension Bluetooth: CBCentralManagerDelegate{
         connectionStrength = RSSI.integerValue
         
         // Check if we have connected to this peripheral this session
-        if connectedPeripherals.contains(peripheral){
+        /*if connectedPeripherals.contains(peripheral){
             print("Already connected with this peripheral.")
             return
-        }
+        }*/
         
             // Save local copy
             self.discoveredPeripheral = peripheral
@@ -299,7 +296,7 @@ extension Bluetooth: CBPeripheralDelegate{
         }else{
             if let value = characteristic.value{
                 // If the connection value is strong enough, proceed
-                if connectionStrength > minConnectionStrength{
+                if connectionStrength > minConnectionStrength && !connectedPeripherals.contains(peripheral){
                     let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
                     print("\(objectID)")
                     

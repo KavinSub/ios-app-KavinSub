@@ -183,6 +183,8 @@ class OtherUserViewController: UIViewController {
 
 extension OtherUserViewController: CNContactViewControllerDelegate{
     func contactViewController(viewController: CNContactViewController, didCompleteWithContact contact: CNContact?) {
-        print("...")
+        if let nav = self.navigationController{
+            nav.navigationBarHidden = true
+        }
     }
 }

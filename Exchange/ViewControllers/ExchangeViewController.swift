@@ -28,7 +28,9 @@ class ExchangeViewController: UIViewController {
     
     // Status view button
     var statusButton: UIButton?
-
+    
+    var customRipple = false
+    
     var rippleTimer: NSTimer?
     
     var dots = 0
@@ -52,24 +54,49 @@ class ExchangeViewController: UIViewController {
     }
     
     func createRipple(){
+        if !customRipple{
+            // Draw blue circle radiating from center
+            
+            let frame = CGRectMake(self.view.center.x - initialValue * shrinkFactor/2.0, self.view.center.y - initialValue * shrinkFactor/2.0, initialValue * shrinkFactor, initialValue * shrinkFactor)
+            let blueCircle = UIView(frame: frame)
+            blueCircle.backgroundColor = UIElementProperties.backgroundColor
+            
+            blueCircle.layer.cornerRadius = blueCircle.frame.width/2.0
+            blueCircle.layer.masksToBounds = true
+            
+            self.view.insertSubview(blueCircle, belowSubview: statusButton!)
+            
+            let circleAnimation = { () -> Void in
+                blueCircle.transform = CGAffineTransformScale(CGAffineTransformIdentity, 4.0, 4.0)
+                blueCircle.backgroundColor = UIColor.whiteColor()
+            }
+            
+            UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: circleAnimation) { (succeeded: Bool) -> Void in
+                blueCircle.removeFromSuperview()
+            }
+        }
+    }
+    
+    func createRippleWithColor(color: UIColor){
         // Draw blue circle radiating from center
-        
+        customRipple = true
         let frame = CGRectMake(self.view.center.x - initialValue * shrinkFactor/2.0, self.view.center.y - initialValue * shrinkFactor/2.0, initialValue * shrinkFactor, initialValue * shrinkFactor)
-        let blueCircle = UIView(frame: frame)
-        blueCircle.backgroundColor = UIElementProperties.backgroundColor
+        let circle = UIView(frame: frame)
+        circle.backgroundColor = color
         
-        blueCircle.layer.cornerRadius = blueCircle.frame.width/2.0
-        blueCircle.layer.masksToBounds = true
+        circle.layer.cornerRadius = circle.frame.width/2.0
+        circle.layer.masksToBounds = true
         
-        self.view.insertSubview(blueCircle, belowSubview: statusButton!)
+        self.view.insertSubview(circle, belowSubview: statusButton!)
         
         let circleAnimation = { () -> Void in
-            blueCircle.transform = CGAffineTransformScale(CGAffineTransformIdentity, 4.0, 4.0)
-            blueCircle.backgroundColor = UIElementProperties.textColor
+            circle.transform = CGAffineTransformScale(CGAffineTransformIdentity, 4.0, 4.0)
+            circle.backgroundColor = UIColor.whiteColor()
         }
         
         UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: circleAnimation) { (succeeded: Bool) -> Void in
-            blueCircle.removeFromSuperview()
+            self.customRipple = false
+            circle.removeFromSuperview()
         }
     }
     
@@ -175,7 +202,44 @@ class ExchangeViewController: UIViewController {
     
     func connectionCreated(){
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
-        statusButton?.backgroundColor = UIElementProperties.connectionStatus
+        //statusButton?.backgroundColor = UIElementProperties.connectionStatus
+        let circle = UIView(frame: CGRectMake(0, 0, 1, 1))
+        circle.backgroundColor = UIColor(red: 255.0/255.0, green: 192.0/255.0, blue: 14.0/255.0, alpha: 1.0)
+        circle.center.x = statusButton!.frame.width/2.0
+        circle.center.y = statusButton!.frame.height/2.0
+        circle.userInteractionEnabled = false
+        
+        self.statusButton!.addSubview(circle)
+        let radius = statusButton!.frame.width/2.0
+        let animation = { () -> Void in
+            circle.transform = CGAffineTransformScale(CGAffineTransformIdentity, radius * 2.0, radius * 2.0)
+        }
+        
+        UIView.animateWithDuration(0.5, animations: animation) { (success: Bool) -> Void in
+            let whiteCircle = UIView(frame: CGRectMake(0, 0, 0.1, 0.1))
+            whiteCircle.backgroundColor = UIColor.whiteColor()
+            whiteCircle.center.x = self.statusButton!.frame.width/2.0
+            whiteCircle.center.y = self.statusButton!.frame.height/2.0
+            whiteCircle.userInteractionEnabled = false
+            
+            self.statusButton!.insertSubview(whiteCircle, aboveSubview: circle)
+            
+            let animation = {() -> Void in
+                whiteCircle.transform = CGAffineTransformScale(CGAffineTransformIdentity, radius * 2.0 * 10, radius * 2.0 * 10)
+            }
+            
+            UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
+                circle.removeFromSuperview()
+                whiteCircle.removeFromSuperview()
+                
+                let orangeColor = UIColor(red: 255.0/255.0, green: 192.0/255.0, blue: 14.0/255.0, alpha: 1.0)
+                self.createRippleWithColor(orangeColor)
+                
+            })
+        }
+        
+
+        
     }
     
     func setupStatusView(){
