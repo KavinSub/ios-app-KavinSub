@@ -381,6 +381,9 @@ class ProfileViewController: UIViewController {
         
         // vi) Phone Number
         enteredNumber = user.valueForKey("phoneNumber") as! String? ?? ""
+        if enteredNumber != ""{
+            enteredNumber = stripNonNumbers(enteredNumber)
+        }
     }
     
     // UI Changes that cannot be done in storyboard
@@ -487,6 +490,7 @@ extension ProfileViewController: UITextFieldDelegate{
             let formatted = formatNumber(enteredNumber)
             textField.text = formatted
             user.setValue(formatted, forKey: "phoneNumber")
+            print("\(value) -> \(enteredNumber) -> \(formatted)")
         }
         
         if textField.tag == phoneField.tag || textField.tag == emailField.tag{
