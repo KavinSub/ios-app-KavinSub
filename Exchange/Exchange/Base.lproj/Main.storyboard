@@ -51,7 +51,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="X3d-OR-OOz" firstAttribute="top" secondItem="kTU-Rg-VSE" secondAttribute="bottom" constant="78" id="5cE-m1-dpu"/>
                             <constraint firstItem="Uv2-xG-msE" firstAttribute="top" secondItem="X3d-OR-OOz" secondAttribute="bottom" constant="8" id="8tQ-P7-pDe"/>
@@ -154,7 +154,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="FMm-kY-Pfi" firstAttribute="top" secondItem="7ez-J8-gXC" secondAttribute="bottom" constant="8" id="1x3-sr-DSO"/>
                             <constraint firstItem="qYe-vT-Mlz" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="3wl-Ki-BYu"/>
@@ -244,7 +244,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.97647058823529409" green="0.94901960784313721" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="FME-M9-ch4" firstAttribute="top" secondItem="2JC-o8-iFV" secondAttribute="bottom" constant="8" id="0nb-DL-R25"/>
                             <constraint firstItem="kkp-Q2-zjf" firstAttribute="top" secondItem="Ygd-sl-6zy" secondAttribute="bottom" id="Oid-1j-tQa"/>
