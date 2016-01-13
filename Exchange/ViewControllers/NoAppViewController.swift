@@ -14,6 +14,8 @@ class NoAppViewController: UIViewController{
 
     @IBOutlet weak var phoneEmailControl: UISegmentedControl!
     
+    @IBOutlet weak var sendButton: UIButton!
+    
     @IBAction func toggleField(sender: UISegmentedControl) {
         // 0 -> phoneField
         // 1 -> emailField
@@ -34,6 +36,8 @@ class NoAppViewController: UIViewController{
         }
     }
     
+    
+    
     @IBOutlet weak var phoneField: UITextField!
     
     @IBOutlet weak var emailField: UITextField!
@@ -41,6 +45,8 @@ class NoAppViewController: UIViewController{
     var enteredNumber = ""
     
     var enteredEmail = ""
+
+    var overlap: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +80,11 @@ class NoAppViewController: UIViewController{
         phoneEmailControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIElementProperties.textColor], forState: UIControlState.Normal)
         phoneEmailControl.setTitleTextAttributes([NSForegroundColorAttributeName: UIElementProperties.textColor], forState: UIControlState.Selected)
         
+        
+        phoneEmailControl.tintColor = UIColor(red: 64.0/255.0, green: 192.0/255.0, blue: 203.0/255.0, alpha: 1.0)
+        
+        // iv) Keyboard stuff
+        overlap =  self.sendButton.frame.origin.y + self.sendButton.frame.height - (self.view.frame.height - 216)
         
     }
     
@@ -194,6 +205,14 @@ class NoAppViewController: UIViewController{
 
 extension NoAppViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(textField: UITextField) {
+        print("\(overlap!)")
+        // If the keyboard is on top of the button
+        if overlap! > 0{
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.view.center.y -= (self.overlap! + 10)
+            })
+        }
+        
         if textField.tag == 0{
             textField.text = enteredNumber
         }
@@ -203,6 +222,12 @@ extension NoAppViewController: UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        if overlap! > 0{
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.view.center.y += (self.overlap! + 10)
+            })
+        }
+        
         if textField.tag == 0{
             if textField.text?.characters.count >= 0 && textField.text?.characters.count <= 10{
                 enteredNumber = stripNonNumbers(textField.text! ?? "")

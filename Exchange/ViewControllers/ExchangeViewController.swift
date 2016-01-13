@@ -100,7 +100,6 @@ class ExchangeViewController: UIViewController {
     }
         
     override func viewDidLoad(){
-        print("Loaded")
         setupStatusView()
         scanningLabel.text = baseText
         setScanningLabelTimer()
@@ -135,7 +134,6 @@ class ExchangeViewController: UIViewController {
 
     override func viewDidAppear(animated: Bool) {
         statusButton?.backgroundColor = UIElementProperties.textColor
-        print("Appeared")
         if hasLoaded{
             if ExchangeViewController.allowExchange{
                 if !hasTurnedOnFirstTime{

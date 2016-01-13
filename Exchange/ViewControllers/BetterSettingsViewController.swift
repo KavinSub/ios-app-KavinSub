@@ -23,6 +23,10 @@ class BetterSettingsViewController: UITableViewController {
     
     @IBOutlet weak var switchControl: UISwitch!
     
+    @IBOutlet weak var logoutButton: UIButton!
+    
+    @IBOutlet weak var deleteButton: UIButton!
+    
     @IBAction func toggleExchange(sender: AnyObject) {
         let value = switchControl.on
         
@@ -31,6 +35,9 @@ class BetterSettingsViewController: UITableViewController {
     }
     
     @IBAction func logoutUser(sender: AnyObject) {
+        
+        logoutButton.backgroundColor = UIColor.whiteColor()
+        
         let message = "Are you sure you want to logout?"
         
         let alertController = UIAlertController(title: nil, message: message, preferredStyle: .ActionSheet)
@@ -46,6 +53,7 @@ class BetterSettingsViewController: UITableViewController {
         self.presentViewController(alertController, animated: true, completion: nil)
     }
     
+
     func logoutAccount(){
         NSUserDefaults.standardUserDefaults().setBool(false, forKey: "userLoggedIn")
         PFUser.logOut()
@@ -138,6 +146,9 @@ class BetterSettingsViewController: UITableViewController {
         firstNameFieldCount.hidden = true
         lastNameFieldCount.hidden = true
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboards"))
+        self.view.addGestureRecognizer(tapGesture)
+        
         switchControl.setOn(NSUserDefaults.standardUserDefaults().valueForKey("allowExchange") as! Bool? ?? true, animated: true)
         
         self.setNeedsStatusBarAppearanceUpdate()
@@ -150,6 +161,9 @@ class BetterSettingsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func dismissKeyboards(){
+        self.view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation

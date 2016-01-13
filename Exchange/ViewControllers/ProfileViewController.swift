@@ -450,6 +450,11 @@ extension ProfileViewController: UITextFieldDelegate{
             user.setValue(formatted, forKey: "phoneNumber")
         }
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 extension ProfileViewController: UITabBarDelegate{
