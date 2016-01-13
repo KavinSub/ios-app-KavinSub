@@ -12,11 +12,11 @@ import Parse
 class ConnectionsViewController: UIViewController{
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filteredTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTrailing: NSLayoutConstraint!
-    
-    @IBOutlet weak var cancelButton: UIButton!
     var users: [PFUser]?
+    var filteredUsers: [PFUser]?
     
     var selectedUser: PFUser?
     
@@ -30,7 +30,10 @@ class ConnectionsViewController: UIViewController{
         tableView.backgroundColor = UIColor.clearColor()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tag = 0
         
+        filteredTableView.backgroundColor = UIColor.clearColor()
+        filteredTableView.tag = 1
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,6 +97,7 @@ class ConnectionsViewController: UIViewController{
                         
                         // Reload data in table view
                         self.tableView.reloadData()
+                        self.filteredTableView.reloadData()
                     }
                 })
                 
@@ -109,17 +113,35 @@ class ConnectionsViewController: UIViewController{
 
 extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let user = users![indexPath.section]
+        print("Table View -> \(tableView.tag)")
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ConnectionsCell") as! ConnectionsCell
+        if tableView.tag == self.tableView.tag{
+            
+            let user = users![indexPath.section]
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("ConnectionsCell") as! ConnectionsCell
+            
+            cell.setProfileImage(user.valueForKey("profilePicture") as! PFFile?)
+            
+            cell.setName(user.valueForKey("firstName") as! String? ?? "", lastName: user.valueForKey("lastName") as! String? ?? "")
+            
+            cell.setJob(user.valueForKey("position") as! String? ?? "", company: user.valueForKey("company") as! String? ?? "")
+            return cell
+        }else{
+            
+            let user = users![indexPath.section]
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("FilteredConnectionsCell") as! FilteredConnectionsCell
+            
+            cell.setProfileImage(user.valueForKey("profilePicture") as! PFFile?)
+            
+            cell.setName(user.valueForKey("firstName") as! String? ?? "", lastName: user.valueForKey("lastName") as! String? ?? "")
+            
+            cell.setJob(user.valueForKey("position") as! String? ?? "", company: user.valueForKey("company") as! String? ?? "")
+            
+            return cell
+        }
         
-        cell.setProfileImage(user.valueForKey("profilePicture") as! PFFile?)
-        
-        cell.setName(user.valueForKey("firstName") as! String? ?? "", lastName: user.valueForKey("lastName") as! String? ?? "")
-        
-        cell.setJob(user.valueForKey("position") as! String? ?? "", company: user.valueForKey("company") as! String? ?? "")
-        
-        return cell
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -127,11 +149,21 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.users?.count ?? 0
+        if tableView.tag == self.tableView.tag{
+            return self.users?.count ?? 0
+        }else if tableView.tag == self.filteredTableView.tag{
+            return self.users?.count ?? 0
+        }
+        
+        return 0
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 1.0
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 120.0
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -152,6 +184,7 @@ extension ConnectionsViewController: UISearchBarDelegate{
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         print("Editing")
         animateSearchBarUsed()
+        searchBar.setShowsCancelButton(true, animated: true)
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -160,12 +193,22 @@ extension ConnectionsViewController: UISearchBarDelegate{
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         print("Cancelled")
+        animateSearchBarDone()
+        searchBar.endEditing(true)
+        searchBar.setShowsCancelButton(false, animated: true)
     }
 
     func animateSearchBarUsed(){
-        self.searchTrailing.constant += self.cancelButton.frame.width
         UIView.animateWithDuration(0.3) { () -> Void in
-            self.view.layoutIfNeeded()
+            self.tableView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * self.view.frame.width, 0.0)
+            self.filteredTableView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, -1.0 * (self.view.frame.width - (self.view.frame.width - self.filteredTableView.frame.width)/2.0 + 5), 0.0)
+        }
+    }
+    
+    func animateSearchBarDone(){
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.tableView.transform = CGAffineTransformIdentity
+            self.filteredTableView.transform = CGAffineTransformIdentity
         }
     }
 }

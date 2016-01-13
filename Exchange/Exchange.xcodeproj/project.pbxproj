@@ -32,6 +32,7 @@
 		AE4D54E21C4305CF0022DB3B /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54E11C4305CF0022DB3B /* NetworkHelper.swift */; };
 		AE4D54E41C430AB20022DB3B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54E31C430AB20022DB3B /* Reachability.swift */; };
 		AE7340A31C1BB5A200A6509E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */; };
+		AE81D7631C46081700E3B3B4 /* FilteredConnectionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE81D7621C46081700E3B3B4 /* FilteredConnectionsCell.swift */; };
 		AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */; };
 		AEB0A9C31C2BA5B500C8117E /* UsernameLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */; };
 		AEBFA4E91C3DFB6C00B5E8F8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */; };
@@ -78,6 +79,7 @@
 		AE4D54E11C4305CF0022DB3B /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		AE4D54E31C430AB20022DB3B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AE81D7621C46081700E3B3B4 /* FilteredConnectionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredConnectionsCell.swift; sourceTree = "<group>"; };
 		AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		AEB0A9C21C2BA5B500C8117E /* UsernameLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameLoginViewController.swift; sourceTree = "<group>"; };
 		AEBFA4E81C3DFB6C00B5E8F8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 				AE4D54C31C41D3F50022DB3B /* TextFieldEffects */,
 				AE0B4A981C375DD9008074EC /* UIElementProperties.swift */,
 				AEBFA4F21C4055EF00B5E8F8 /* ConnectionsCell.swift */,
+				AE81D7621C46081700E3B3B4 /* FilteredConnectionsCell.swift */,
 			);
 			path = Views;
 			sourceTree = SOURCE_ROOT;
@@ -362,6 +365,7 @@
 				AE4D54DE1C42068A0022DB3B /* NoAppViewController.swift in Sources */,
 				AE2240C31C0FD625004CBFCA /* PhotoDeleteHelper.swift in Sources */,
 				AEBFA4E91C3DFB6C00B5E8F8 /* ProfileViewController.swift in Sources */,
+				AE81D7631C46081700E3B3B4 /* FilteredConnectionsCell.swift in Sources */,
 				AE4D54E01C42FEF10022DB3B /* Task.swift in Sources */,
 				AE4D54D51C41D3F50022DB3B /* KaedeTextField.swift in Sources */,
 				AE4D54E21C4305CF0022DB3B /* NetworkHelper.swift in Sources */,
