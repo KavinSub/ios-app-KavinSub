@@ -99,7 +99,7 @@ class ProfileViewController: UIViewController {
             
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 
-                self.aboutTextView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0.0, 1.0 * self.infoView.frame.height - 20)
+                self.aboutTextView.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0.0, 1.0 * self.infoView.frame.height - (self.infoDoneButton.frame.height * 3.0 + 10.0))
                 
                 self.aboutTextView.backgroundColor = UIColor.whiteColor()
             })
