@@ -16,10 +16,8 @@ class ConnectionsViewController: UIViewController{
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTrailing: NSLayoutConstraint!
     var users: [PFUser]?
-    
+    var usersNames: [String]?
     // Array of name strings to filter. Order is as same as users.
-    
-    var filteredUsersNames: [String]?
     var filteredUsers: [PFUser]?
     
     var selectedUser: PFUser?
@@ -105,6 +103,15 @@ class ConnectionsViewController: UIViewController{
                     if let users = result as! [PFUser]?{
                         self.users = users
                         print("Found \(self.users!.count) users.")
+                        
+                        // For each user, concat their names and put them into an array
+                        self.usersNames = []
+                        for user in users{
+                            let name = (user.valueForKey("firstName") as! String? ?? "") + " " + (user.valueForKey("lastName") as! String? ?? "")
+                            self.usersNames!.append(name.uppercaseString)
+                        }
+                        
+                        print("\(self.usersNames!)")
                         
                         // Reload data in table view
                         self.tableView.reloadData()
@@ -203,11 +210,26 @@ extension ConnectionsViewController: UISearchBarDelegate{
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Edited")
-    }
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        print("Searching")
+        if let usersNames = usersNames{
+            let filteredUsersNames = usersNames.filter({ (name: String) -> Bool in
+                name.containsString(searchText.uppercaseString)
+            })
+            
+            if filteredUsersNames.count > 0{
+                var indexes: [Int] = []
+                for name in filteredUsersNames{
+                    indexes.append(self.usersNames!.indexOf(name)!)
+                }
+                filteredUsers = []
+                for index in indexes{
+                    filteredUsers!.append(users![index])
+                }
+            }else{
+                filteredUsers = []
+            }
+            
+            filteredTableView.reloadData()
+        }
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
