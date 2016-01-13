@@ -86,6 +86,10 @@ class NoAppViewController: UIViewController{
         // iv) Keyboard stuff
         overlap =  self.sendButton.frame.origin.y + self.sendButton.frame.height - (self.view.frame.height - 216)
         
+        // v) Send Button
+        sendButton.layer.cornerRadius = 3.0
+        sendButton.layer.masksToBounds = true
+        
     }
     
     

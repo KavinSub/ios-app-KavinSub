@@ -111,8 +111,6 @@ class ConnectionsViewController: UIViewController{
                             self.usersNames!.append(name.uppercaseString)
                         }
                         
-                        print("\(self.usersNames!)")
-                        
                         // Reload data in table view
                         self.tableView.reloadData()
                     }
@@ -130,7 +128,6 @@ class ConnectionsViewController: UIViewController{
 
 extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        print("Table View -> \(tableView.tag)")
         
         if tableView.tag == self.tableView.tag{
             
