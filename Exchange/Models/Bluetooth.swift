@@ -180,8 +180,10 @@ extension Bluetooth: CBCentralManagerDelegate{
             self.discoveredPeripheral = peripheral
             
             // Connect
+        if !connectedPeripherals.contains(peripheral){
             print("Connecting to \(peripheral.name)")
             self.centralManager?.connectPeripheral(peripheral, options: nil)
+        }
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
@@ -296,7 +298,7 @@ extension Bluetooth: CBPeripheralDelegate{
         }else{
             if let value = characteristic.value{
                 // If the connection value is strong enough, proceed
-                if connectionStrength > minConnectionStrength && !connectedPeripherals.contains(peripheral){
+                if connectionStrength > minConnectionStrength{
                     let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
                     print("\(objectID)")
                     

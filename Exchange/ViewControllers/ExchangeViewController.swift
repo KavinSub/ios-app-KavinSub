@@ -35,6 +35,8 @@ class ExchangeViewController: UIViewController {
     
     var dots = 0
     
+    var exchangeImageView: UIImageView?
+    
     @IBOutlet weak var scanningLabel: UILabel!
     let baseText = "Scanning for devices"
     
@@ -77,7 +79,7 @@ class ExchangeViewController: UIViewController {
         }
     }
     
-    func createRippleWithColor(color: UIColor){
+    func createRippleWithColor(color: UIColor, scale: CGFloat){
         // Draw blue circle radiating from center
         customRipple = true
         let frame = CGRectMake(self.view.center.x - initialValue * shrinkFactor/2.0, self.view.center.y - initialValue * shrinkFactor/2.0, initialValue * shrinkFactor, initialValue * shrinkFactor)
@@ -90,7 +92,7 @@ class ExchangeViewController: UIViewController {
         self.view.insertSubview(circle, belowSubview: statusButton!)
         
         let circleAnimation = { () -> Void in
-            circle.transform = CGAffineTransformScale(CGAffineTransformIdentity, 4.0, 4.0)
+            circle.transform = CGAffineTransformScale(CGAffineTransformIdentity, scale, scale)
             circle.backgroundColor = UIColor.whiteColor()
         }
         
@@ -194,7 +196,7 @@ class ExchangeViewController: UIViewController {
     }
     
     override func viewDidDisappear(animated: Bool) {
-        
+        print("Disappeared")
         turnOffBluetooth()
         
         super.viewDidDisappear(animated)
@@ -204,42 +206,30 @@ class ExchangeViewController: UIViewController {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         //statusButton?.backgroundColor = UIElementProperties.connectionStatus
         let circle = UIView(frame: CGRectMake(0, 0, 1, 1))
-        circle.backgroundColor = UIColor(red: 255.0/255.0, green: 192.0/255.0, blue: 14.0/255.0, alpha: 1.0)
+        circle.backgroundColor = UIElementProperties.orangeColor
         circle.center.x = statusButton!.frame.width/2.0
         circle.center.y = statusButton!.frame.height/2.0
         circle.userInteractionEnabled = false
         
-        self.statusButton!.addSubview(circle)
+        self.statusButton!.insertSubview(circle, aboveSubview: self.exchangeImageView!)
         let radius = statusButton!.frame.width/2.0
         let animation = { () -> Void in
             circle.transform = CGAffineTransformScale(CGAffineTransformIdentity, radius * 2.0, radius * 2.0)
         }
         
         UIView.animateWithDuration(0.5, animations: animation) { (success: Bool) -> Void in
-            let whiteCircle = UIView(frame: CGRectMake(0, 0, 0.1, 0.1))
-            whiteCircle.backgroundColor = UIColor.clearColor()
-            whiteCircle.center.x = self.statusButton!.frame.width/2.0
-            whiteCircle.center.y = self.statusButton!.frame.height/2.0
-            whiteCircle.userInteractionEnabled = false
-            
-            self.statusButton!.insertSubview(whiteCircle, aboveSubview: circle)
-            
+
             let animation = {() -> Void in
-                whiteCircle.transform = CGAffineTransformScale(CGAffineTransformIdentity, radius * 2.0 * 10, radius * 2.0 * 10)
+                circle.alpha = 0.0
             }
             
             UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
                 circle.removeFromSuperview()
-                whiteCircle.removeFromSuperview()
                 
-                let orangeColor = UIColor(red: 255.0/255.0, green: 192.0/255.0, blue: 14.0/255.0, alpha: 1.0)
-                self.createRippleWithColor(orangeColor)
+                self.createRippleWithColor(UIElementProperties.orangeColor, scale: 5.0)
                 
             })
         }
-        
-
-        
     }
     
     func setupStatusView(){
@@ -252,6 +242,15 @@ class ExchangeViewController: UIViewController {
         statusButton!.layer.masksToBounds = true
         statusButton!.layer.borderColor = UIElementProperties.backgroundColor.CGColor
         statusButton!.layer.borderWidth = 3.0
+        
+        // Add Exchange Icon
+        exchangeImageView = UIImageView(frame: CGRectMake(0, 0, 80, 80))
+        exchangeImageView!.image = UIImage(named: "ExchangeLogo")
+        exchangeImageView!.center.x = statusButton!.frame.width/2.0
+        exchangeImageView!.center.y = statusButton!.frame.width/2.0
+        exchangeImageView!.userInteractionEnabled = false
+        
+        statusButton!.addSubview(exchangeImageView!)
         
         // Add actions
         statusButton!.addTarget(self, action: Selector("statusTouchDown"), forControlEvents: UIControlEvents.TouchDown)
@@ -273,8 +272,6 @@ class ExchangeViewController: UIViewController {
     }
     
     func turnOnBluetooth(){
-        //bluetoothHandler?.setupAsCentral()
-        //bluetoothHandler?.setupAsPeripheral()
         bluetoothHandler?.scan()
         bluetoothHandler?.advertise()
     }
