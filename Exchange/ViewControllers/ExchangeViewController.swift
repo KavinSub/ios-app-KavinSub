@@ -217,7 +217,7 @@ class ExchangeViewController: UIViewController {
         
         UIView.animateWithDuration(0.5, animations: animation) { (success: Bool) -> Void in
             let whiteCircle = UIView(frame: CGRectMake(0, 0, 0.1, 0.1))
-            whiteCircle.backgroundColor = UIColor.whiteColor()
+            whiteCircle.backgroundColor = UIColor.clearColor()
             whiteCircle.center.x = self.statusButton!.frame.width/2.0
             whiteCircle.center.y = self.statusButton!.frame.height/2.0
             whiteCircle.userInteractionEnabled = false
