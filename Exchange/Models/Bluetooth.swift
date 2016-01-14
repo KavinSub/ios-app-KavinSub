@@ -27,6 +27,8 @@ class Bluetooth: NSObject{
     var connectionStrength: Int = -999
     let minConnectionStrength = -35
     
+    let reachability: Reachability
+    
     var connectedPeripherals: [CBPeripheral] = []
     
     var exchangedData: NSData?{
@@ -49,7 +51,7 @@ class Bluetooth: NSObject{
     
     init(viewController: ExchangeViewController){
         self.viewController = viewController
-        
+        reachability = try! Reachability.reachabilityForInternetConnection()
         super.init()
     }
     
@@ -99,11 +101,9 @@ class Bluetooth: NSObject{
         
         connectionQuery.whereKey("this_user", equalTo: currentUser!)
         connectionQuery.whereKey("other_user", equalTo: otherUser)
-        do{
-            connectionObject = try connectionQuery.getFirstObject()
-        }catch{
-            print("Error occured while perform connection query.")
-        }
+        
+        let task = connectionQuery.getFirstObjectInBackground()
+        connectionObject = task.result as! PFObject?
         
         if(connectionObject != nil){
             print("Connection already exists.")
@@ -302,7 +302,7 @@ extension Bluetooth: CBPeripheralDelegate{
                     let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
                     print("\(objectID)")
                     
-                    if ExchangeViewController.allowExchange{
+                    if ExchangeViewController.allowExchange && reachability.currentReachabilityStatus != Reachability.NetworkStatus.NotReachable{
                         createConnection(value)
                     }
                 }
