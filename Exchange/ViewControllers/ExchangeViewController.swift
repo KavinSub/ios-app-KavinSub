@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import CoreBluetooth
 import Parse
 import AudioToolbox
@@ -17,6 +18,11 @@ class ExchangeViewController: UIViewController {
     
     static var allowExchange: Bool = NSUserDefaults.standardUserDefaults().valueForKey("allowExchange") as! Bool? ?? true
     
+    @IBOutlet weak var sarcasmLabel: UILabel!
+    
+    let sarcasticStrings = ["You must be pretty bored.", "Get back to work!", "Don't you have better things to do?",
+        "Each time you press that button, a programmer somewhere dies. Just think about that.", "I'm sorry, are you expecting something to happen?", "Don't you have a life to get back to? Oh wait."]
+    
     let exchange = Exchange()
     var bluetoothHandler: Bluetooth?
     
@@ -26,8 +32,12 @@ class ExchangeViewController: UIViewController {
     var hasLoaded = false
     var hasTurnedOnFirstTime = false
     
+    let startThreshold = 12
+    let interval = 5
+    
     // Status view button
     var statusButton: UIButton?
+    var buttonPressCount = 0
     
     var customRipple = false
     
@@ -113,6 +123,36 @@ class ExchangeViewController: UIViewController {
     }
     
     func statusTouchUpInside(){
+        buttonPressCount = buttonPressCount + 1
+        if buttonPressCount == startThreshold{
+            var randomIndex: Int = 0
+            arc4random_buf(&randomIndex, sizeof(Int))
+            randomIndex =  abs(randomIndex) % sarcasticStrings.count
+            let sarcasticString = sarcasticStrings[randomIndex]
+            sarcasmLabel.text = sarcasticString
+            UIView.animateWithDuration(0.7, animations: { () -> Void in
+                self.sarcasmLabel.alpha = 1.0
+            })
+        }
+        
+        if buttonPressCount > startThreshold && (buttonPressCount - startThreshold) % interval == 0{
+            var randomIndex: Int = 0
+            arc4random_buf(&randomIndex, sizeof(Int))
+            randomIndex =  abs(randomIndex) % sarcasticStrings.count
+            let sarcasticString = sarcasticStrings[randomIndex]
+            
+            let fade = {() -> Void in
+                self.sarcasmLabel.alpha = 0.0
+            }
+            
+            UIView.animateWithDuration(0.7, animations: fade, completion: { (succeeded: Bool) -> Void in
+                self.sarcasmLabel.text = sarcasticString
+                UIView.animateWithDuration(0.7, animations: { () -> Void in
+                    self.sarcasmLabel.alpha = 1.0
+                })
+            })
+        }
+        
         UIView.animateWithDuration(0.2) { () -> Void in
             self.statusButton!.transform = CGAffineTransformIdentity
         }
@@ -129,6 +169,8 @@ class ExchangeViewController: UIViewController {
     }
         
     override func viewDidLoad(){
+        sarcasmLabel.alpha = 0
+        sarcasmLabel.backgroundColor = UIColor.clearColor()
         setupStatusView()
         scanningLabel.text = baseText
         setScanningLabelTimer()
@@ -205,31 +247,41 @@ class ExchangeViewController: UIViewController {
     func connectionCreated(){
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
         //statusButton?.backgroundColor = UIElementProperties.connectionStatus
-        let circle = UIView(frame: CGRectMake(0, 0, 1, 1))
+        let radius = statusButton!.frame.width/2.0
+        let circle = UIView(frame: CGRectMake(0, 0, radius * 2.0, radius * 2.0))
         circle.backgroundColor = UIElementProperties.orangeColor
         circle.center.x = statusButton!.frame.width/2.0
         circle.center.y = statusButton!.frame.height/2.0
+        circle.layer.cornerRadius = radius
+        circle.alpha = 0.0
         circle.userInteractionEnabled = false
         
         self.statusButton!.insertSubview(circle, aboveSubview: self.exchangeImageView!)
-        let radius = statusButton!.frame.width/2.0
-        let animation = { () -> Void in
-            circle.transform = CGAffineTransformScale(CGAffineTransformIdentity, radius * 2.0, radius * 2.0)
+        let shrinkAnimation = {() -> Void in
+            circle.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.0/(radius*2.0), 1.0/(radius * 2.0))
         }
-        
-        UIView.animateWithDuration(0.5, animations: animation) { (success: Bool) -> Void in
-
+        UIView.animateWithDuration(0.01, animations: shrinkAnimation) { (success: Bool) -> Void in
+            circle.alpha = 1.0
+            
             let animation = {() -> Void in
-                circle.alpha = 0.0
+                circle.transform = CGAffineTransformIdentity
             }
             
-            UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
-                circle.removeFromSuperview()
-                
-                self.createRippleWithColor(UIElementProperties.orangeColor, scale: 5.0)
-                
-            })
+                UIView.animateWithDuration(0.5, animations: animation) { (success: Bool) -> Void in
+                    
+                    let animation = {() -> Void in
+                        circle.alpha = 0.0
+                    }
+                    
+                    UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
+                        circle.removeFromSuperview()
+                        
+                        self.createRippleWithColor(UIElementProperties.orangeColor, scale: 5.0)
+                        
+                    })
+                }
         }
+
     }
     
     func setupStatusView(){
@@ -257,7 +309,8 @@ class ExchangeViewController: UIViewController {
         statusButton!.addTarget(self, action: Selector("statusTouchUpInside"), forControlEvents: UIControlEvents.TouchUpInside)
         statusButton!.addTarget(self, action: Selector("statusTouchUpOutside"), forControlEvents: UIControlEvents.TouchUpOutside)
         
-        self.view.addSubview(statusButton!)
+        //self.view.addSubview(statusButton!)
+        self.view.insertSubview(statusButton!, belowSubview: sarcasmLabel)
     }
     
     func setupTimers(){
