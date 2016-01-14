@@ -44,6 +44,7 @@ class ConnectionsCell: UITableViewCell {
     
     func setName(firstName: String, lastName: String){
         nameLabel.text = "\(firstName) \(lastName)"
+        
     }
     
     func setJob(position: String, company: String){

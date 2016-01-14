@@ -17,7 +17,6 @@ class FilteredConnectionsCell: UITableViewCell {
     
     @IBOutlet weak var jobLabel: UILabel!
     
-    
     func setProfileImage(imageFile: PFFile?){
         if let imageFile = imageFile{
             

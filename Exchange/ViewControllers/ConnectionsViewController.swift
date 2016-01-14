@@ -191,6 +191,16 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.layer.masksToBounds = true
         
         cell.contentView.backgroundColor = colors[indexPath.section % colors.count]
+        
+        if tableView.tag == self.tableView.tag{
+            let cCell = cell as! ConnectionsCell
+            cCell.nameLabel.adjustsFontSizeToFitWidth = true
+            cCell.nameLabel.minimumScaleFactor = 0
+        }else if tableView.tag == self.filteredTableView.tag{
+            let cCell = cell as! FilteredConnectionsCell
+            cCell.nameLabel.adjustsFontSizeToFitWidth = true
+            cCell.nameLabel.minimumScaleFactor = 0
+        }
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
