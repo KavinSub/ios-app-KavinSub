@@ -1139,6 +1139,11 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Jmv-Mr-H4H">
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="UaD-Ai-gUU" kind="relationship" relationship="viewControllers" id="xqm-A5-Zdn"/>
@@ -1445,7 +1450,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="EHy-5b-R4O"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="ProfileIcon" id="EHy-5b-R4O"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="aboutTextView" destination="4cz-NV-Urb" id="O9n-Ht-ChZ"/>
@@ -1478,7 +1483,7 @@
         <scene sceneID="b4d-qu-ZI8">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="pYb-P1-Asz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Connections" id="hoe-Sy-CPT"/>
+                    <tabBarItem key="tabBarItem" title="Connections" image="ConnectionsIcon" id="hoe-Sy-CPT"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ybS-cd-EBr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1497,7 +1502,7 @@
         <scene sceneID="rGN-hG-dBd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UaD-Ai-gUU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Exchange" id="lSC-B4-qkD"/>
+                    <tabBarItem key="tabBarItem" title="Exchange" image="Exchange Tab Icon" id="lSC-B4-qkD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zlN-rH-FS2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1517,7 +1522,7 @@
         <scene sceneID="12G-Zj-nR5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="h4k-Qr-iKV" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="L2a-3e-FXF"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="SettingsIcon" id="L2a-3e-FXF"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="P5I-6d-2K2">
@@ -1539,9 +1544,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ConnectionsIcon" width="30" height="19"/>
         <image name="EmailIcon" width="1200" height="1200"/>
+        <image name="Exchange Tab Icon" width="30" height="28"/>
         <image name="FacebookLogin" width="280" height="41"/>
-        <image name="PhoneIcon" width="1200" height="1200"/>
+        <image name="PhoneIcon" width="1188" height="1191"/>
+        <image name="ProfileIcon" width="26" height="31"/>
+        <image name="SettingsIcon" width="29" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="wCV-N6-oSj"/>
