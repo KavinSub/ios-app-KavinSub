@@ -40,7 +40,43 @@ class OtherUserViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
     }
+    
+    
+    @IBAction func deleteConnection(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Delete Connection", message: "You will lose access to this users contact information, and this user will lose access to yours.\n\nAre you sure you would like to delete this connection?", preferredStyle: UIAlertControllerStyle.ActionSheet)
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive) { (action: UIAlertAction) -> Void in
+            
+            let rootConnections = self.navigationController!.viewControllers[0] as! ConnectionsViewController
+            rootConnections.removeUser(self.user!)
+            
+            self.navigationController!.popViewControllerAnimated(true)
+            
+            let thisQuery = PFQuery(className: "Connection")
+            thisQuery.whereKey("this_user", equalTo: PFUser.currentUser()!)
+            thisQuery.whereKey("other_user", equalTo: self.user!)
+            
+            let thatQuery = PFQuery(className: "Connection")
+            thatQuery.whereKey("this_user", equalTo: self.user!)
+            thatQuery.whereKey("other_user", equalTo: PFUser.currentUser()!)
+            
+            let superQuery = PFQuery.orQueryWithSubqueries([thisQuery, thatQuery])
+            
+            superQuery.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+                if let objects = objects{
+                    PFObject.deleteAllInBackground(objects)
+                }
+            })
+            
+        }
+        alertController.addAction(deleteAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
     var user: PFUser?
     
     @IBOutlet weak var profileBackView: UIView!
@@ -138,6 +174,8 @@ class OtherUserViewController: UIViewController {
                     self.profileImageView.image = UIImage(data: data)
                 }
             })
+        }else{
+            self.profileImageView.image = UIImage(named: "Default Profile")
         }
         
         // ii) Name

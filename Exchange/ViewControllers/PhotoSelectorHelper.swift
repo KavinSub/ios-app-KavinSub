@@ -43,6 +43,11 @@ class PhotoSelectorHelper: NSObject {
             alertController.addAction(cameraAction)
         }
         
+        let loadDefaultAction = UIAlertAction(title: "Default Picture", style: UIAlertActionStyle.Default) { (action: UIAlertAction) -> Void in
+            self.callback(UIImage(named: "Default Profile"))
+        }
+        alertController.addAction(loadDefaultAction)
+        
         viewController.presentViewController(alertController, animated: true, completion: nil)
     }
     

@@ -21,7 +21,7 @@ class ExchangeViewController: UIViewController {
     @IBOutlet weak var sarcasmLabel: UILabel!
     
     let sarcasticStrings = ["You must be pretty bored.", "Get back to work!", "Don't you have better things to do?",
-        "Each time you press that button, a programmer somewhere dies. Just think about that.", "I'm sorry, are you expecting something to happen?", "Don't you have a life to get back to? Oh wait."]
+        "I'm sorry, are you expecting something to happen?", "Don't you have a life to get back to? Oh wait."]
     
     let exchange = Exchange()
     var bluetoothHandler: Bluetooth?

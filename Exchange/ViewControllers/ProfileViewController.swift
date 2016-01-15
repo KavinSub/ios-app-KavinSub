@@ -346,8 +346,8 @@ class ProfileViewController: UIViewController {
                     }
                 }
             })
-        }else{ // TODO: Otherwise set a default
-            
+        }else{
+            self.profileImageView.image = UIImage(named: "Default Profile")
         }
         
         // ii) name

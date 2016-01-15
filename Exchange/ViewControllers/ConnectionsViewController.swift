@@ -24,6 +24,11 @@ class ConnectionsViewController: UIViewController{
     
     let colors: [UIColor] = [UIElementProperties.beigeColor]
     
+    func removeUser(user: PFUser){
+        let index = users!.indexOf(user)!
+        users!.removeAtIndex(index)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

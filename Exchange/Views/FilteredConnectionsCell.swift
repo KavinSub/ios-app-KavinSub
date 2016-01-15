@@ -26,12 +26,12 @@ class FilteredConnectionsCell: UITableViewCell {
                     self.profileImageView.image = image
                     
                     self.contentView.setNeedsLayout()
-                }else{ // Load Default
-                    
+                }else{
+                    self.profileImageView.image = UIImage(named: "Default Profile")
                 }
             })
-        }else{ // TODO: Load default
-            
+        }else{
+            self.profileImageView.image = UIImage(named: "Default Profile")
         }
         
         self.profileImageView.layer.cornerRadius = self.profileImageView.frame.width/2.0
