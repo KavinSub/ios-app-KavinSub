@@ -331,14 +331,21 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dm2-BH-dEH">
                                 <rect key="frame" x="273" y="72" width="54" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Aij-ZI-PRS"/>
                                     <constraint firstAttribute="width" constant="54" id="g8S-y5-KAu"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
                                 <state key="normal" title="No App">
-                                    <color key="titleColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <segue destination="bn0-0b-lbu" kind="show" id="Fi8-cW-UUK"/>
                                 </connections>
@@ -633,7 +640,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Search" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zut-3v-lfU">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable Scan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zut-3v-lfU">
                                                     <rect key="frame" x="8" y="13" width="117" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="117" id="lef-PZ-c9M"/>
@@ -1606,7 +1613,7 @@
         <image name="ExchangeLogo" width="82" height="74"/>
         <image name="FacebookLogin" width="280" height="41"/>
         <image name="PhoneIcon" width="1188" height="1191"/>
-        <image name="ProfileIcon" width="26" height="31"/>
+        <image name="ProfileIcon" width="24" height="30"/>
         <image name="SettingsIcon" width="29" height="30"/>
         <image name="Sign In Button" width="280" height="41"/>
         <image name="Sign Up Button" width="280" height="41"/>

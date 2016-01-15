@@ -217,6 +217,9 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedUser = users![indexPath.section]
         
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell!.selected = false
+        
         self.performSegueWithIdentifier("UserProfile", sender: self)
     }
 }
