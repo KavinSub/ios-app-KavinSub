@@ -102,28 +102,29 @@ class Bluetooth: NSObject{
         connectionQuery.whereKey("this_user", equalTo: currentUser!)
         connectionQuery.whereKey("other_user", equalTo: otherUser)
         
-        let task = connectionQuery.getFirstObjectInBackground()
-        connectionObject = task.result as! PFObject?
-        
-        if(connectionObject != nil){
-            print("Connection already exists.")
-            return
-        }
-        
-        // At this point the connection object does not exist. We create one
-        let newConnection = PFObject(className: "Connection")
-        newConnection.setValue(currentUser!, forKey: "this_user")
-        newConnection.setValue(otherUser, forKey: "other_user")
-        
-        // We save the connection object in the backend
-        newConnection.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if error != nil{
-                print("\(error?.localizedDescription)")
-            }else{
-                if success{
-                    print("Connection object saved succesfully.")
+        connectionQuery.getFirstObjectInBackgroundWithBlock { (object: PFObject?, error: NSError?) -> Void in
+            connectionObject = object
+            
+            if(connectionObject != nil){
+                print("Connection already exists.")
+                return
+            }
+            
+            // At this point the connection object does not exist. We create one
+            let newConnection = PFObject(className: "Connection")
+            newConnection.setValue(currentUser!, forKey: "this_user")
+            newConnection.setValue(otherUser, forKey: "other_user")
+            
+            // We save the connection object in the backend
+            newConnection.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+                if error != nil{
+                    print("\(error?.localizedDescription)")
                 }else{
-                    print("Conection object not saved.")
+                    if success{
+                        print("Connection object saved succesfully.")
+                    }else{
+                        print("Conection object not saved.")
+                    }
                 }
             }
         }

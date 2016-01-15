@@ -249,7 +249,7 @@ class ExchangeViewController: UIViewController {
         //statusButton?.backgroundColor = UIElementProperties.connectionStatus
         let radius = statusButton!.frame.width/2.0
         let circle = UIView(frame: CGRectMake(0, 0, radius * 2.0, radius * 2.0))
-        circle.backgroundColor = UIElementProperties.orangeColor
+        circle.backgroundColor = UIElementProperties.connectionStatus//UIElementProperties.orangeColor
         circle.center.x = statusButton!.frame.width/2.0
         circle.center.y = statusButton!.frame.height/2.0
         circle.layer.cornerRadius = radius
@@ -276,7 +276,7 @@ class ExchangeViewController: UIViewController {
                     UIView.animateWithDuration(0.5, delay: 1.0, options: UIViewAnimationOptions.CurveEaseInOut, animations: animation, completion: { (success: Bool) -> Void in
                         circle.removeFromSuperview()
                         
-                        self.createRippleWithColor(UIElementProperties.orangeColor, scale: 5.0)
+                        self.createRippleWithColor(UIElementProperties.connectionStatus/*UIElementProperties.orangeColor*/, scale: 5.0)
                         
                     })
                 }
