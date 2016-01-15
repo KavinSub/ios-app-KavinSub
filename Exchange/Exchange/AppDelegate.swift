@@ -13,8 +13,6 @@ import FBSDKLoginKit
 import ParseFacebookUtilsV4
 import Google
 
-//import Reachability
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
 
@@ -45,20 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         
         GIDSignIn.sharedInstance().delegate = self
-        
-        // Add observer for network connectivity changes
-        
-        
-        /*do{
-            reachability = try Reachability.reachabilityForInternetConnection()
-            
-            NSNotificationCenter.defaultCenter().addObserver(self.networkHelper, selector: "reachabilityChanged:", name: ReachabilityChangedNotification, object: reachability!)
-            
-            try reachability!.startNotifier()
-        }catch{
-            print("Unable to create Reachability.")
-        }*/
-        
+                
         // Choose correct view controller
         let hasLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn")
         print("\(hasLoggedIn)")
