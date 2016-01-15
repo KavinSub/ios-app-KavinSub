@@ -47,7 +47,7 @@ class FilteredConnectionsCell: UITableViewCell {
     
     func setJob(position: String, company: String){
         if position == "" && company == ""{
-            jobLabel.text = "Works at"
+            jobLabel.text = ""
         }else if position == ""{
             jobLabel.text = "Works at \(company)"
         }else if company == ""{

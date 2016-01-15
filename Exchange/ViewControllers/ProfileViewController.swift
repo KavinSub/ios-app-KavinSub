@@ -322,6 +322,12 @@ class ProfileViewController: UIViewController {
         emailField.leftViewMode = UITextFieldViewMode.Always
         emailField.contentVerticalAlignment = UIControlContentVerticalAlignment.Center
         
+        
+        phoneLabel.adjustsFontSizeToFitWidth = true
+        phoneLabel.minimumScaleFactor = 0
+        
+        emailLabel.adjustsFontSizeToFitWidth = true
+        emailLabel.minimumScaleFactor = 0
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -355,12 +361,15 @@ class ProfileViewController: UIViewController {
         let lastName = (user.valueForKey("lastName") as! String?) ?? ""
         
         nameLabel.text = "\(firstName) \(lastName)"
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.minimumScaleFactor = 0
+        
         
         // iii) company and position
         let position = (user.valueForKey("position") as! String?) ?? ""
         let company = (user.valueForKey("company") as! String?) ?? ""
         if position == "" && company == ""{
-            jobLabel.text = "Works at"
+            jobLabel.text = ""
         }else if position == ""{
             jobLabel.text = "Works at \(company)"
         }else if company == ""{
@@ -368,6 +377,9 @@ class ProfileViewController: UIViewController {
         }else{
             jobLabel.text = "\(position) at \(company)"
         }
+        jobLabel.adjustsFontSizeToFitWidth = true
+        jobLabel.minimumScaleFactor = 0
+        
         
         positionField.text = position
         companyField.text = company

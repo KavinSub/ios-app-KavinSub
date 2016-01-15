@@ -201,10 +201,16 @@ extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
             let cCell = cell as! ConnectionsCell
             cCell.nameLabel.adjustsFontSizeToFitWidth = true
             cCell.nameLabel.minimumScaleFactor = 0
+            
+            cCell.jobLabel.adjustsFontSizeToFitWidth = true
+            cCell.jobLabel.minimumScaleFactor = 0
         }else if tableView.tag == self.filteredTableView.tag{
             let cCell = cell as! FilteredConnectionsCell
             cCell.nameLabel.adjustsFontSizeToFitWidth = true
             cCell.nameLabel.minimumScaleFactor = 0
+            
+            cCell.jobLabel.adjustsFontSizeToFitWidth = true
+            cCell.jobLabel.minimumScaleFactor = 0
         }
     }
     

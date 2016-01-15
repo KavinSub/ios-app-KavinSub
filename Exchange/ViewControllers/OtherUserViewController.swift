@@ -19,6 +19,18 @@ class OtherUserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.minimumScaleFactor = 0
+        
+        jobLabel.adjustsFontSizeToFitWidth = true
+        jobLabel.minimumScaleFactor = 0
+        
+        phoneLabel.adjustsFontSizeToFitWidth = true
+        phoneLabel.minimumScaleFactor = 0
+        
+        emailLabel.adjustsFontSizeToFitWidth = true
+        emailLabel.minimumScaleFactor = 0
+        
         displayUser()
         UIChanges()
         addGestures()
