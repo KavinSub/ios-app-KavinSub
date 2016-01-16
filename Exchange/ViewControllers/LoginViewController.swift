@@ -16,10 +16,19 @@ import Google
 // NOTE: userLoggedIn stored in NSUserDefaults. Is true if user has been authenticated
 class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
+    var reachability: Reachability?
     
     @IBAction func facebookLoginButtonPressed(sender: AnyObject) {
         // Credit to http://swiftdeveloperblog.com/parse-login-with-facebook-account-example-in-swift/
         
+        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
+            let alertController = UIAlertController(title: nil, message: "No internet connection, unable to log in.", preferredStyle: UIAlertControllerStyle.Alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            return
+        }
         
         // Login asking for permissions
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email"]) { (user: PFUser?, error: NSError?) -> Void in
@@ -76,6 +85,8 @@ class LoginViewController: UIViewController, GIDSignInUIDelegate {
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        
+        reachability = try! Reachability.reachabilityForInternetConnection()
     }
     
     override func viewDidAppear(animated: Bool) {

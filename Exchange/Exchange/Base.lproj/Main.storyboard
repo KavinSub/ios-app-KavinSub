@@ -175,6 +175,15 @@
                                     <segue destination="xIU-NU-5oY" kind="unwind" unwindAction="unwindToMainLoginSegue:" id="3xh-mU-eNE"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTe-OK-ee1">
+                                <rect key="frame" x="20" y="289" width="560" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="JQj-1q-eHt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.6588235294117647" blue="0.77647058823529413" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -183,19 +192,24 @@
                             <constraint firstItem="FMm-kY-Pfi" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="6Ql-VW-BJs"/>
                             <constraint firstItem="qpu-j9-oJb" firstAttribute="leading" secondItem="EcA-VR-6fW" secondAttribute="leadingMargin" constant="-20" id="KBs-Kp-wAz"/>
                             <constraint firstItem="fwx-L1-gVa" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="L2m-Nu-cuN"/>
+                            <constraint firstItem="CTe-OK-ee1" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="Nad-eu-yHv"/>
                             <constraint firstItem="7ez-J8-gXC" firstAttribute="centerX" secondItem="EcA-VR-6fW" secondAttribute="centerX" id="OuD-nx-gh8"/>
                             <constraint firstItem="qYe-vT-Mlz" firstAttribute="top" secondItem="4WY-h5-a5z" secondAttribute="bottom" constant="90" id="PSy-sr-7uy"/>
                             <constraint firstItem="qqg-pz-oAr" firstAttribute="leading" secondItem="EcA-VR-6fW" secondAttribute="leadingMargin" id="U1P-Mh-y3a"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qpu-j9-oJb" secondAttribute="trailing" constant="-20" id="eav-rF-OCN"/>
                             <constraint firstItem="qqg-pz-oAr" firstAttribute="top" secondItem="4WY-h5-a5z" secondAttribute="bottom" id="j6E-Ad-h8Y"/>
+                            <constraint firstItem="CTe-OK-ee1" firstAttribute="trailing" secondItem="EcA-VR-6fW" secondAttribute="trailingMargin" id="lRv-42-kko"/>
                             <constraint firstItem="qpu-j9-oJb" firstAttribute="top" secondItem="EcA-VR-6fW" secondAttribute="topMargin" id="sae-hk-FJR"/>
                             <constraint firstItem="7ez-J8-gXC" firstAttribute="top" secondItem="qYe-vT-Mlz" secondAttribute="bottom" constant="8" id="tMl-a3-qww"/>
                             <constraint firstItem="fwx-L1-gVa" firstAttribute="top" secondItem="FMm-kY-Pfi" secondAttribute="bottom" constant="8" id="u2M-ec-V2E"/>
+                            <constraint firstItem="CTe-OK-ee1" firstAttribute="top" secondItem="fwx-L1-gVa" secondAttribute="bottom" constant="35" id="wvO-Zj-8VU"/>
+                            <constraint firstItem="CTe-OK-ee1" firstAttribute="leading" secondItem="EcA-VR-6fW" secondAttribute="leadingMargin" id="zGs-Pk-6iv"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Sign Up" id="WaT-lh-S0Z"/>
                     <connections>
                         <outlet property="confirmPasswordField" destination="FMm-kY-Pfi" id="qRc-kt-XYl"/>
+                        <outlet property="errorLabel" destination="CTe-OK-ee1" id="rhA-n6-NgY"/>
                         <outlet property="passwordField" destination="7ez-J8-gXC" id="9xc-Hj-ZAA"/>
                         <outlet property="usernameField" destination="qYe-vT-Mlz" id="MNb-DN-HYP"/>
                         <segue destination="gvT-pl-3B0" kind="show" identifier="Login" id="57S-YC-c94"/>

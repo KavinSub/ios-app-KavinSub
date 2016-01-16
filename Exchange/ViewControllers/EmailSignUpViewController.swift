@@ -18,11 +18,25 @@ class EmailSignUpViewController: UIViewController {
     
     @IBOutlet weak var confirmPasswordField: UITextField!
     
+    @IBOutlet weak var errorLabel: UILabel!
+    
     let minFieldLength = 5
     let maxFieldLength = 20
     
+    var reachability: Reachability?
     
     @IBAction func signUp(sender: AnyObject) {
+        
+        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
+            
+            let alertController = UIAlertController(title: nil, message: "No internet connection, unable to sign up.", preferredStyle: UIAlertControllerStyle.Alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+            return
+        }
+        
         signUpUser()
     }
     
@@ -30,6 +44,9 @@ class EmailSignUpViewController: UIViewController {
     }
     
     override func viewDidLoad(){
+        
+        errorLabel.alpha = 0.0
+        
         // Gesture will close any first responders
         let tapGesture = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         self.view.addGestureRecognizer(tapGesture)
@@ -58,6 +75,8 @@ class EmailSignUpViewController: UIViewController {
         usernameField.delegate = self
         passwordField.delegate = self
         confirmPasswordField.delegate = self
+        
+        reachability = try! Reachability.reachabilityForInternetConnection()
     }
     
     override func viewWillAppear(animated: Bool){
@@ -88,7 +107,15 @@ class EmailSignUpViewController: UIViewController {
         
         user.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if error != nil{
-                print("\(error?.localizedDescription)")
+                print("\(error!.localizedDescription)")
+                self.errorLabel.text = "Username already taken."
+                if self.errorLabel.alpha <= 1.0{
+                    UIView.animateWithDuration(0.5, animations: { () -> Void in
+                        self.errorLabel.alpha = 1.0
+                    })
+                }else{
+                    
+                }
             }
             
             if success{
