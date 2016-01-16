@@ -108,13 +108,24 @@ class EmailSignUpViewController: UIViewController {
         user.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if error != nil{
                 print("\(error!.localizedDescription)")
-                self.errorLabel.text = "Username already taken."
-                if self.errorLabel.alpha <= 1.0{
+                self.errorLabel.text = "Username \(username) already taken."
+                if self.errorLabel.alpha < 1.0{
                     UIView.animateWithDuration(0.5, animations: { () -> Void in
                         self.errorLabel.alpha = 1.0
                     })
                 }else{
+                    let animations = {() -> Void in
+                        UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.3, animations: { () -> Void in
+                            self.errorLabel.alpha = 0.0
+                        })
+                        
+                        UIView.addKeyframeWithRelativeStartTime(0.3, relativeDuration: 0.5, animations: { () -> Void in
+                            self.errorLabel.alpha = 1.0
+                        })
+                    }
                     
+                   // Animate keyframes
+                    UIView.animateKeyframesWithDuration(0.8, delay: 0.0, options: UIViewKeyframeAnimationOptions.CalculationModeLinear, animations: animations, completion: nil)
                 }
             }
             
