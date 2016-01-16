@@ -12,4 +12,5 @@ pod 'Google'
 pod 'Google/SignIn'
 pod 'ParseFacebookUtilsV4'
 pod 'RealmSwift'
+pod 'Mixpanel'
 end
