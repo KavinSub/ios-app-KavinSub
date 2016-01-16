@@ -20,6 +20,8 @@ class ExchangeViewController: UIViewController {
     
     @IBOutlet weak var sarcasmLabel: UILabel!
     
+    @IBOutlet weak var internetLabel: UILabel!
+    
     let sarcasticStrings = ["You must be pretty bored.", "Get back to work!", "Don't you have better things to do?",
         "I'm sorry, are you expecting something to happen?", "Don't you have a life to get back to? Oh wait."]
     
@@ -42,10 +44,13 @@ class ExchangeViewController: UIViewController {
     var customRipple = false
     
     var rippleTimer: NSTimer?
+    var reachTimer: NSTimer?
     
     var dots = 0
     
     var exchangeImageView: UIImageView?
+    
+    var reachability: Reachability?
     
     @IBOutlet weak var scanningLabel: UILabel!
     let baseText = "Scanning for devices"
@@ -200,6 +205,20 @@ class ExchangeViewController: UIViewController {
                 self.scanningLabel.alpha = 0.0
             })
         }
+        
+        internetLabel.alpha = 0.0
+        internetLabel.text = "Please connect to the internet."
+        
+            
+        reachability = try! Reachability.reachabilityForInternetConnection()
+        
+        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.internetLabel.alpha = 1.0
+            })
+        }
+        
+        setupReachTimer()
     }
     
 
@@ -231,6 +250,10 @@ class ExchangeViewController: UIViewController {
             }
         }
         
+        if reachTimer == nil{
+            setupReachTimer()
+        }
+        
         hasLoaded = true
         
         super.viewDidAppear(animated)
@@ -240,6 +263,10 @@ class ExchangeViewController: UIViewController {
     override func viewDidDisappear(animated: Bool) {
         print("Disappeared")
         turnOffBluetooth()
+        rippleTimer?.invalidate()
+        rippleTimer = nil
+        reachTimer?.invalidate()
+        reachTimer = nil
         
         super.viewDidDisappear(animated)
     }
@@ -334,4 +361,26 @@ class ExchangeViewController: UIViewController {
         bluetoothHandler?.stopAdvertisting()
     }
     
+    // Timer that polls internet connection
+    func setupReachTimer(){
+        reachTimer = NSTimer(timeInterval: 5.0, target: self, selector: Selector("pollConnection"), userInfo: nil, repeats: true)
+        let runner = NSRunLoop.currentRunLoop()
+        runner.addTimer(reachTimer!, forMode: NSDefaultRunLoopMode)
+    }
+    
+    func pollConnection(){
+        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
+            if internetLabel.alpha < 1.0{
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.internetLabel.alpha = 1.0
+                })
+            }
+        }else{
+            if internetLabel.alpha == 1.0{
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    self.internetLabel.alpha = 0.0
+                })
+            }
+        }
+    }
 }

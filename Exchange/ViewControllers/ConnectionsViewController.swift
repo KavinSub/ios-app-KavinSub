@@ -15,12 +15,19 @@ class ConnectionsViewController: UIViewController{
     @IBOutlet weak var filteredTableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchTrailing: NSLayoutConstraint!
+    
+    @IBOutlet weak var internetLabel: UILabel!
+    
     var users: [PFUser]?
     var usersNames: [String]?
     // Array of name strings to filter. Order is as same as users.
     var filteredUsers: [PFUser]?
     
     var selectedUser: PFUser?
+    
+    var reachTimer: NSTimer?
+    
+    var reachability: Reachability?
     
     let colors: [UIColor] = [UIElementProperties.beigeColor]
     
@@ -41,6 +48,18 @@ class ConnectionsViewController: UIViewController{
         
         filteredTableView.backgroundColor = UIColor.clearColor()
         filteredTableView.tag = 1
+        
+        internetLabel.alpha = 0.0
+        internetLabel.text = "No Internet connection available."
+        
+        reachability = try! Reachability.reachabilityForInternetConnection()
+        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
+            UIView.animateWithDuration(0.5, animations: { () -> Void in
+                self.internetLabel.alpha = 1.0
+            })
+        }
+        
+        setupReachTimer()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -48,8 +67,19 @@ class ConnectionsViewController: UIViewController{
         if Exchange.newUserAdded{
             getUsers()
         }
+        
+        if reachTimer == nil{
+            setupReachTimer()
+        }
     }
 
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        reachTimer!.invalidate()
+        reachTimer = nil
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -128,7 +158,28 @@ class ConnectionsViewController: UIViewController{
         
     }
     
-
+    func setupReachTimer(){
+        reachTimer = NSTimer(timeInterval: 5.0, target: self, selector: Selector("pollConnection"), userInfo: nil, repeats: true)
+        let runner = NSRunLoop.currentRunLoop()
+        runner.addTimer(reachTimer!, forMode: NSDefaultRunLoopMode)
+    }
+    
+    func pollConnection(){
+        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
+            if internetLabel.alpha < 1.0{
+                UIView.animateWithDuration(0.5, animations: { () -> Void in
+                    self.internetLabel.alpha = 1.0
+                })
+            }
+        }else{
+            if internetLabel.alpha == 1.0{
+                UIView.animateWithDuration(0.3, animations: { () -> Void in
+                    self.internetLabel.alpha = 0.0
+                })
+            }
+        }
+    }
+    
 }
 
 extension ConnectionsViewController: UITableViewDelegate, UITableViewDataSource{
