@@ -40,7 +40,7 @@ public enum ReachabilityError: ErrorType {
 public let ReachabilityChangedNotification = "ReachabilityChangedNotification"
 
 func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFlags, info: UnsafeMutablePointer<Void>) {
-    let reachability = Unmanaged<Reachability>.fromOpaque(COpaquePointer(info)).takeUnretainedValue()
+    let reachability = Unmanaged<Connectivity>.fromOpaque(COpaquePointer(info)).takeUnretainedValue()
 
     dispatch_async(dispatch_get_main_queue()) {
         reachability.reachabilityChanged(flags)
@@ -48,10 +48,10 @@ func callback(reachability:SCNetworkReachability, flags: SCNetworkReachabilityFl
 }
 
 
-public class Reachability: NSObject {
+public class Connectivity: NSObject {
 
-    public typealias NetworkReachable = (Reachability) -> ()
-    public typealias NetworkUnreachable = (Reachability) -> ()
+    public typealias NetworkReachable = (Connectivity) -> ()
+    public typealias NetworkUnreachable = (Connectivity) -> ()
 
     public enum NetworkStatus: CustomStringConvertible {
 
@@ -108,7 +108,7 @@ public class Reachability: NSObject {
         self.init(reachabilityRef: ref)
     }
 
-    public class func reachabilityForInternetConnection() throws -> Reachability {
+    public class func reachabilityForInternetConnection() throws -> Connectivity {
         
         var zeroAddress = sockaddr_in()
         zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
@@ -118,10 +118,10 @@ public class Reachability: NSObject {
             SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
         }) else { throw ReachabilityError.FailedToCreateWithAddress(zeroAddress) }
         
-        return Reachability(reachabilityRef: ref)
+        return Connectivity(reachabilityRef: ref)
     }
 
-    public class func reachabilityForLocalWiFi() throws -> Reachability {
+    public class func reachabilityForLocalWiFi() throws -> Connectivity {
 
         var localWifiAddress: sockaddr_in = sockaddr_in(sin_len: __uint8_t(0), sin_family: sa_family_t(0), sin_port: in_port_t(0), sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
         localWifiAddress.sin_len = UInt8(sizeofValue(localWifiAddress))
@@ -135,7 +135,7 @@ public class Reachability: NSObject {
             SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
         }) else { throw ReachabilityError.FailedToCreateWithAddress(localWifiAddress) }
         
-        return Reachability(reachabilityRef: ref)
+        return Connectivity(reachabilityRef: ref)
     }
 
     // MARK: - *** Notifier methods ***

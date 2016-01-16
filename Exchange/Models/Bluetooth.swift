@@ -27,7 +27,7 @@ class Bluetooth: NSObject{
     var connectionStrength: Int = -999
     let minConnectionStrength = -35
     
-    let reachability: Reachability
+    let reachability: Connectivity
     
     var connectedPeripherals: [CBPeripheral] = []
     
@@ -51,7 +51,7 @@ class Bluetooth: NSObject{
     
     init(viewController: ExchangeViewController){
         self.viewController = viewController
-        reachability = try! Reachability.reachabilityForInternetConnection()
+        reachability = try! Connectivity.reachabilityForInternetConnection()
         super.init()
     }
     
@@ -303,7 +303,7 @@ extension Bluetooth: CBPeripheralDelegate{
                     let objectID = NSString(data: value, encoding: NSUTF8StringEncoding)
                     print("\(objectID)")
                     
-                    if ExchangeViewController.allowExchange && reachability.currentReachabilityStatus != Reachability.NetworkStatus.NotReachable{
+                    if ExchangeViewController.allowExchange && reachability.currentReachabilityStatus != Connectivity.NetworkStatus.NotReachable{
                         createConnection(value)
                     }
                 }

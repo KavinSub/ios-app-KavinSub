@@ -23,11 +23,11 @@ class EmailSignUpViewController: UIViewController {
     let minFieldLength = 5
     let maxFieldLength = 20
     
-    var reachability: Reachability?
+    var reachability: Connectivity?
     
     @IBAction func signUp(sender: AnyObject) {
         
-        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
+        if reachability!.currentReachabilityStatus == Connectivity.NetworkStatus.NotReachable{
             
             let alertController = UIAlertController(title: nil, message: "No internet connection, unable to sign up.", preferredStyle: UIAlertControllerStyle.Alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -76,7 +76,7 @@ class EmailSignUpViewController: UIViewController {
         passwordField.delegate = self
         confirmPasswordField.delegate = self
         
-        reachability = try! Reachability.reachabilityForInternetConnection()
+        reachability = try! Connectivity.reachabilityForInternetConnection()
     }
     
     override func viewWillAppear(animated: Bool){

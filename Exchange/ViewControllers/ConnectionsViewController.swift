@@ -27,7 +27,7 @@ class ConnectionsViewController: UIViewController{
     
     var reachTimer: NSTimer?
     
-    var reachability: Reachability?
+    var reachability: Connectivity?
     
     let colors: [UIColor] = [UIElementProperties.beigeColor]
     
@@ -52,8 +52,8 @@ class ConnectionsViewController: UIViewController{
         internetLabel.alpha = 0.0
         internetLabel.text = "No Internet connection available."
         
-        reachability = try! Reachability.reachabilityForInternetConnection()
-        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
+        reachability = try! Connectivity.reachabilityForInternetConnection()
+        if reachability!.currentReachabilityStatus == Connectivity.NetworkStatus.NotReachable{
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.internetLabel.alpha = 1.0
             })
@@ -165,7 +165,7 @@ class ConnectionsViewController: UIViewController{
     }
     
     func pollConnection(){
-        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
+        if reachability!.currentReachabilityStatus == Connectivity.NetworkStatus.NotReachable{
             if internetLabel.alpha < 1.0{
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     self.internetLabel.alpha = 1.0
