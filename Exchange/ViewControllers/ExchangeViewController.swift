@@ -50,7 +50,7 @@ class ExchangeViewController: UIViewController {
     
     var exchangeImageView: UIImageView?
     
-    var reachability: Connectivity?
+    var reachability: Reachability?
     
     @IBOutlet weak var scanningLabel: UILabel!
     let baseText = "Scanning for devices"
@@ -210,9 +210,9 @@ class ExchangeViewController: UIViewController {
         internetLabel.text = "Please connect to the internet."
         
             
-        reachability = try! Connectivity.reachabilityForInternetConnection()
+        reachability = try! Reachability.reachabilityForInternetConnection()
         
-        if reachability!.currentReachabilityStatus == Connectivity.NetworkStatus.NotReachable{
+        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
             UIView.animateWithDuration(0.5, animations: { () -> Void in
                 self.internetLabel.alpha = 1.0
             })
@@ -369,7 +369,7 @@ class ExchangeViewController: UIViewController {
     }
     
     func pollConnection(){
-        if reachability!.currentReachabilityStatus == Connectivity.NetworkStatus.NotReachable{
+        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
             if internetLabel.alpha < 1.0{
                 UIView.animateWithDuration(0.5, animations: { () -> Void in
                     self.internetLabel.alpha = 1.0

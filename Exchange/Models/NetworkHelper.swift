@@ -14,7 +14,7 @@ class NetworkHelper: NSObject{
     
     func reachabilityChanged(note: NSNotification){
         
-        let reachability = note.object as! Connectivity
+        let reachability = note.object as! Reachability
         
         if reachability.isReachable(){
             // Begin executing tasks

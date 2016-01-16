@@ -17,7 +17,7 @@ class UsernameLoginViewController: UIViewController {
     
     @IBAction func loginUser(sender: AnyObject) {
         
-        if reachability!.currentReachabilityStatus == Connectivity.NetworkStatus.NotReachable{
+        if reachability!.currentReachabilityStatus == Reachability.NetworkStatus.NotReachable{
             
             let alertController = UIAlertController(title: nil, message: "No internet connection, unable to sign up.", preferredStyle: UIAlertControllerStyle.Alert)
             let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -31,7 +31,7 @@ class UsernameLoginViewController: UIViewController {
         loginUser()
     }
     
-    var reachability: Connectivity?
+    var reachability: Reachability?
     
     override func viewDidLoad(){
         let tapGesture = UITapGestureRecognizer(target: self, action: Selector("dismissKeyboard"))
@@ -55,7 +55,7 @@ class UsernameLoginViewController: UIViewController {
         
         passwordField.delegate = self
         
-        reachability = try! Connectivity.reachabilityForInternetConnection()
+        reachability = try! Reachability.reachabilityForInternetConnection()
     }
     
     // Dismiss open keyboards

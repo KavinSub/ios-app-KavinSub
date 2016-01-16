@@ -21,6 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     var networkHelper = NetworkHelper()
     
+    var reachability: Reachability? = nil
+    
     enum loginType{
         case Facebook
         case Google

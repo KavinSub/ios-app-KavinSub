@@ -15,7 +15,6 @@
 		AE2794381BFD4BA000254F50 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE2794361BFD4BA000254F50 /* Main.storyboard */; };
 		AE27943A1BFD4BA000254F50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE2794391BFD4BA000254F50 /* Assets.xcassets */; };
 		AE27943D1BFD4BA000254F50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE27943B1BFD4BA000254F50 /* LaunchScreen.storyboard */; };
-		AE2E071D1C4A3235004523B0 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2E071C1C4A3235004523B0 /* Connectivity.swift */; };
 		AE4D54C21C419D8D0022DB3B /* BetterSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */; };
 		AE4D54D01C41D3F50022DB3B /* AkiraTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54C41C41D3F50022DB3B /* AkiraTextField.swift */; };
 		AE4D54D11C41D3F50022DB3B /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54C51C41D3F50022DB3B /* HoshiTextField.swift */; };
@@ -31,6 +30,7 @@
 		AE4D54DE1C42068A0022DB3B /* NoAppViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54DD1C42068A0022DB3B /* NoAppViewController.swift */; };
 		AE4D54E01C42FEF10022DB3B /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54DF1C42FEF10022DB3B /* Task.swift */; };
 		AE4D54E21C4305CF0022DB3B /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54E11C4305CF0022DB3B /* NetworkHelper.swift */; };
+		AE4D54E41C430AB20022DB3B /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE4D54E31C430AB20022DB3B /* Reachability.swift */; };
 		AE7340A31C1BB5A200A6509E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */; };
 		AE81D7631C46081700E3B3B4 /* FilteredConnectionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE81D7621C46081700E3B3B4 /* FilteredConnectionsCell.swift */; };
 		AEA4106A1C210BBE00D07660 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */; };
@@ -61,7 +61,6 @@
 		AE2794391BFD4BA000254F50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE27943C1BFD4BA000254F50 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE27943E1BFD4BA000254F50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AE2E071C1C4A3235004523B0 /* Connectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		AE4D54C11C419D8D0022DB3B /* BetterSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetterSettingsViewController.swift; sourceTree = "<group>"; };
 		AE4D54C41C41D3F50022DB3B /* AkiraTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AkiraTextField.swift; sourceTree = "<group>"; };
 		AE4D54C51C41D3F50022DB3B /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
@@ -78,6 +77,7 @@
 		AE4D54DD1C42068A0022DB3B /* NoAppViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAppViewController.swift; sourceTree = "<group>"; };
 		AE4D54DF1C42FEF10022DB3B /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		AE4D54E11C4305CF0022DB3B /* NetworkHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		AE4D54E31C430AB20022DB3B /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		AE7340A21C1BB5A200A6509E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AE81D7621C46081700E3B3B4 /* FilteredConnectionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilteredConnectionsCell.swift; sourceTree = "<group>"; };
 		AEA410691C210BBE00D07660 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 		AEE33B481C03D8AF00067838 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AE2E071C1C4A3235004523B0 /* Connectivity.swift */,
+				AE4D54E31C430AB20022DB3B /* Reachability.swift */,
 				AEE33B491C03D8DD00067838 /* Exchange.swift */,
 				AEC1F5F51C1769A30029A1E1 /* Bluetooth.swift */,
 				AE4D54DF1C42FEF10022DB3B /* Task.swift */,
@@ -368,11 +368,11 @@
 				AE81D7631C46081700E3B3B4 /* FilteredConnectionsCell.swift in Sources */,
 				AE4D54E01C42FEF10022DB3B /* Task.swift in Sources */,
 				AE4D54D51C41D3F50022DB3B /* KaedeTextField.swift in Sources */,
-				AE2E071D1C4A3235004523B0 /* Connectivity.swift in Sources */,
 				AE4D54E21C4305CF0022DB3B /* NetworkHelper.swift in Sources */,
 				AE4D54C21C419D8D0022DB3B /* BetterSettingsViewController.swift in Sources */,
 				AEE33B4A1C03D8DD00067838 /* Exchange.swift in Sources */,
 				AEBFA4F31C4055EF00B5E8F8 /* ConnectionsCell.swift in Sources */,
+				AE4D54E41C430AB20022DB3B /* Reachability.swift in Sources */,
 				AEE5C6EA1C442D4700CEC394 /* OtherUserViewController.swift in Sources */,
 				AE4D54D61C41D3F50022DB3B /* MadokaTextField.swift in Sources */,
 				AEEE82901BFD4EE0008891A7 /* LoginViewController.swift in Sources */,
