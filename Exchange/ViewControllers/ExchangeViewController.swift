@@ -128,6 +128,9 @@ class ExchangeViewController: UIViewController {
     }
     
     func statusTouchUpInside(){
+        
+        PFAnalytics.trackEvent("ButtonPress")
+        
         buttonPressCount = buttonPressCount + 1
         if buttonPressCount == startThreshold{
             var randomIndex: Int = 0
@@ -207,7 +210,7 @@ class ExchangeViewController: UIViewController {
         }
         
         internetLabel.alpha = 0.0
-        internetLabel.text = "Please connect to the internet."
+        internetLabel.text = "Error connecting to network."
         
             
         reachability = try! Reachability.reachabilityForInternetConnection()

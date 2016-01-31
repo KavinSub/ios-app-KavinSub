@@ -121,6 +121,7 @@ class Bluetooth: NSObject{
                     print("\(error?.localizedDescription)")
                 }else{
                     if success{
+                        PFAnalytics.trackEvent("ConnectionCreate")
                         print("Connection object saved succesfully.")
                     }else{
                         print("Conection object not saved.")
