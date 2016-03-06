@@ -76,3 +76,7 @@ Carthage/Build
 
 fastlane/report.xml
 fastlane/screenshots
+
+
+# Stuff
+Exchange/Exchange/AppDelegate.swift

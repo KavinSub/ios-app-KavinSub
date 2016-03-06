@@ -27,6 +27,13 @@ class BetterSettingsViewController: UITableViewController {
     
     @IBOutlet weak var deleteButton: UIButton!
     
+    @IBAction func openPolicy(sender: AnyObject) {
+        let url : NSURL = NSURL(string: "http://kavinsub.github.io/Exchange-App/")!
+        if UIApplication.sharedApplication().canOpenURL(url) {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
+    
     @IBAction func toggleExchange(sender: AnyObject) {
         let value = switchControl.on
         
@@ -138,6 +145,8 @@ class BetterSettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.tintColor = UIElementProperties.textColor
         
         firstNameField.text = (user.valueForKey("firstName") as! String?) ?? ""
         lastNameField.text = (user.valueForKey("lastName") as! String?) ?? ""
